@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<script src="assets/confetti.js"></script>
+<script src="assets/delivery.js"></script>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Malmo Sans';src:local('Malmo Sans Light'),local('MalmoSans-Light'),url('assets/fonts/MalmoSans-Light.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Malmo Sans';src:local('Malmo Sans'),local('MalmoSans-Regular'),url('assets/fonts/MalmoSans-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Malmo Sans';src:local('Malmo Sans Medium'),local('MalmoSans-Medium'),url('assets/fonts/MalmoSans-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Malmo Sans';src:local('Malmo Sans SemiBold'),local('MalmoSans-SemiBold'),url('assets/fonts/MalmoSans-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Malmo Sans';src:local('Malmo Sans Bold'),local('MalmoSans-Bold'),url('assets/fonts/MalmoSans-Bold.woff2') format('woff2');font-weight:700 800;font-display:swap}
+*{box-sizing:border-box}
+input::placeholder,textarea::placeholder{color:#A3A09C;font-weight:300;opacity:1}
+:focus:not(:focus-visible){outline:none!important}
+body{margin:0;font-family:'Malmo Sans','Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;background:#F4F4F2;color:#1C1A19;-webkit-font-smoothing:antialiased}
+a{color:#E1251B}
+a:hover{color:#B81B10}
+@keyframes estrella{0%,100%{opacity:0;transform:scale(.4)}45%,55%{opacity:1;transform:scale(1)}}
+@keyframes cintillo{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</helmet>
+
+<a href="#contenido" style="position:absolute; left:-9999px; top:8px; z-index:100; background:#1C1A19; color:#fff; padding:12px 16px; border-radius:8px; font-weight:600; text-decoration:none" style-focus="left:8px; outline:3px solid #FFC23D; outline-offset:2px">Saltar al contenido</a>
+
+<div aria-hidden="true" onClick="{{ closeMenu }}" style="position:fixed; inset:0; z-index:25; background:rgba(14,10,8,.6); opacity:{{ bdO }}; visibility:{{ bdVis }}; transition:opacity .3s ease, visibility .3s"></div>
+
+<header data-screen-label="Navbar" style="position:fixed; top:12px; left:0; right:0; z-index:30; padding:0 12px; display:flex; justify-content:center">
+  <div style="position:relative; width:100%; max-width:clamp(1120px, 84vw, 1640px)">
+    <nav aria-label="Principal" style="display:flex; align-items:center; height:60px; background:#FFFFFF; border-radius:16px; overflow:hidden; box-shadow:0 8px 28px rgba(20,10,5,.16)">
+      <a href="#inicio" onClick="{{ goTop }}" aria-label="Plaza Autoservicios, ir al inicio" onMouseEnter="{{ logoIn }}" onMouseLeave="{{ logoOut }}" onFocus="{{ logoIn }}" onBlur="{{ logoOut }}" style="position:relative; flex:none; align-self:stretch; width:176px; display:flex; align-items:center; padding-left:16px; text-decoration:none; color:#fff" style-focus="outline:3px solid #FFC23D; outline-offset:-3px">
+        <span aria-hidden="true" style="position:absolute; top:0; bottom:0; left:0; right:-14px; background:#FF9015; clip-path:{{ logoClipO }}; transition:clip-path .7s cubic-bezier(.22,1,.36,1)"></span>
+        <span aria-hidden="true" style="position:absolute; top:0; bottom:0; left:0; right:-14px; background:#E1251B; clip-path:{{ logoClipR }}; transition:clip-path .7s cubic-bezier(.22,1,.36,1) .04s"></span>
+        <img src="assets/logo-plaza.svg" alt="" width="114" height="43" style="position:relative; display:block; height:32px; width:auto; margin-top:-5px">
+      </a>
+
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ false }}">
+        <ul onMouseLeave="{{ navLeave }}" style="position:relative; list-style:none; margin:0; padding:0 8px; flex:1; display:flex; justify-content:center; align-items:center; gap:2px">
+          <li role="presentation" aria-hidden="true" style="position:absolute; top:50%; left:0; height:40px; width:{{ pillW }}; transform:{{ pillT }}; opacity:{{ pillO }}; background:#FDECEA; border-radius:10px; pointer-events:none; transition:{{ pillTrans }}"></li>
+          <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="6">
+            <li style="position:relative">
+              <a href="{{ l.href }}" onClick="{{ l.click }}" aria-current="{{ l.current }}" onMouseEnter="{{ l.enter }}" onFocus="{{ l.enter }}" onBlur="{{ navLeave }}" style="display:flex; align-items:center; gap:6px; min-height:40px; padding:0 11px; border-radius:10px; font-size:14px; font-weight:500; white-space:nowrap; text-decoration:none; color:{{ l.color }}; transition:color .25s" style-focus="outline:3px solid #FF9015; outline-offset:1px">{{ l.label }}<span aria-hidden="true" style="width:6px; height:6px; border-radius:50%; background:#E1251B; display:{{ l.dotD }}"></span></a>
+            </li>
+          </sc-for>
+        </ul>
+        <a href="Ubicaciones.dc.html" style="flex:none; margin-right:10px; display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 18px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:15px; font-weight:500; text-decoration:none; transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+          Encontrar tienda
+        </a>
+      </sc-if>
+
+      <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ true }}">
+        <span style="flex:1"></span>
+        <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" aria-controls="menu-movil" aria-label="{{ menuLabel }}" style="flex:none; width:48px; height:48px; margin-right:6px; display:flex; align-items:center; justify-content:center; border:0; border-radius:12px; background:#FDECEA; color:#E1251B; cursor:pointer" style-focus="outline:3px solid #FF9015; outline-offset:1px">
+          <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+          </sc-if>
+          <sc-if value="{{ menuClosed }}" hint-placeholder-val="{{ true }}">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+          </sc-if>
+        </button>
+      </sc-if>
+    </nav>
+
+    <sc-if value="{{ menuVisible }}" hint-placeholder-val="{{ false }}">
+      <div id="menu-movil" style="clip-path:{{ menuClip }}; visibility:{{ menuVis }}; transition:{{ menuTrans }}; position:absolute; top:68px; left:0; right:0; background:#FFFFFF; border-radius:16px; box-shadow:0 16px 40px rgba(20,10,5,.22); padding:8px; display:flex; flex-direction:column; gap:8px">
+        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px">
+          <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="6">
+            <li>
+              <a href="{{ l.href }}" onClick="{{ l.clickMobile }}" aria-current="{{ l.current }}" style="display:flex; align-items:center; justify-content:space-between; min-height:52px; padding:0 16px; border-radius:10px; font-size:17px; font-weight:500; text-decoration:none; color:{{ l.color }}; background:{{ l.bg }}" style-focus="outline:3px solid #FF9015; outline-offset:-3px">
+                {{ l.label }}
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+              </a>
+            </li>
+          </sc-for>
+        </ul>
+        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:17px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+          Encontrar tienda
+        </a>
+      </div>
+    </sc-if>
+  </div>
+</header>
+
+<main id="contenido">
+  <div style="display:flex; flex-direction:column; height:100svh; min-height:640px">
+  <section id="inicio" data-screen-label="Hero" aria-roledescription="carrusel" aria-label="Destacados de Plaza" tabindex="-1" onKeyDown="{{ onKeyDown }}" onTouchStart="{{ onTouchStart }}" onTouchEnd="{{ onTouchEnd }}" onMouseEnter="{{ onEnter }}" onMouseLeave="{{ onLeave }}" onFocus="{{ onFocusIn }}" onBlur="{{ onFocusOut }}" style="position:relative; flex:1 1 auto; min-height:480px; background:#6E6E6E; overflow:hidden; outline:none">
+    <div aria-live="{{ live }}" aria-atomic="true" style="position:absolute; inset:0">
+      <sc-for list="{{ slides }}" as="s" hint-placeholder-count="1">
+        <div role="group" aria-roledescription="diapositiva" aria-label="{{ s.label }}" aria-hidden="{{ s.hidden }}" style="position:absolute; inset:0; overflow:hidden; z-index:{{ s.z }}; clip-path:{{ s.clip }}; transition:{{ s.trans }}; visibility:{{ s.visibility }}">
+          <div aria-hidden="true" onClick="{{ next }}" style="position:absolute; inset:0; background:{{ s.tone }}; transform:{{ s.scale }}; transition:{{ s.zoomTrans }}; transform-origin:65% 45%; will-change:transform">
+            <div style="position:absolute; left:{{ iconLeft }}; top:{{ iconTop }}; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; gap:10px; color:#C9C9C6">
+              <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5.5-5.5L5 20"></path></svg>
+              <span style="font-family:ui-monospace,Menlo,monospace; font-size:12px; letter-spacing:.04em">{{ s.imgLabel }}</span>
+            </div>
+          </div>
+          <div aria-hidden="true" style="position:absolute; inset:0; background:{{ overlayBg }}"></div>
+        </div>
+      </sc-for>
+      <div style="position:absolute; inset:0; z-index:3; display:flex; justify-content:center; padding:{{ contentPad }}; pointer-events:none">
+        <div style="width:100%; max-width:clamp(1120px, 84vw, 1640px); display:flex; flex-direction:column; justify-content:{{ contentJustify }}; align-items:flex-start; padding-left:{{ contentInset }}; color:#FFFFFF">
+          <div style="display:grid; width:100%">
+            <sc-for list="{{ texts }}" as="t" hint-placeholder-count="1">
+              <div aria-hidden="{{ t.hidden }}" style="grid-area:1 / 1; align-self:end; opacity:{{ t.o }}; transform:{{ t.tf }}; visibility:{{ t.vis }}; transition:{{ t.trans }}">
+                <p role="heading" aria-level="1" style="margin:0; text-transform:uppercase">
+                  <span style="display:block; font-size:clamp(32px, min(7vw, 7.2vh), 68px); font-weight:800; line-height:.98; letter-spacing:-0.015em">{{ t.titleBold }}</span>
+                  <span style="display:block; font-size:clamp(32px, min(7vw, 7.2vh), 68px); font-weight:300; line-height:1.02; letter-spacing:-0.015em">{{ t.titleLight }}</span>
+                </p>
+                <p style="margin:18px 0 0; max-width:640px; font-size:clamp(16px, 1.25vw, 18px); line-height:1.55; font-weight:300; text-wrap:pretty">{{ t.textA }}<strong style="color:#FF9015; font-weight:700">{{ t.highlight }}</strong>{{ t.textB }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <a href="{{ cur.ctaHref }}" style="pointer-events:auto; margin-top:28px; display:inline-flex; align-items:center; gap:14px; min-height:52px; padding:6px 8px 6px 22px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:16px; font-weight:500; text-decoration:none; box-shadow:0 8px 24px rgba(20,10,5,.25); transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FFC23D; outline-offset:3px">
+            {{ cur.ctaLabel }}
+            <span aria-hidden="true" style="width:34px; height:34px; border-radius:50%; background:#FFFFFF; color:#E1251B; display:flex; align-items:center; justify-content:center">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <sc-if value="{{ showArrows }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ prev }}" aria-label="Diapositiva anterior" style="position:absolute; z-index:5; top:50%; left:clamp(16px, 3.75vw, 54px); transform:translateY(-50%); width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(255,255,255,.7); background:rgba(20,10,5,.35); color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:translateY(-50%) scale(1.12)" style-focus="outline:3px solid #FFC23D; outline-offset:3px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </button>
+      <button type="button" onClick="{{ next }}" aria-label="Diapositiva siguiente" style="position:absolute; z-index:5; top:50%; right:clamp(16px, 3.75vw, 54px); transform:translateY(-50%); width:52px; height:52px; border-radius:50%; border:1.5px solid rgba(255,255,255,.7); background:rgba(20,10,5,.35); color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:translateY(-50%) scale(1.12)" style-focus="outline:3px solid #FFC23D; outline-offset:3px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+      </button>
+    </sc-if>
+
+    <div style="position:absolute; z-index:5; left:0; right:0; bottom:10px; display:flex; justify-content:center; align-items:center; gap:4px">
+      <div role="group" aria-label="Elegir diapositiva" style="display:flex; align-items:center">
+        <sc-for list="{{ dots }}" as="d" hint-placeholder-count="4">
+          <button type="button" onClick="{{ d.go }}" aria-label="{{ d.label }}" aria-current="{{ d.current }}" style="height:44px; min-width:28px; padding:0 5px; border:0; background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; border-radius:8px" style-focus="outline:3px solid #FFC23D; outline-offset:-6px">
+            <span style="display:block; height:7px; width:{{ d.w }}; border-radius:4px; background:{{ d.bg }}; transition:width .35s ease, background .35s"></span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Cifras" aria-label="Plaza en cifras" ref="{{ statsRef }}" style="position:relative; flex:none; background:#D01E12; overflow:hidden; padding:{{ statsOuter }}">
+    <div aria-hidden="true" style="position:absolute; inset:0; background-image:url('assets/patron-metricas.svg'); background-size:cover; background-position:center; opacity:.6; pointer-events:none"></div>
+    <sc-if value="{{ statsWide }}" hint-placeholder-val="{{ false }}">
+    <dl style="position:relative; margin:0 auto; max-width:clamp(1120px, 84vw, 1640px); display:grid; grid-template-columns:{{ statsCols }}; padding:{{ statsPad }}">
+      <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+        <div style="position:relative; display:flex; flex-direction:column-reverse; align-items:center; justify-content:center; gap:10px; text-align:center; padding:{{ st.pad }}; border-right:{{ st.br }}; border-bottom:{{ st.bb }}">
+          <sc-if value="{{ st.divider }}" hint-placeholder-val="{{ false }}">
+            <span aria-hidden="true" style="position:absolute; left:0; top:22%; bottom:22%; width:1px; background:rgba(255,255,255,.3)"></span>
+          </sc-if>
+          <dt style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; line-height:1.25; color:#FFD34D">{{ st.label }}</dt>
+          <dd style="margin:0; font-size:clamp(34px, 4vw, 46px); font-weight:700; line-height:1; letter-spacing:-0.02em; color:#FFFFFF; font-variant-numeric:tabular-nums">{{ st.value }}</dd>
+        </div>
+      </sc-for>
+    </dl>
+    </sc-if>
+    <sc-if value="{{ statsMobile }}" hint-placeholder-val="{{ true }}">
+      <dl style="position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0">
+        <sc-for list="{{ stats }}" as="st" hint-placeholder-count="4">
+          <div><dt>{{ st.label }}</dt><dd>{{ st.value }}</dd></div>
+        </sc-for>
+      </dl>
+      <div aria-hidden="true" onTouchStart="{{ statTouchStart }}" onTouchEnd="{{ statTouchEnd }}" style="position:relative; display:grid; align-items:center; height:124px; padding-bottom:16px; overflow:hidden; touch-action:pan-y; cursor:grab">
+        <sc-for list="{{ statsRot }}" as="sr" hint-placeholder-count="1">
+          <div style="grid-area:1 / 1; display:flex; align-items:baseline; justify-content:center; gap:10px; opacity:{{ sr.o }}; transform:{{ sr.tf }}; transition:{{ sr.trans }}">
+            <span style="font-size:42px; font-weight:700; line-height:1; letter-spacing:-0.02em; color:#FFFFFF; font-variant-numeric:tabular-nums">{{ sr.value }}</span>
+            <span style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:#FFD34D">{{ sr.label }}</span>
+          </div>
+        </sc-for>
+        <div style="position:absolute; left:50%; bottom:18px; transform:translateX(-50%); display:flex; gap:5px">
+          <sc-for list="{{ statsDots }}" as="sd" hint-placeholder-count="4">
+            <span style="display:block; height:4px; width:{{ sd.h }}; border-radius:2px; background:{{ sd.bg }}; transition:width .35s ease, background .35s"></span>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+  </section>
+  </div>
+
+  <section id="favoritos" data-screen-label="Favoritos" aria-roledescription="carrusel" aria-labelledby="fav-titulo" onKeyDown="{{ favKey }}" style="position:relative; overflow:hidden; background:#F7F7F6; padding:clamp(56px, 8vw, 88px) 0 clamp(56px, 7vw, 80px)">
+    <div ref="{{ favDecoRef }}" aria-hidden="true" style="position:absolute; inset:0; pointer-events:none">
+      <img src="assets/deco-fav-izq.svg" alt="" data-side="-1" style="position:absolute; top:{{ fdTop }}; left:{{ fdIzqL }}; width:{{ fdIzqW }}; height:auto; will-change:translate"></img>
+      <img src="assets/deco-fav-der.svg" alt="" data-side="1" style="position:absolute; top:{{ fdDerTop }}; right:{{ fdDerR }}; width:{{ fdDerW }}; height:auto; will-change:translate"></img>
+    </div>
+    <div data-reveal="0" style="position:relative; max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:0 20px; display:flex; flex-direction:column; align-items:center; text-align:center">
+      <h2 id="fav-titulo" style="margin:0; text-transform:uppercase; line-height:1.05">
+        <span style="display:block; font-size:clamp(28px, 3.6vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">Tus favoritos</span>
+        <span style="display:block; font-size:clamp(36px, 4.8vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">Están en Plaza</span>
+      </h2>
+      <p style="margin:14px 0 0; font-size:16px; font-weight:300; color:#4A4745; text-wrap:pretty">Productos seleccionados de temporada, a tu alcance.</p>
+    </div>
+
+    <div data-reveal="120" onTouchStart="{{ favTouchStart }}" onTouchEnd="{{ favTouchEnd }}" style="position:relative; margin-top:clamp(36px, 5vw, 52px); height:{{ favStageH }}; touch-action:pan-y">
+      <sc-for list="{{ favCards }}" as="c" hint-placeholder-count="5">
+        <button type="button" onClick="{{ c.go }}" aria-label="{{ c.aria }}" aria-current="{{ c.current }}" aria-hidden="{{ c.hidden }}" tabindex="{{ c.tab }}" style="position:absolute; left:50%; top:50%; width:{{ favS }}; height:{{ favS }}; margin-left:{{ favM }}; margin-top:{{ favM }}; padding:0; border:3px solid #FFFFFF; border-radius:14px; overflow:hidden; background:{{ c.tone }}; cursor:pointer; transform:{{ c.tf }}; opacity:{{ c.o }}; z-index:{{ c.z }}; box-shadow:{{ c.shadow }}; transition:{{ c.trans }}; will-change:transform" style-focus="outline:3px solid #FF9015; outline-offset:4px">
+          <span aria-hidden="true" style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:#B9B8B5; transform:{{ c.inner }}; transition:transform 1.2s cubic-bezier(.22,1,.36,1)">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5.5-5.5L5 20"></path></svg>
+            <span style="font-family:ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.04em">{{ c.imgLabel }}</span>
+          </span>
+        </button>
+      </sc-for>
+
+      <button type="button" onClick="{{ favPrevFn }}" aria-label="Categoría anterior" aria-controls="fav-info" style="position:absolute; z-index:20; top:50%; left:{{ favArrowL }}; width:44px; height:44px; margin:-22px 0 0 -22px; border:0; border-radius:50%; background:#E1251B; color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 6px 16px rgba(225,37,27,.35); transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.12)" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+      </button>
+      <button type="button" onClick="{{ favNextFn }}" aria-label="Categoría siguiente" aria-controls="fav-info" style="position:absolute; z-index:20; top:50%; left:{{ favArrowR }}; width:44px; height:44px; margin:-22px 0 0 -22px; border:0; border-radius:50%; background:#E1251B; color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 6px 16px rgba(225,37,27,.35); transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.12)" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+      </button>
+    </div>
+
+    <div data-reveal="220" id="fav-info" aria-live="polite" style="display:grid; justify-items:center; margin-top:24px; padding:0 20px">
+      <sc-for list="{{ favTexts }}" as="t" hint-placeholder-count="1">
+        <div aria-hidden="{{ t.hidden }}" style="grid-area:1 / 1; display:flex; flex-direction:column; align-items:center; gap:14px; max-width:320px; opacity:{{ t.o }}; transform:{{ t.tf }}; visibility:{{ t.vis }}; transition:{{ t.trans }}">
+          <h3 style="margin:0; font-size:17px; font-weight:600; color:#1C1A19">{{ t.title }}</h3>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; justify-content:center; gap:6px">
+            <sc-for list="{{ t.tags }}" as="tag" hint-placeholder-count="5">
+              <li style="padding:6px 12px; border-radius:8px; background:#EBEAE8; font-size:13px; font-weight:400; color:#4A4745">{{ tag }}</li>
+            </sc-for>
+          </ul>
+        </div>
+      </sc-for>
+    </div>
+
+    <div role="group" aria-label="Elegir categoría" style="display:flex; justify-content:center; margin-top:20px">
+      <sc-for list="{{ favDots }}" as="d" hint-placeholder-count="6">
+        <button type="button" onClick="{{ d.go }}" aria-label="{{ d.label }}" aria-current="{{ d.current }}" style="height:44px; min-width:26px; padding:0 4px; border:0; background:transparent; display:flex; align-items:center; justify-content:center; cursor:pointer; border-radius:8px" style-focus="outline:3px solid #FF9015; outline-offset:-6px">
+          <span style="display:block; height:6px; width:{{ d.w }}; border-radius:3px; background:{{ d.bg }}; transition:width .4s cubic-bezier(.3,.7,.2,1), background .4s"></span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="encuentra" data-screen-label="Encuentra tu Plaza" aria-labelledby="enc-titulo" style="background:#F7F7F6; padding:0 12px clamp(48px, 7vw, 88px)">
+    <div style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; border-radius:20px; overflow:hidden; box-shadow:0 24px 60px -30px rgba(28,26,25,.45)">
+
+      <div style="position:relative; background:#D01E12; color:#FFFFFF; padding:{{ encPad }}">
+        <img src="assets/deco-gaviotas.svg" alt="" aria-hidden="true" style="position:absolute; top:{{ encGavTop }}; right:{{ encGavRight }}; width:{{ encGavW }}; height:auto; pointer-events:none"></img>
+        <img src="assets/deco-ondas-rojo.svg" alt="" aria-hidden="true" style="position:absolute; left:-16px; bottom:-26px; width:clamp(200px, 24vw, 360px); height:auto; pointer-events:none"></img>
+        <div data-reveal="0" style="position:relative; display:grid; grid-template-columns:{{ encCols }}; gap:{{ encGap }}; align-items:center; max-width:1460px; margin:0 auto">
+          <div style="text-align:{{ encAlign }}">
+            <h2 id="enc-titulo" style="margin:0; text-transform:uppercase; line-height:1.02">
+              <span style="display:block; font-size:clamp(28px, 3.6vw, 42px); font-weight:300; letter-spacing:-0.01em">Encuentra</span>
+              <span style="display:block; font-size:clamp(36px, 4.8vw, 56px); font-weight:800; letter-spacing:-0.015em">Tu Plaza</span>
+            </h2>
+            <p style="margin:12px 0 0; font-size:16px; font-weight:300">Encuentra tu tienda más cercana.</p>
+          </div>
+          <sc-if value="{{ encWide }}" hint-placeholder-val="{{ false }}">
+            <span aria-hidden="true" style="align-self:stretch; width:1px; background:rgba(255,255,255,.35)"></span>
+          </sc-if>
+          <form ref="{{ encFormRef }}" onSubmit="{{ encSubmit }}" aria-labelledby="enc-zona" novalidate="novalidate" style="display:flex; flex-direction:column; gap:12px">
+            <p id="enc-zona" style="margin:0 0 2px; text-align:{{ encAlign }}; font-size:18px; font-weight:600">¿En qué zona estás?</p>
+            <div style="position:relative">
+              <label for="enc-prov" style="position:absolute; left:17px; top:9px; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#FFFFFF; pointer-events:none">Provincia</label>
+              <select id="enc-prov" ref="{{ encProvRef }}" value="{{ encProv }}" onChange="{{ encOnProv }}" aria-invalid="{{ encProvInvalid }}" aria-describedby="{{ encProvDesc }}" style="width:100%; min-height:60px; padding:26px 48px 9px 16px; border:1.5px solid {{ encProvBorder }}; border-radius:12px; background:rgba(255,255,255,.14); color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:400; appearance:none; -webkit-appearance:none; cursor:pointer; transition:border-color .2s, background .2s" style-hover="background:rgba(255,255,255,.2)" style-focus="outline:3px solid #FFC23D; outline-offset:2px">
+                <option value="" style="color:#1C1A19; background:#FFFFFF">Selecciona tu provincia…</option>
+                <sc-for list="{{ encProvs }}" as="o" hint-placeholder-count="5">
+                  <option value="{{ o }}" style="color:#1C1A19; background:#FFFFFF">{{ o }}</option>
+                </sc-for>
+              </select>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position:absolute; right:16px; top:50%; margin-top:-10px; pointer-events:none"><path d="M6 9l6 6 6-6"></path></svg>
+            </div>
+              <sc-if value="{{ encErrProv }}" hint-placeholder-val="{{ false }}">
+                <p id="enc-err-prov" style="margin:8px 0 0; display:flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:#FFFFFF">
+                  <span aria-hidden="true" style="flex:none; width:20px; height:20px; border-radius:50%; background:#FFD34D; color:#8A1209; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; line-height:1">!</span>
+                  {{ encErrProvMsg }}
+                </p>
+              </sc-if>
+            <div style="position:relative">
+              <label for="enc-dist" style="position:absolute; left:17px; top:9px; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:#FFFFFF; pointer-events:none">Distrito</label>
+              <select id="enc-dist" ref="{{ encDistRef }}" value="{{ encDist }}" onChange="{{ encOnDist }}" aria-invalid="{{ encDistInvalid }}" aria-describedby="{{ encDistDesc }}" style="width:100%; min-height:60px; padding:26px 48px 9px 16px; border:1.5px solid {{ encDistBorder }}; border-radius:12px; background:rgba(255,255,255,.14); color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:400; appearance:none; -webkit-appearance:none; cursor:pointer; transition:background .2s" style-hover="background:rgba(255,255,255,.2)" style-focus="outline:3px solid #FFC23D; outline-offset:2px">
+                <option value="" style="color:#1C1A19; background:#FFFFFF">{{ encDistPh }}</option>
+                <sc-for list="{{ encDists }}" as="o" hint-placeholder-count="5">
+                  <option value="{{ o.v }}" style="color:#1C1A19; background:#FFFFFF">{{ o.l }}</option>
+                </sc-for>
+              </select>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position:absolute; right:16px; top:50%; margin-top:-10px; pointer-events:none"><path d="M6 9l6 6 6-6"></path></svg>
+            </div>
+              <sc-if value="{{ encErrDist }}" hint-placeholder-val="{{ false }}">
+                <p id="enc-err-dist" style="margin:8px 0 0; display:flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:#FFFFFF">
+                  <span aria-hidden="true" style="flex:none; width:20px; height:20px; border-radius:50%; background:#FFD34D; color:#8A1209; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; line-height:1">!</span>
+                  {{ encErrDistMsg }}
+                </p>
+              </sc-if>
+            <div style="display:flex; flex-direction:{{ encRowDir }}; flex-wrap:wrap; align-items:center; gap:12px 16px; margin-top:8px; text-align:{{ encAlign }}">
+              <button type="submit" style="display:inline-flex; align-items:center; gap:10px; min-height:52px; padding:0 22px; border:0; border-radius:16px; background:#FFFFFF; color:#E1251B; font-family:inherit; font-size:16px; font-weight:500; cursor:pointer; box-shadow:0 8px 20px -8px rgba(60,5,0,.45); transition:background .2s, transform .2s" style-hover="background:#FFF1EF; transform:translateY(-1px)" style-focus="outline:3px solid #FFC23D; outline-offset:3px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                Encontrar tienda
+              </button>
+              <p id="enc-estado" role="status" style="margin:0; font-size:15px; font-weight:400; color:#FFFFFF">{{ encMsg }}</p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div data-screen-label="Instagram" style="position:relative; background:#1F1D1C; color:#FFFFFF; padding:{{ igPad }}">
+        <div aria-hidden="true" style="position:absolute; inset:0; overflow:hidden; pointer-events:none">
+          <img src="assets/deco-sol.svg" alt="" style="position:absolute; top:clamp(-40px, -2vw, -16px); left:{{ igSunL }}; width:clamp(180px, 18vw, 300px); height:auto"></img>
+          <img src="assets/deco-ondas-oscuro.svg" alt="" style="position:absolute; left:-30px; bottom:-30px; width:clamp(260px, 30vw, 460px); height:auto"></img>
+          <img src="assets/deco-curva.svg" alt="" style="position:absolute; right:-20px; bottom:-10px; width:clamp(140px, 14vw, 220px); height:auto; transform:scaleY(-1)"></img>
+        </div>
+        <div data-reveal="0" style="position:relative; display:grid; grid-template-columns:{{ igCols }}; grid-template-areas:{{ igAreas }}; gap:{{ igGap }}; align-items:center; max-width:1460px; margin:0 auto">
+
+          <div style="grid-area:texto; align-self:end; text-align:center; display:flex; flex-direction:column; align-items:center">
+            <h2 style="margin:0; text-transform:uppercase; line-height:1.04">
+              <span style="display:block; font-size:clamp(28px, 3.6vw, 42px); font-weight:300; letter-spacing:-0.01em">Lo que está pasando</span>
+              <span style="display:block; font-size:clamp(36px, 4.8vw, 56px); font-weight:800; letter-spacing:-0.015em; color:#FF9015">En nuestra región</span>
+            </h2>
+            <p style="margin:14px 0 0; max-width:420px; font-size:16px; line-height:1.55; font-weight:300; color:#E4E2DF; text-wrap:pretty">Nuevas tiendas, productos de temporada y todo lo que Plaza Autoservicios tiene para su comunidad.</p>
+          </div>
+
+          <ul aria-label="Publicaciones recientes de Instagram" style="grid-area:mosaico; list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:clamp(10px, 1.2vw, 16px); align-items:start">
+            <sc-for list="{{ igMosaic }}" as="col" hint-placeholder-count="2">
+              <li style="display:flex; flex-direction:column; gap:clamp(10px, 1.2vw, 16px); margin-top:{{ col.off }}">
+                <sc-for list="{{ col.posts }}" as="p" hint-placeholder-count="2">
+                  <a href="{{ p.href }}" target="_blank" rel="noopener" aria-label="{{ p.aria }}" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ igLeave }}" onFocus="{{ p.enter }}" onBlur="{{ igLeave }}" style="position:relative; display:block; aspect-ratio:3 / 4; border-radius:10px; overflow:hidden; background:{{ p.tone }}; color:#FFFFFF; text-decoration:none; transition:transform .35s cubic-bezier(.22,1,.36,1)" style-hover="transform:scale(1.02); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+                    <span aria-hidden="true" style="position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center; background:rgba(14,10,8,.55); opacity:{{ p.hoverO }}; transition:opacity .3s ease">
+                      <span style="color:#FFFFFF; font-size:16px; font-weight:500; letter-spacing:.02em; transform:{{ p.hoverTf }}; transition:transform .35s cubic-bezier(.22,1,.36,1)">Ver reel</span>
+                    </span>
+                    <span aria-hidden="true" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:#8A8784">
+                      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5.5-5.5L5 20"></path></svg>
+                    </span>
+                    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" style="position:absolute; top:10px; right:10px"><rect x="3" y="3" width="18" height="18" rx="5"></rect><path d="M10 9l5 3-5 3z" fill="#FFFFFF"></path></svg>
+                    <span aria-hidden="true" style="position:absolute; left:10px; bottom:10px; display:flex; align-items:center; gap:6px; font-size:13px; font-weight:500">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M7 4.5v15l12-7.5z"></path></svg>1135
+                    </span>
+                  </a>
+                </sc-for>
+              </li>
+            </sc-for>
+          </ul>
+
+          <div style="grid-area:perfil; align-self:start; background:#FFFFFF; color:#1C1A19; border-radius:16px; padding:20px; box-shadow:0 20px 40px -20px rgba(0,0,0,.6)">
+            <div style="display:flex; align-items:center; gap:16px">
+              <span aria-hidden="true" style="flex:none; width:72px; height:72px; border-radius:50%; background:#E1251B; display:flex; align-items:center; justify-content:center; overflow:hidden">
+                <img src="assets/logo-plaza.svg" alt="" width="54" height="20" style="display:block; width:54px; height:auto"></img>
+              </span>
+              <div style="flex:1; min-width:0; display:flex; flex-direction:column; gap:3px">
+                <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 12px">
+                  <p style="margin:0; font-size:16px; font-weight:600; overflow-wrap:anywhere">@plazaautoservicios</p>
+                  <a href="{{ igHref }}" target="_blank" rel="noopener" aria-label="Seguir a Plaza en Instagram (se abre en una pestaña nueva)" style="display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 22px; border-radius:12px; background:#0064E0; color:#FFFFFF; font-size:15px; font-weight:500; text-decoration:none; transition:background .2s" style-hover="background:#0050B5; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">Seguir</a>
+                </div>
+                <p style="margin:0; font-size:14px; color:#6B6865">SomosPlaza</p>
+                <p style="margin:2px 0 0; font-size:14px; line-height:1.45; color:#3A3836">Orgullosamente del Norte Chico, con más de 30 tiendas.</p>
+              </div>
+            </div>
+            <div aria-hidden="true" style="margin-top:18px; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:8px">
+              <sc-for list="{{ igThumbs }}" as="t" hint-placeholder-count="4">
+                <span style="position:relative; aspect-ratio:3 / 4; border-radius:6px; background:#D6D5D2; display:flex; align-items:center; justify-content:center; color:#A9A7A4">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5.5-5.5L5 20"></path></svg>
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="#FFFFFF" style="position:absolute; left:6px; bottom:6px"><path d="M7 4.5v15l12-7.5z"></path></svg>
+                </span>
+              </sc-for>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="conocenos" data-screen-label="Hecho en el Norte Chico" aria-labelledby="nc-titulo" style="position:relative; overflow:hidden; background:#F7F7F6; padding:clamp(64px, 8vw, 120px) 0 clamp(140px, 15vw, 240px)">
+    <img src="assets/bg-norte-chico.webp" alt="" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center bottom; mix-blend-mode:multiply; pointer-events:none"></img>
+    <div data-reveal="0" style="position:relative; display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 20px">
+      <img src="assets/icono-norte-chico.png" alt="" aria-hidden="true" width="72" height="72" style="display:block; width:72px; height:72px"></img>
+      <h2 id="nc-titulo" style="margin:16px 0 0; text-transform:uppercase; line-height:1.04">
+        <span style="display:block; font-size:clamp(28px, 3.6vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">Hecho en el</span>
+        <span style="display:block; font-size:clamp(36px, 4.8vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">Norte Chico</span>
+      </h2>
+    </div>
+
+    <ul ref="{{ galRef }}" aria-label="Galería de fotos" style="position:relative; list-style:none; margin:clamp(40px, 5vw, 72px) 0 0; padding:0; height:{{ galH }}">
+      <sc-for list="{{ galCards }}" as="c" hint-placeholder-count="5">
+        <li style="position:absolute; left:50%; top:0; width:{{ c.w }}; margin-left:{{ c.ml }}; z-index:{{ c.z }}; transform:{{ c.tf }}; opacity:{{ c.o }}; transition:{{ c.trans }}; will-change:transform">
+          <button type="button" onClick="{{ c.open }}" aria-label="{{ c.aria }}" aria-haspopup="dialog" style="display:block; width:100%; padding:0; border:0; background:transparent; cursor:zoom-in; border-radius:6px" style-focus="outline:3px solid #FF9015; outline-offset:4px">
+            <span style="display:block; padding:5px; background:#FFFFFF; border-radius:6px; box-shadow:0 14px 30px -14px rgba(28,26,25,.45); transition:transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s" style-hover="transform:scale(1.06); box-shadow:0 24px 40px -16px rgba(28,26,25,.5)">
+              <span aria-hidden="true" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; aspect-ratio:10 / 11; border-radius:3px; background:{{ c.tone }}; color:#A9A7A4">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5.5-5.5L5 20"></path></svg>
+                <span style="font-family:ui-monospace,Menlo,monospace; font-size:10px; letter-spacing:.04em">{{ c.imgLabel }}</span>
+              </span>
+            </span>
+          </button>
+        </li>
+      </sc-for>
+    </ul>
+
+    <div data-reveal="150" style="position:relative; display:flex; flex-direction:column; align-items:center; gap:20px; text-align:center; padding:0 20px">
+      <p style="margin:0; max-width:480px; font-size:17px; line-height:1.65; font-weight:300; color:#3A3836; text-wrap:pretty">Nacimos aquí, crecimos aquí y nos quedamos aquí. Conocemos cada calle, cada barrio, cada familia que pasa por nuestra puerta.</p>
+      <p style="margin:0; display:flex; align-items:center; gap:10px; font-size:17px; font-weight:600; color:#B35A00">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.3-9.4C1.4 7.6 3.6 4 7.2 4c2 0 3.6 1.1 4.8 2.8C13.2 5.1 14.8 4 16.8 4c3.6 0 5.8 3.6 4.5 7.1-1.8 4.8-9.3 9.4-9.3 9.4z" fill="#FF9015"></path></svg>
+        Desde 2007 · Huacho, Perú
+      </p>
+    </div>
+  </section>
+
+  <div data-screen-label="Cintillo Norte Chico" aria-hidden="true" style="position:relative; overflow:hidden; background:#1C1A19; color:#FFFFFF; padding:clamp(9px, 1vw, 13px) 0; -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); mask-image:linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%)">
+    <div style="display:flex; width:max-content; animation:cintillo 60s linear infinite" style-hover="animation-play-state:paused">
+      <sc-for list="{{ ciLoops }}" as="loop" hint-placeholder-count="2">
+        <ul style="list-style:none; margin:0; padding:0; display:flex; align-items:center; flex:none">
+          <sc-for list="{{ ciNames }}" as="nm" hint-placeholder-count="8">
+            <li style="display:flex; align-items:center; flex:none">
+              <span style="padding:0 clamp(12px, 1.3vw, 20px); font-size:clamp(13px, 1.1vw, 16px); font-weight:{{ nm.wt }}; text-transform:uppercase; letter-spacing:-0.005em; white-space:nowrap; color:{{ nm.color }}">{{ nm.n }}</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" style="flex:none"><path d="M5.84667 14.4971L1.24008 22.9664C1.04034 23.3275 1.45831 23.7144 1.80305 23.4873L23.8218 8.97514C23.9438 8.8945 23.9986 8.77391 24.0001 8.65332L5.84667 14.4971Z" fill="#FF9015"></path><path d="M14.3535 0.363877C14.3225 -0.0289616 13.7987 -0.138453 13.6115 0.208517L9.95557 7.00663H14.8825L14.3535 0.363877Z" fill="#FF9015"></path><path d="M15.6323 15.8662L10.8452 19.0215L15.5332 23.4419C15.7965 23.6949 16.233 23.4877 16.2042 23.1237L15.6323 15.8662Z" fill="#FF9015"></path><path d="M23.6032 8.25146H0.395655C0.0346437 8.25146 -0.136985 8.69609 0.130075 8.93875L5.77457 14.2461L23.9146 8.40461C23.8466 8.31435 23.7401 8.25146 23.6032 8.25146Z" fill="#FF9015"></path></svg>
+            </li>
+          </sc-for>
+        </ul>
+      </sc-for>
+    </div>
+  </div>
+
+  <section id="trabaja" data-screen-label="Trabaja con nosotros" aria-labelledby="tr-titulo" style="background:#F7F7F6; padding:clamp(48px, 7vw, 96px) 12px">
+    <div data-reveal="0" style="position:relative; max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; background:#EEEDEB; border-radius:24px; overflow:hidden; padding:{{ trPad }}; display:grid; grid-template-columns:{{ trCols }}; gap:{{ trGap }}; align-items:center">
+      <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none">
+        <img src="assets/deco-sol.svg" alt="" style="position:absolute; top:-60px; left:{{ trSunL }}; width:clamp(150px, 13vw, 220px); height:auto; filter:brightness(0); opacity:.05"></img>
+        <img src="assets/deco-curva.svg" alt="" style="position:absolute; top:-10px; right:-20px; width:clamp(110px, 10vw, 170px); height:auto; filter:brightness(0); opacity:.05"></img>
+        <img src="assets/deco-ondas-oscuro.svg" alt="" style="position:absolute; right:-60px; bottom:-70px; width:clamp(200px, 18vw, 300px); height:auto; filter:brightness(0); opacity:.04"></img>
+      </div>
+
+      <div aria-hidden="true" style="position:relative; align-self:stretch; aspect-ratio:{{ trImgRatio }}; min-height:{{ trImgMinH }}; border-radius:16px; overflow:hidden; background:#BDBCB9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:#E2E1DE">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5.5-5.5L5 20"></path></svg>
+        <span style="font-family:ui-monospace,Menlo,monospace; font-size:12px; letter-spacing:.04em">FOTO EQUIPO PLAZA</span>
+      </div>
+
+      <div style="position:relative; display:flex; flex-direction:column; align-items:center; padding:{{ trTextPad }}">
+        <h2 id="tr-titulo" style="margin:0; text-align:center; text-transform:uppercase; line-height:1.04">
+          <span style="display:block; font-size:clamp(28px, 3.6vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">Trabaja con</span>
+          <span style="display:block; font-size:clamp(36px, 4.8vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">Nosotros</span>
+        </h2>
+        <p style="margin:20px 0 0; max-width:580px; text-align:center; font-size:17px; line-height:1.65; font-weight:300; color:#3A3836; text-wrap:pretty">Súmate a un equipo que sigue creciendo en el Norte Chico. Buscamos personas comprometidas, con vocación de servicio y ganas de crecer junto a Plaza.</p>
+
+        <ul style="list-style:none; margin:clamp(28px, 3.5vw, 48px) 0 0; padding:0; width:100%; max-width:620px; display:flex; flex-direction:column">
+          <sc-for list="{{ trItems }}" as="b" hint-placeholder-count="3">
+            <li style="display:flex; align-items:flex-start; gap:20px; padding:20px 0; border-bottom:{{ b.sep }}">
+              <span aria-hidden="true" style="flex:none; width:58px; height:58px; border-radius:50%; background:#E1251B; display:flex; align-items:center; justify-content:center">
+                <img src="{{ b.icon }}" alt="" style="display:block; width:30px; height:30px; object-fit:contain"></img>
+              </span>
+              <div style="display:flex; flex-direction:column; gap:6px; padding-top:4px">
+                <h3 style="margin:0; font-size:18px; font-weight:600; color:#1C1A19">{{ b.t }}</h3>
+                <p style="margin:0; font-size:15px; line-height:1.55; font-weight:300; color:#3A3836; text-wrap:pretty">{{ b.d }}</p>
+              </div>
+            </li>
+          </sc-for>
+        </ul>
+
+        <a href="Trabaja.dc.html#postula" style="margin-top:clamp(28px, 3.5vw, 44px); display:inline-flex; align-items:center; gap:14px; min-height:52px; padding:6px 8px 6px 22px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:16px; font-weight:500; text-decoration:none; box-shadow:0 10px 24px -10px rgba(225,37,27,.55); transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">Postula aquí<span aria-hidden="true" style="width:32px; height:32px; border-radius:50%; background:#FFFFFF; color:#E1251B; display:flex; align-items:center; justify-content:center; flex:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ lbOpen }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-label="{{ lbAria }}" ref="{{ lbRef }}" onKeyDown="{{ lbKey }}" onTouchStart="{{ lbTouchStart }}" onTouchEnd="{{ lbTouchEnd }}" style="position:fixed; inset:0; z-index:200; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; padding:76px 16px 28px; background:rgba(14,10,8,.62); -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px); opacity:{{ lbO }}; transition:opacity .35s ease">
+      <div onClick="{{ lbCloseFn }}" aria-hidden="true" style="position:absolute; inset:0; cursor:zoom-out"></div>
+      <button type="button" ref="{{ lbCloseRef }}" onClick="{{ lbCloseFn }}" aria-label="Cerrar galería" style="position:absolute; z-index:2; top:16px; right:16px; width:48px; height:48px; border:1.5px solid rgba(255,255,255,.5); border-radius:50%; background:rgba(255,255,255,.08); color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1)" style-focus="outline:3px solid #FFC23D; outline-offset:3px">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </button>
+      <figure style="position:relative; z-index:1; margin:0; display:flex; flex-direction:column; align-items:center; gap:18px; opacity:{{ lbFigO }}; transform:{{ lbFigTf }}; transition:{{ lbFigTrans }}">
+        <div aria-hidden="true" style="position:relative; width:min(88vw, 960px, calc((100vh - 280px) * 4 / 3)); aspect-ratio:4 / 3">
+          <sc-for list="{{ lbSlides }}" as="sl" hint-placeholder-count="1">
+            <div style="position:absolute; inset:0; border-radius:8px; background:{{ sl.tone }}; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; color:#A9A7A4; box-shadow:0 30px 80px -20px rgba(0,0,0,.6); transform:{{ sl.tf }}; visibility:{{ sl.vis }}; transition:{{ sl.trans }}; will-change:transform">
+              <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5.5-5.5L5 20"></path></svg>
+              <span style="font-family:ui-monospace,Menlo,monospace; font-size:12px; letter-spacing:.04em">{{ sl.imgLabel }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <sc-if value="{{ lbHasLema }}" hint-placeholder-val="{{ true }}">
+          <figcaption style="opacity:{{ lbUiO }}; transform:{{ lbUiTf }}; transition:{{ lbUiTrans }}; max-width:640px; text-align:center; font-size:clamp(18px, 2vw, 22px); line-height:1.45; font-weight:400; color:#FFFFFF; text-wrap:pretty">{{ lbItem.lema }}</figcaption>
+        </sc-if>
+      </figure>
+      <div style="position:relative; z-index:1; display:flex; align-items:center; gap:20px; opacity:{{ lbUiO }}; transform:{{ lbUiTf }}; transition:{{ lbUiTrans }}; pointer-events:{{ lbUiPe }}">
+        <button type="button" onClick="{{ lbPrev }}" aria-label="Foto anterior" style="width:48px; height:48px; border:0; border-radius:50%; background:#E1251B; color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.12)" style-focus="outline:3px solid #FFC23D; outline-offset:3px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
+        </button>
+        <p aria-live="polite" style="margin:0; min-width:56px; text-align:center; font-size:15px; font-weight:400; color:#FFFFFF; font-variant-numeric:tabular-nums">{{ lbCounter }}</p>
+        <button type="button" onClick="{{ lbNext }}" aria-label="Foto siguiente" style="width:48px; height:48px; border:0; border-radius:50%; background:#E1251B; color:#FFFFFF; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.12)" style-focus="outline:3px solid #FFC23D; outline-offset:3px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+        </button>
+      </div>
+    </div>
+  </sc-if>
+</main>
+
+<footer data-screen-label="Footer" style="position:relative; overflow:hidden; background:#1C1A19; color:#FFFFFF">
+  <div style="position:relative; max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:{{ ftPad }}">
+    <div data-reveal="0" style="display:grid; grid-template-columns:{{ ftCols }}; gap:{{ ftGap }}">
+      <div style="display:flex; flex-direction:column; gap:24px; grid-column:{{ ftBrandSpan }}">
+        <a href="#inicio" onClick="{{ goTop }}" aria-label="Plaza Autoservicios, ir al inicio" style="display:inline-flex; align-self:flex-start; border-radius:8px" style-focus="outline:3px solid #FF9015; outline-offset:4px">
+          <img src="assets/logo-plaza.svg" alt="" width="114" height="43" style="display:block; height:56px; width:auto"></img>
+        </a>
+        <p style="margin:0; max-width:320px; font-size:18px; line-height:1.55; font-weight:300; color:#E4E2DF">Cerca de ti, cerca de tu familia. Siempre con lo que necesitas, <strong style="font-weight:600; color:#FFFFFF">siempre cerca.</strong></p>
+      </div>
+
+      <sc-for list="{{ ftGroups }}" as="g" hint-placeholder-count="3">
+        <nav aria-labelledby="{{ g.id }}" style="display:flex; flex-direction:column">
+          <h2 id="{{ g.id }}" style="margin:0 0 12px; font-size:18px; font-weight:600; color:#FFFFFF">{{ g.title }}</h2>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column">
+            <sc-for list="{{ g.links }}" as="l" hint-placeholder-count="3">
+              <li>
+                <a href="{{ l.href }}" style="display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:46px; padding:0 4px 0 0; border-radius:6px; font-size:16px; font-weight:300; color:#E4E2DF; text-decoration:none; transition:color .2s, padding .3s cubic-bezier(.3,.7,.2,1)" style-hover="color:#FFFFFF; padding:0 0 0 4px" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+                  {{ l.label }}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M9 6l6 6-6 6"></path></svg>
+                </a>
+              </li>
+            </sc-for>
+          </ul>
+          <sc-if value="{{ g.hasSub }}" hint-placeholder-val="{{ false }}">
+          <h2 id="{{ g.sub.id }}" style="margin:28px 0 12px; font-size:18px; font-weight:600; color:#FFFFFF">{{ g.sub.title }}</h2>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column">
+            <sc-for list="{{ g.sub.links }}" as="l" hint-placeholder-count="3">
+              <li>
+                <a href="{{ l.href }}" style="display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:46px; padding:0 4px 0 0; border-radius:6px; font-size:16px; font-weight:300; color:#E4E2DF; text-decoration:none; transition:color .2s, padding .3s cubic-bezier(.3,.7,.2,1)" style-hover="color:#FFFFFF; padding:0 0 0 4px" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+                  {{ l.label }}
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M9 6l6 6-6 6"></path></svg>
+                </a>
+              </li>
+            </sc-for>
+          </ul>
+          </sc-if>
+        </nav>
+      </sc-for>
+
+      <div style="display:flex; flex-direction:column; gap:20px">
+        <h2 style="margin:0; font-size:18px; font-weight:600; color:#FFFFFF">Síguenos</h2>
+        <ul style="list-style:none; margin:0; padding:0; display:flex; gap:16px">
+          <li>
+            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z"></path></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/plazaautoservicios/" target="_blank" rel="noopener" aria-label="Instagram (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:linear-gradient(45deg, #F9A23B 0%, #E1306C 50%, #A033C6 100%); color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3h-3.1v12.2a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.4a5.9 5.9 0 1 0 5 5.8V9.1a7.6 7.6 0 0 0 4.1 1.3V7.3A4.4 4.4 0 0 1 16.6 3z"></path></svg>
+            </a>
+          </li>
+        </ul>
+        <a href="#libro-reclamaciones" style="display:flex; align-items:center; gap:16px; min-height:72px; padding:12px 18px; border:1.5px solid rgba(255,255,255,.75); border-radius:12px; color:#FFFFFF; font-size:16px; font-weight:400; line-height:1.3; text-decoration:none; transition:background .2s, border-color .2s" style-hover="background:rgba(255,255,255,.08); border-color:#FFFFFF; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FF9015" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M12 6.5C10.3 5.2 7.8 4.5 4 4.5v13c3.8 0 6.3.7 8 2 1.7-1.3 4.2-2 8-2v-13c-3.8 0-6.3.7-8 2z"></path><path d="M12 6.5v13"></path></svg>
+          Libro de reclamaciones
+        </a>
+      </div>
+    </div>
+
+    <div aria-hidden="true" style="position:relative; margin:{{ ftArtMargin }}; display:flex; justify-content:center; pointer-events:none">
+      <div style="position:relative; width:min(100%, 1240px)">
+        <img src="assets/footer-iglesia.webp" alt="" style="display:block; width:100%; height:auto"></img>
+        <div ref="{{ ftStarRef }}" aria-hidden="true" style="position:absolute; inset:0; pointer-events:none"><sc-for list="{{ ftStars }}" as="s" hint-placeholder-count="0">
+          <span style="position:absolute; left:{{ s.x }}; top:{{ s.y }}; width:{{ s.size }}; height:{{ s.size }}; margin:{{ s.m }}; opacity:0; animation:estrella {{ s.dur }} ease-in-out {{ s.delay }} infinite">
+            <sc-if value="{{ s.sparkle }}" hint-placeholder-val="{{ false }}">
+              <svg viewBox="0 0 24 24" width="100%" height="100%" style="display:block"><path d="M12 0C12.6 7.6 16.4 11.4 24 12 16.4 12.6 12.6 16.4 12 24 11.4 16.4 7.6 12.6 0 12 7.6 11.4 11.4 7.6 12 0z" fill="#FFF6DD"></path></svg>
+            </sc-if>
+            <sc-if value="{{ s.dot }}" hint-placeholder-val="{{ true }}">
+              <span style="display:block; width:100%; height:100%; border-radius:50%; background:#FFF6DD; box-shadow:0 0 6px 1px rgba(255,236,190,.55)"></span>
+            </sc-if>
+          </span>
+        </sc-for></div>
+      </div>
+    </div>
+  </div>
+  <div style="background:#141312">
+    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:16px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© Plaza Autoservicios {{ year }}. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<sc-if value="{{ popOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-labelledby="pop-titulo" ref="{{ popRef }}" onKeyDown="{{ popKey }}" style="position:fixed; inset:0; z-index:210; display:flex; align-items:{{ popAlign }}; justify-content:center; padding:{{ popPad }}">
+    <div onClick="{{ popClose }}" aria-hidden="true" style="position:absolute; inset:0; background:rgba(14,10,8,.6); opacity:{{ popBgO }}; transition:{{ popBgTrans }}"></div>
+    <div style="position:relative; width:100%; max-width:820px; max-height:100%; overflow:auto; display:grid; grid-template-columns:{{ popCols }}; background:#FFFFFF; border-radius:{{ popRadius }}; box-shadow:0 40px 80px -30px rgba(0,0,0,.55); transform:{{ popTf }}; transition:{{ popTrans }}">
+      <button type="button" ref="{{ popCloseRef }}" onClick="{{ popClose }}" aria-label="Cerrar" style="position:absolute; z-index:3; top:14px; right:14px; width:44px; height:44px; border:0; border-radius:50%; background:#FFFFFF; color:#1C1A19; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,.18); transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1)" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+      </button>
+
+      <div style="order:{{ popTextOrder }}; display:flex; flex-direction:column; justify-content:center; padding:{{ popTextPad }}">
+        <sc-if value="{{ popIsClub }}" hint-placeholder-val="{{ true }}">
+          <h2 id="pop-titulo" style="margin:0; font-size:clamp(22px, 2.4vw, 26px); font-weight:600; line-height:1.25; color:#1C1A19; text-wrap:pretty">Únete al club Plaza</h2>
+          <p style="margin:12px 0 0; font-size:15px; line-height:1.6; font-weight:300; color:#5A5754; text-wrap:pretty">Suscríbete y entérate primero de nuestras promociones semanales.</p>
+          <sc-if value="{{ popDone }}" hint-placeholder-val="{{ false }}">
+            <p role="status" style="margin:24px 0 0; display:flex; align-items:center; gap:10px; padding:16px; border-radius:12px; background:#FDECEA; font-size:15px; font-weight:500; color:#1C1A19">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E1251B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+              ¡Listo! Ya eres parte del club Plaza.
+            </p>
+          </sc-if>
+          <sc-if value="{{ popForm }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ popSubmit }}" novalidate="novalidate" style="margin-top:24px; display:flex; flex-direction:column; gap:10px">
+              <div style="position:relative">
+                <label for="pop-email" style="position:absolute; z-index:1; left:15px; top:{{ poplT }}; right:40px; font-size:{{ poplS }}; font-weight:{{ poplW }}; letter-spacing:{{ poplLs }}; text-transform:{{ poplTt }}; color:{{ poplC }}; line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; pointer-events:none; transition:top .2s ease, font-size .2s ease, color .2s ease, letter-spacing .2s ease">Correo electrónico</label>
+                <input id="pop-email" type="email" inputmode="email" autocomplete="email" placeholder="{{ popPh }}" value="{{ popEmail }}" onChange="{{ popOnEmail }}" onFocus="{{ popFocus }}" onBlur="{{ popBlur }}" aria-invalid="{{ popInvalid }}" aria-describedby="{{ popDesc }}" style="width:100%; min-height:58px; padding:25px 14px 8px; border:1.5px solid {{ popBorder }}; border-radius:10px; background:#FFFFFF; color:#1C1A19; font-family:inherit; font-size:16px; font-weight:400" style-focus="outline:3px solid #FF9015; outline-offset:2px"></input>
+              </div>
+              <sc-if value="{{ popErr }}" hint-placeholder-val="{{ false }}">
+                <p id="pop-err" style="margin:0; display:flex; align-items:center; gap:8px; font-size:14px; font-weight:500; color:#B81B10">
+                  <span aria-hidden="true" style="flex:none; width:18px; height:18px; border-radius:50%; background:#E1251B; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800">!</span>
+                  {{ popErrMsg }}
+                </p>
+              </sc-if>
+              <button type="submit" style="display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:52px; padding:6px 8px 6px 22px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:500; cursor:pointer; transition:background .2s" style-hover="background:#C21D11" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+                Suscribirme
+                <span aria-hidden="true" style="width:30px; height:30px; border-radius:50%; background:#FFFFFF; color:#E1251B; display:flex; align-items:center; justify-content:center">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                </span>
+              </button>
+              <p style="margin:12px 0 0; font-size:11px; line-height:1.5; font-weight:400; letter-spacing:.05em; text-transform:uppercase; color:#6B6865">Al registrarte, aceptas nuestras <a href="Legal.dc.html?doc=privacidad" style="color:#1C1A19">políticas de privacidad</a> y términos de uso.</p>
+            </form>
+          </sc-if>
+        </sc-if>
+        <sc-if value="{{ popIsTienda }}" hint-placeholder-val="{{ false }}">
+          <h2 id="pop-titulo" style="margin:0; font-size:clamp(22px, 2.4vw, 26px); font-weight:600; line-height:1.25; color:#1C1A19; text-wrap:pretty">Encuentra tu tienda más cercana</h2>
+          <p style="margin:12px 0 0; font-size:15px; line-height:1.6; font-weight:300; color:#5A5754; text-wrap:pretty">Explora nuestras más de 25 tiendas en el Norte Chico y encuentra la que te queda más a mano.</p>
+          <a href="Ubicaciones.dc.html" style="margin-top:28px; display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:52px; padding:6px 8px 6px 22px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:16px; font-weight:500; text-decoration:none; transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            Ver ubicaciones
+            <span aria-hidden="true" style="width:30px; height:30px; border-radius:50%; background:#FFFFFF; color:#E1251B; display:flex; align-items:center; justify-content:center">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </a>
+        </sc-if>
+      </div>
+
+      <div aria-hidden="true" style="order:{{ popImgOrder }}; position:relative; min-height:{{ popImgH }}; background:#8E8E8C; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:#C9C9C6">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="9.5" r="1.8"></circle><path d="M21 16l-5.5-5.5L5 20"></path></svg>
+        <span style="font-family:ui-monospace,Menlo,monospace; font-size:11px; letter-spacing:.04em">IMAGEN POPUP</span>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;popup&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Ninguno&quot;,&quot;Club Plaza&quot;,&quot;Encuentra tu tienda&quot;],&quot;default&quot;:&quot;Ninguno&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Popups&quot;},&quot;autoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Carrusel&quot;},&quot;interval&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:6,&quot;min&quot;:3,&quot;max&quot;:12,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Carrusel&quot;},&quot;overlay&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.6,&quot;min&quot;:0.2,&quot;max&quot;:0.85,&quot;step&quot;:0.05,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Carrusel&quot;}}">
+class Component extends DCLogic {
+  state = { i: 0, menuOpen: false, w: (typeof window !== 'undefined' && (window.innerWidth || document.documentElement.clientWidth)) || 390, paused: false, hover: false, focusIn: false, prev: null, dir: 1, countP: 0, ctaHover: false, statI: 0, statPrev: null, statDir: 1, galIn: false, lbI: null, lbO: 0, lbFig: { o: 1, x: 0, t: true }, trCta: false, encProv: '', encDist: '', encMsg: '', encErr: false, favI: 0, favDir: 1, favPhase: 'go', pill: { x: 0, w: 0, k: -1, show: false, instant: true } };
+
+  slides = [
+    ['Tu tienda', 'siempre cerca', 'Nacimos en ', 'Huacho en 2007', ' y crecimos contigo. Hoy somos más de 30 tiendas con el mismo propósito: estar cerca cuando nos necesitas.'],
+    ['Donde tu tiempo', 'vale más', 'Tiendas cercanas, tus marcas favoritas y todo lo que necesitas para hacer tu día más fácil.', '', ''],
+    ['El Norte Chico', 'es nuestra casa', 'Y desde ', '2007', ' seguimos creciendo para estar cada vez más cerca de ti.'],
+    ['Somos de aquí.', 'Somos Plaza.', 'Nacimos en ', 'Huacho en 2007', ' y seguimos creciendo junto a las familias del Norte Chico.']
+  ].map(([titleBold, titleLight, textA, highlight, textB], k) => ({
+    titleBold, titleLight, textA, highlight, textB,
+    ctaLabel: 'Conoce nuestra historia', ctaHref: '#historia', imgLabel: 'IMAGEN HERO · SLIDE ' + (k + 1)
+  }));
+
+  links = [
+    ['Inicio', '#inicio'], ['Conócenos', 'Conocenos.dc.html'], ['Novedades', 'Novedades.dc.html'],
+    ['Aliados', 'Aliados.dc.html'], ['Trabaja con nosotros', 'Trabaja.dc.html']
+  ];
+
+  stats = [['+', 30, '', 'Tiendas activas'], ['', 15, '', 'Distritos'], ['', 6, '', 'Provincias'], ['', 17, '+', 'Años en el Norte Chico']];
+  fav = [5, 4, 5, 3, 4, 5].map((nt, k) => ({
+    title: 'Ejemplo ' + (k + 1),
+    tags: Array.from({ length: nt }, (_, j) => 'Etiqueta ' + (j + 1)),
+    imgLabel: 'CATEGORÍA ' + (k + 1),
+    tone: ['#DCDBD8', '#D3D2CF', '#E0DFDC', '#D6D5D2', '#DEDDDA', '#D1D0CD'][k]
+  }));
+  favDecoRef = el => {
+    this.favDecoEl = el;
+    if (!el || this.onFavScroll || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let tick = false;
+    this.onFavScroll = () => {
+      if (tick) return; tick = true;
+      requestAnimationFrame(() => {
+        tick = false;
+        const box = this.favDecoEl; if (!box) return;
+        const r = box.getBoundingClientRect(), vh = window.innerHeight;
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh));
+        box.querySelectorAll('img').forEach(img => {
+          const side = parseFloat(img.dataset.side) || 0;
+          const t = Math.max(0, p);
+          img.style.translate = (side * t * 150).toFixed(1) + 'px ' + (-t * 50).toFixed(1) + 'px';
+          img.style.rotate = (side * t * -6).toFixed(2) + 'deg';
+        });
+      });
+    };
+    window.addEventListener('scroll', this.onFavScroll, { passive: true });
+    window.addEventListener('resize', this.onFavScroll);
+    this.onFavScroll();
+  };
+  initReveal() {
+    if (this.revealIO || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const els = [...document.querySelectorAll('[data-reveal]')].filter(el => !el.dataset.revealed);
+    if (!els.length) return;
+    this.revealIO = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target; this.revealIO.unobserve(el); el.dataset.revealed = '1';
+      el.animate([{ opacity: 0, translate: '0 32px' }, { opacity: 1, translate: '0 0' }],
+        { duration: 900, delay: +el.dataset.reveal || 0, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' });
+      el.style.opacity = '';
+    }), { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.92 && r.bottom > 0) { el.dataset.revealed = '1'; return; }
+      el.style.opacity = '0';
+      this.revealIO.observe(el);
+    });
+  }
+  ftStarRef = el => {
+    this.ftStarEl = el;
+    if (!el || this.onFtMove || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(pointer: fine)').matches) return;
+    let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+    const loop = () => {
+      cx += (tx - cx) * 0.06; cy += (ty - cy) * 0.06;
+      const box = this.ftStarEl;
+      if (box) [...box.children].forEach((s, k) => { const d = 0.45 + (k % 3) * 0.3; s.style.translate = (cx * d).toFixed(2) + 'px ' + (cy * d).toFixed(2) + 'px'; });
+      raf = Math.abs(tx - cx) + Math.abs(ty - cy) > 0.05 ? requestAnimationFrame(loop) : null;
+    };
+    this.onFtMove = e => {
+      const box = this.ftStarEl; if (!box) return;
+      const r = box.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      tx = ((e.clientX - (r.left + r.width / 2)) / r.width) * 10;
+      ty = ((e.clientY - (r.top + r.height / 2)) / Math.max(r.height, 300)) * 6;
+      if (!raf) raf = requestAnimationFrame(loop);
+    };
+    window.addEventListener('mousemove', this.onFtMove, { passive: true });
+  };
+  initSmoothScroll() {
+    if (this.onWheel || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !window.matchMedia('(pointer: fine)').matches) return;
+    let target = window.scrollY, cur = target, raf = null;
+    const max = () => document.documentElement.scrollHeight - window.innerHeight;
+    const clamp = y => Math.max(0, Math.min(max(), y));
+    const step = () => {
+      cur += (target - cur) * 0.075;
+      if (Math.abs(target - cur) < 0.5) { cur = target; window.scrollTo(0, cur); raf = null; return; }
+      window.scrollTo(0, cur);
+      raf = requestAnimationFrame(step);
+    };
+    this.smoothTo = y => { if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
+    this.onWheel = e => {
+      if (e.ctrlKey || this.state.lbI !== null || this.state.menuOpen || this.state.popKind) return;
+      for (let n = e.target; n && n !== document.body && n.nodeType === 1; n = n.parentElement) {
+        const oy = getComputedStyle(n).overflowY;
+        if ((oy === 'auto' || oy === 'scroll') && n.scrollHeight > n.clientHeight + 1) {
+          const up = e.deltaY < 0;
+          if (up ? n.scrollTop > 0 : n.scrollTop + n.clientHeight < n.scrollHeight - 1) return;
+        }
+      }
+      e.preventDefault();
+      const dy = e.deltaMode === 1 ? e.deltaY * 40 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
+      if (!raf) cur = target = window.scrollY;
+      target = clamp(target + dy);
+      if (!raf) raf = requestAnimationFrame(step);
+    };
+    this.onNativeScroll = () => { if (!raf) cur = target = window.scrollY; };
+    this.stopSmooth = () => { if (raf) cancelAnimationFrame(raf); raf = null; };
+    window.addEventListener('wheel', this.onWheel, { passive: false });
+    window.addEventListener('scroll', this.onNativeScroll, { passive: true });
+  }
+  goTop = e => {
+    e && e.preventDefault();
+    const smooth = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (smooth && this.smoothTo) this.smoothTo(0);
+    else window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+    const hero = document.getElementById('inicio');
+    if (hero) setTimeout(() => hero.focus({ preventScroll: true }), smooth ? 600 : 0);
+    if (history.replaceState) history.replaceState(null, '', '#inicio');
+  };
+  popRef = el => { this.popEl = el; };
+  popCloseRef = el => { this.popCloseEl = el; };
+  syncPopup() {
+    const p = this.props.popup ?? 'Ninguno';
+    const kind = p === 'Club Plaza' ? 'club' : p === 'Encuentra tu tienda' ? 'tienda' : null;
+    if (kind) this.openPop(kind); else if (this.state.popKind) this.closePop();
+  }
+  openPop(kind) {
+    clearTimeout(this.popT);
+    if (!this.state.popKind) this.popReturn = document.activeElement;
+    document.body.style.overflow = 'hidden';
+    this.setState({ popKind: kind, popO: 0, popDone: false, popErr: false, popEmail: '' }, () => requestAnimationFrame(() => requestAnimationFrame(() => {
+      this.setState({ popO: 1 });
+      this.popCloseEl && this.popCloseEl.focus({ preventScroll: true });
+    })));
+  }
+  closePop() {
+    clearTimeout(this.popT);
+    this.setState({ popO: 0 });
+    this.popT = setTimeout(() => {
+      this.setState({ popKind: null });
+      document.body.style.overflow = '';
+      this.popReturn && this.popReturn.focus && this.popReturn.focus({ preventScroll: true });
+    }, 520);
+  }
+  popVals(w) {
+    const s = this.state, wide = w >= 720, on = s.popO === 1;
+    return {
+      popOpen: !!s.popKind, popIsClub: s.popKind === 'club', popIsTienda: s.popKind === 'tienda',
+      popBgO: s.popO || 0,
+      popBgTrans: on ? 'opacity .25s ease' : 'opacity .2s ease .3s',
+      popAlign: wide ? 'center' : 'flex-end',
+      popPad: wide ? '24px' : '0',
+      popCols: wide ? 'minmax(0,1fr) minmax(0,1.1fr)' : 'minmax(0,1fr)',
+      popRadius: wide ? '20px' : '20px 20px 0 0',
+      popTextOrder: wide ? 0 : 1, popImgOrder: wide ? 1 : 0,
+      popTextPad: wide ? 'clamp(36px, 4vw, 52px)' : '28px 22px 32px',
+      popImgH: wide ? '380px' : '200px',
+      popTf: on ? 'translateY(0)' : 'translateY(110vh)',
+      popTrans: on ? 'transform .5s cubic-bezier(.16,1,.3,1)' : 'transform .3s cubic-bezier(.55,0,.75,.2)',
+      popClose: () => this.closePop(),
+      popRef: this.popRef, popCloseRef: this.popCloseRef,
+      popKey: e => {
+        if (e.key === 'Escape') { e.stopPropagation(); return this.closePop(); }
+        if (e.key !== 'Tab' || !this.popEl) return;
+        const f = [...this.popEl.querySelectorAll('button, input, select, a[href]')];
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      },
+      popEmail: s.popEmail || '', popDone: !!s.popDone, popForm: !s.popDone, popErr: !!s.popErr,
+      popInvalid: s.popErr ? 'true' : undefined, popDesc: s.popErr ? 'pop-err' : undefined,
+      popBorder: s.popErr ? '#E1251B' : '#E4E2DF',
+      popErrMsg: (s.popEmail || '').trim() ? 'Ingresa un correo válido, por ejemplo nombre@correo.com.' : 'Ingresa tu correo electrónico.',
+      popOnEmail: e => this.setState({ popEmail: e.target.value, popErr: false }),
+      popFocus: () => this.setState({ popFoc: true }), popBlur: () => this.setState({ popFoc: false }),
+      popPh: s.popFoc ? 'tucorreo@ejemplo.com' : '',
+      ...(up => ({ poplT: up ? '9px' : '19px', poplS: up ? '11px' : '16px', poplW: up ? 600 : 300, poplLs: up ? '.06em' : '0', poplTt: up ? 'uppercase' : 'none', poplC: up ? '#1C1A19' : '#8A8682' }))(!!(s.popEmail || '') || !!s.popFoc),
+      popSubmit: e => {
+        e.preventDefault();
+        const v = (this.state.popEmail || '').trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { this.setState({ popErr: true }); const i = document.getElementById('pop-email'); i && i.focus(); return; }
+        (this.setState({ popDone: true }), window.__plazaConfetti && window.__plazaConfetti());
+      },
+      popGoTiendas: e => {
+        e.preventDefault(); this.closePop();
+        setTimeout(() => { const t = document.getElementById('encuentra'); if (t) { const y = t.getBoundingClientRect().top + window.scrollY - 84; this.smoothTo ? this.smoothTo(y) : window.scrollTo({ top: y, behavior: 'smooth' }); } }, 480);
+      }
+    };
+  }
+  favNav(t) {
+    const n = this.fav.length, i = this.state.favI;
+    t = ((t % n) + n) % n;
+    if (t === i) return;
+    let d = t - i; if (d > n / 2) d -= n; if (d < -n / 2) d += n;
+    const dir = d > 0 ? 1 : -1;
+    this.setState({ favDir: dir, favPhase: 'prep' }, () => requestAnimationFrame(() => requestAnimationFrame(() =>
+      this.setState({ favI: t, favPhase: 'go' }))));
+  }
+  statsRef = el => { if (el) { this._statsEl = el; this.checkStats && this.checkStats(); } };
+
+  countUp() {
+    if (this.counted) return;
+    this.counted = true;
+    clearTimeout(this.safetyT);
+    if (this.mq.matches) return this.setState({ countP: 1 });
+    const t0 = performance.now(), dur = 1800;
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / dur);
+      this.setState({ countP: 1 - Math.pow(1 - p, 3) });
+      if (p < 1) this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  navEnter(e, k) {
+    const el = e.currentTarget.parentElement, x = el.offsetLeft, w = el.offsetWidth;
+    if (!this.state.pill.show) {
+      this.setState({ pill: { x, w, k, show: false, instant: true } },
+        () => requestAnimationFrame(() => this.setState({ pill: { x, w, k, show: true, instant: false } })));
+    } else this.setState({ pill: { x, w, k, show: true, instant: false } });
+  }
+
+  componentDidMount() {
+    this.mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (this.mq.matches) this.setState({ paused: true });
+    this.onResize = () => {
+      const w = document.documentElement.clientWidth || window.innerWidth || document.body.clientWidth;
+      if (!w) return;
+      if (w !== this.state.w) this.setState({ w, menuOpen: w >= 1180 ? false : this.state.menuOpen });
+    };
+    this.onKey = e => {
+      if (this.state.lbI !== null) {
+        if (e.key === 'Escape') this.closeLb();
+        else if (e.key === 'ArrowLeft') this.lbNav(-1);
+        else if (e.key === 'ArrowRight') this.lbNav(1);
+        return;
+      }
+      if (e.key === 'Escape' && this.state.menuOpen) this.setState({ menuOpen: false });
+    };
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('keydown', this.onKey);
+    this.ro = new ResizeObserver(() => this.onResize());
+    this.ro.observe(document.documentElement);
+    this.mqs = ['(min-width:768px)', '(min-width:1180px)'].map(q => { const m = window.matchMedia(q); m.addEventListener('change', this.onResize); return m; });
+    this.onResize();
+    requestAnimationFrame(this.onResize);
+    setTimeout(() => this.setState({ zoomReady: true }), 60);
+    this.startStatTimer();
+    this.syncPopup();
+    setTimeout(() => this.initReveal(), 120);
+    this.initSmoothScroll();
+    this.checkStats = () => {
+      if (this.counted) return;
+      const el = this._statsEl && this._statsEl.isConnected ? this._statsEl : document.querySelector('[data-screen-label="Cifras"]');
+      if (!el) return;
+      const r = el.getBoundingClientRect(), vh = window.innerHeight || document.documentElement.clientHeight;
+      if (r.top < vh - r.height * 0.3 && r.bottom > 0) { this.countUp(); window.removeEventListener('scroll', this.checkStats); }
+    };
+    window.addEventListener('scroll', this.checkStats, { passive: true });
+    requestAnimationFrame(this.checkStats);
+    this.fallbackT = setTimeout(() => { this.checkStats(); }, 400);
+    this.safetyT = setTimeout(() => { if (!this.counted) this.setState({ countP: 1 }); }, 8000);
+    setTimeout(this.onResize, 300);
+    let polls = 0;
+    this.poll = setInterval(() => { this.onResize(); this.forceUpdate(); if (++polls > 10) clearInterval(this.poll); }, 200);
+    this.startTimer();
+  }
+  startStatTimer() {
+    clearInterval(this.statT);
+    this.statT = setInterval(() => { if (this.state.w < 768) this.statGo(1); }, 3600);
+  }
+  statGo(d) {
+    const n = this.stats.length;
+    this.setState({ statDir: d }, () => requestAnimationFrame(() => requestAnimationFrame(() =>
+      this.setState(s => ({ statPrev: s.statI, statI: (s.statI + d + n) % n })))));
+  }
+  componentDidUpdate(pp) {
+    if (pp && pp.interval !== this.props.interval) this.startTimer();
+    if (pp && pp.popup !== this.props.popup) this.syncPopup();
+    const open = this.state.menuOpen;
+    if (this._lastMenu !== open && this.state.lbI === null && !this.state.popKind) document.body.style.overflow = open ? 'hidden' : '';
+    this._lastMenu = open;
+  }
+  componentWillUnmount() {
+    if (this.onFtMove) window.removeEventListener('mousemove', this.onFtMove);
+    clearInterval(this.timer);
+    clearTimeout(this.pt);
+    clearInterval(this.poll);
+    clearInterval(this.statT);
+    clearTimeout(this.dropT);
+    clearTimeout(this.popT);
+    this.revealIO && this.revealIO.disconnect();
+    if (this.onWheel) { window.removeEventListener('wheel', this.onWheel); window.removeEventListener('scroll', this.onNativeScroll); this.stopSmooth(); }
+    this.encIO && this.encIO.disconnect();
+    clearTimeout(this.lbT);
+    if (this.onFavScroll) { window.removeEventListener('scroll', this.onFavScroll); window.removeEventListener('resize', this.onFavScroll); }
+    this.galIO && this.galIO.disconnect();
+    if (this.onGalScroll) { window.removeEventListener('scroll', this.onGalScroll); window.removeEventListener('resize', this.onGalScroll); }
+    document.body.style.overflow = '';
+    cancelAnimationFrame(this.raf);
+    clearTimeout(this.fallbackT); clearTimeout(this.safetyT);
+    window.removeEventListener('scroll', this.checkStats);
+    this.ro && this.ro.disconnect();
+    (this.mqs || []).forEach(m => m.removeEventListener('change', this.onResize));
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey);
+  }
+  startTimer() {
+    clearInterval(this.timer);
+    const ms = Math.max(3, this.props.interval ?? 6) * 1000;
+    this.timer = setInterval(() => {
+      const s = this.state;
+      if (!(this.props.autoplay ?? true) || s.paused || s.hover || s.focusIn) return;
+      this.step(1, true);
+    }, ms);
+  }
+  step(d, auto) {
+    const n = this.slides.length;
+    this.navigate((this.state.i + d + n) % n, d > 0 ? 1 : -1);
+    if (!auto) this.startTimer();
+  }
+  goTo(k) { this.navigate(k, k > this.state.i ? 1 : -1); this.startTimer(); }
+  navigate(t, dir) {
+    if (t === this.state.i) return;
+    clearTimeout(this.pt);
+    this.setState(s => ({ dir, prev: s.prev === t ? null : s.prev }), () => requestAnimationFrame(() => requestAnimationFrame(() => {
+      this.setState(s => ({ prev: s.i, i: t }));
+      clearTimeout(this.pt);
+      this.pt = setTimeout(() => this.setState({ prev: null }), 1200);
+    })));
+  }
+
+  favVals(w) {
+    w = w || window.innerWidth || 390;
+    const n = this.fav.length, fi = this.state.favI, mobile = w < 768;
+    const S = mobile ? Math.max(170, Math.min(300, Math.round(w * 0.6))) : Math.round(Math.min(380, Math.max(210, w * 0.2)));
+    const k1 = mobile ? 0.72 : 0.66, k2 = 0.5, g = mobile ? 12 : 14;
+    const x1 = S / 2 + g + (S * k1) / 2;
+    const x2 = x1 + (S * k1) / 2 + g + (S * k2) / 2;
+    const x3 = x2 + S * k2 + g;
+    const { favDir, favPhase } = this.state;
+    const ease = 'cubic-bezier(.22,1,.36,1)';
+    const full = `transform .8s ${ease}, opacity .6s ease, box-shadow .8s ${ease}`;
+    const edge = mobile ? x1 + (S * k1) / 2 : x2 + (S * k2) / 2;
+    const arrowX = Math.max(S / 2 + 8, mobile ? Math.min(edge - 10, w / 2 - 30) : edge - 4);
+    return {
+      favDecoRef: this.favDecoRef,
+      fdTop: mobile ? '34px' : 'clamp(56px, 5.5vw, 88px)',
+      fdIzqL: mobile ? '-14px' : 'clamp(24px, 6vw, 140px)',
+      fdIzqW: mobile ? '96px' : 'clamp(150px, 13vw, 240px)',
+      fdDerTop: mobile ? '-10px' : 'clamp(28px, 3vw, 52px)',
+      fdDerR: mobile ? '-36px' : 'clamp(16px, 5vw, 120px)',
+      fdDerW: mobile ? '110px' : 'clamp(150px, 12vw, 220px)',
+      favS: S + 'px', favM: (-S / 2) + 'px', favStageH: (S + 24) + 'px',
+      favArrowL: `calc(50% - ${arrowX}px)`, favArrowR: `calc(50% + ${arrowX}px)`,
+      favCards: this.fav.map((c, k) => {
+        let d = (((k - fi) % n) + n) % n; if (d > n / 2) d -= n;
+        const a = Math.abs(d);
+        const side = a === 3 ? (favPhase === 'prep' ? favDir : -favDir) : Math.sign(d);
+        const x = side * [0, x1, x2, x3][Math.min(a, 3)];
+        const sc = [1, k1, k2, k2 * 0.85][Math.min(a, 3)];
+        const vis = mobile ? a <= 1 : a <= 2;
+        return {
+          ...c, aria: a === 0 ? c.title + ' (categoría actual)' : 'Ver ' + c.title,
+          current: a === 0 ? 'true' : undefined, hidden: vis ? undefined : true, tab: vis ? 0 : -1,
+          go: () => this.favNav(k),
+          tf: `translateX(${x}px) scale(${sc})`,
+          o: !vis ? 0 : a === 2 ? 0.5 : 1,
+          z: 10 - a,
+          shadow: a === 0 ? '0 24px 48px -16px rgba(28,26,25,.35)' : '0 8px 20px -10px rgba(28,26,25,.2)',
+          inner: a === 0 ? 'scale(1)' : 'scale(1.08)',
+          trans: a === 3 && favPhase === 'prep' ? 'none' : full
+        };
+      }),
+      favTexts: this.fav.map((c, k) => ({
+        title: c.title, tags: c.tags, hidden: k === fi ? undefined : true,
+        o: k === fi ? 1 : 0, vis: k === fi ? 'visible' : 'hidden',
+        tf: k === fi ? 'translateY(0)' : 'translateY(10px)',
+        trans: k === fi ? 'opacity .5s ease .25s, transform .6s cubic-bezier(.22,1,.36,1) .25s, visibility 0s' : 'opacity .2s ease, transform .2s ease, visibility 0s .2s'
+      })),
+      favDots: this.fav.map((c, k) => ({
+        go: () => this.favNav(k), label: 'Ir a ' + c.title, current: k === fi ? 'true' : undefined,
+        w: k === fi ? '40px' : '12px', bg: k === fi ? '#E1251B' : '#F5CBC7'
+      })),
+      favPrevFn: () => this.favNav(fi - 1),
+      favNextFn: () => this.favNav(fi + 1),
+      favKey: e => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); this.favNav(fi - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); this.favNav(fi + 1); }
+      },
+      favTouchStart: e => { this.ftx = e.touches[0].clientX; },
+      favTouchEnd: e => {
+        const dx = e.changedTouches[0].clientX - (this.ftx ?? 0);
+        if (Math.abs(dx) > 40) this.favNav(fi + (dx < 0 ? 1 : -1));
+      }
+    };
+  }
+  gal = [1, 2, 3, 4, 5].map(k => ({ imgLabel: 'FOTO ' + k, lema: 'Lema de la foto ' + k, tone: ['#DCDBD8', '#D3D2CF', '#E0DFDC', '#D6D5D2', '#DEDDDA'][k - 1] }));
+  galRef = el => {
+    if (!el || this.galIO || this.galDone) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { this.galDone = true; this.setState({ galIn: true }); return; }
+    this.galIO = new IntersectionObserver(es => {
+      if (es.some(e => e.isIntersecting)) { this.galDone = true; this.setState({ galIn: true }); this.galIO.disconnect(); setTimeout(() => this.setState({ galSettled: true }), 1800); }
+    }, { threshold: 0.25 });
+    this.galIO.observe(el);
+  };
+  lbRef = el => { this.lbEl = el; };
+  lbCloseRef = el => { this.lbCloseEl = el; };
+  dropCard(k, el) {
+    if (this.state.lbI !== null || this.state.galDrop != null) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return this.openLb(k, el);
+    clearTimeout(this.dropT);
+    this.setState({ galDrop: k, galSettled: true });
+    this.dropT = setTimeout(() => this.openLb(k, el), 460);
+  }
+  openLb(k, el) {
+    clearTimeout(this.lbT);
+    this.lbReturn = el && el.closest('li') ? el : el;
+    document.body.style.overflow = 'hidden';
+    clearTimeout(this.lbUiT);
+    this.setState({ lbI: k, lbO: 0, lbUi: false, lbPhase: 'idle', lbFrom: null }, () => requestAnimationFrame(() => requestAnimationFrame(() => {
+      this.setState({ lbO: 1 });
+      this.lbCloseEl && this.lbCloseEl.focus();
+      this.lbUiT = setTimeout(() => this.setState({ lbUi: true }), 780);
+    })));
+  }
+  closeLb() {
+    clearTimeout(this.lbUiT);
+    this.setState({ lbO: 0, lbUi: false });
+    clearTimeout(this.lbT);
+    this.lbT = setTimeout(() => {
+      this.setState({ lbI: null, galDrop: null });
+      document.body.style.overflow = '';
+      this.lbReturn && this.lbReturn.focus({ preventScroll: true });
+    }, 460);
+  }
+  lbNav(d) {
+    const n = this.gal.length, cur = this.state.lbI, t = (cur + d + n) % n;
+    clearTimeout(this.lbSlideT);
+    this.setState({ lbDir: d, lbFrom: cur, lbTo: t, lbPhase: 'prep' }, () => requestAnimationFrame(() => requestAnimationFrame(() => {
+      this.setState({ lbI: t, lbPhase: 'go' });
+      this.lbSlideT = setTimeout(() => this.setState({ lbFrom: null, lbPhase: 'idle' }), 700);
+    })));
+  }
+  galVals(w) {
+    const wide = w >= 768;
+    const cw = wide ? Math.min(w - 24, Math.max(1120, Math.min(w * 0.84, 1640))) : w;
+    const C = wide ? Math.min(370, cw * 0.215) : Math.min(220, w / 3.05);
+    const W = C * 0.8;
+    const d1 = wide ? 0.94 * C : 0.56 * C, d2 = wide ? 1.86 * C : 1.12 * C;
+    const t1 = wide ? 0.3 * C : 0.16 * C, t2 = wide ? 0.56 * C : 0.34 * C;
+    const r1 = wide ? 3.5 : 4, r2 = wide ? 4.5 : 7;
+    const L = [[-d2, t2, -r2, W, 1, .26], [-d1, t1, -r1, W, 2, .13], [0, 0, 0, C, 3, 0], [d1, t1, r1, W, 2, .13], [d2, t2, r2, W, 1, .26]];
+    const order = [3, 1, 0, 2, 4];
+    const on = this.state.galIn;
+    return {
+      galH: Math.round(wide ? C * 1.1 + 90 : t2 + W * 1.1 + 40) + 'px',
+      galCards: L.map(([dx, dy, rot, cwid, z, delay], k) => {
+        const g = this.gal[order[k]];
+        return {
+          ...g, w: cwid + 'px', ml: (-cwid / 2) + 'px', z,
+          aria: 'Abrir ' + g.imgLabel.toLowerCase() + ' en grande',
+          open: e => this.dropCard(order[k], e.currentTarget),
+          tf: !on ? `translate(0px, ${C * 0.1}px) rotate(0deg) scale(${k === 2 ? 0.85 : 0.6})`
+            : this.state.galDrop === order[k] ? `translate(${dx}px, calc(${dy}px + 110vh)) rotate(${rot}deg)`
+            : `translate(${dx}px, ${dy}px) rotate(${rot}deg)`,
+          o: on ? 1 : 0,
+          trans: this.state.galDrop === order[k] ? 'transform .5s cubic-bezier(.55,0,.75,.2)'
+            : this.state.galSettled ? 'transform .8s cubic-bezier(.16,1,.3,1), opacity .4s ease'
+            : `transform 1.15s cubic-bezier(.34,1.3,.5,1) ${delay + 0.1}s, opacity .5s ease ${delay + 0.1}s`
+        };
+      })
+    };
+  }
+  lbVals() {
+    const { lbI, lbO } = this.state, n = this.gal.length;
+    const it = this.gal[lbI ?? 0];
+    return {
+      lbOpen: lbI !== null, lbItem: it, lbHasLema: !!it.lema, lbO,
+      lbAria: 'Galería, foto ' + ((lbI ?? 0) + 1) + ' de ' + n,
+      lbCounter: ((lbI ?? 0) + 1) + ' / ' + n,
+      lbFigO: 1,
+      lbFigTf: lbO ? 'translate(0, 0)' : 'translate(0, 110vh)',
+      lbFigTrans: lbO ? 'transform .8s cubic-bezier(.16,1,.3,1)' : 'transform .45s cubic-bezier(.55,0,.75,.2)',
+      lbSlides: this.gal.map((g, k) => {
+        const { lbPhase: ph, lbDir: dir = 1, lbFrom: from, lbTo: to } = this.state;
+        const cur = lbI ?? 0, off = 'calc(' + (dir > 0 ? '' : '-') + '100vw)', offOut = 'calc(' + (dir > 0 ? '-' : '') + '100vw)';
+        const slide = 'transform .65s cubic-bezier(.65,0,.25,1)';
+        let tf = 'translateX(0)', vis = 'hidden', trans = 'none';
+        if (ph === 'prep') {
+          if (k === from) { vis = 'visible'; }
+          else if (k === to) { vis = 'visible'; tf = 'translateX(' + off + ')'; }
+        } else if (ph === 'go') {
+          if (k === cur) { vis = 'visible'; trans = slide; }
+          else if (k === from) { vis = 'visible'; tf = 'translateX(' + offOut + ')'; trans = slide; }
+        } else if (k === cur) vis = 'visible';
+        return { ...g, tf, vis, trans };
+      }),
+      lbUiO: lbO && this.state.lbUi ? 1 : 0,
+      lbUiTf: lbO && this.state.lbUi ? 'translateY(0)' : 'translateY(12px)',
+      lbUiTrans: lbO && this.state.lbUi ? 'opacity .4s ease, transform .5s cubic-bezier(.22,1,.36,1)' : 'opacity .15s ease, transform .15s ease',
+      lbUiPe: this.state.lbUi ? 'auto' : 'none',
+      lbCloseFn: () => this.closeLb(),
+      lbPrev: () => this.lbNav(-1), lbNext: () => this.lbNav(1),
+      lbRef: this.lbRef, lbCloseRef: this.lbCloseRef,
+      lbKey: e => {
+        if (e.key !== 'Tab' || !this.lbEl) return;
+        const f = [...this.lbEl.querySelectorAll('button')];
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      },
+      lbTouchStart: e => { this.ltx = e.touches[0].clientX; },
+      lbTouchEnd: e => {
+        const dx = e.changedTouches[0].clientX - (this.ltx ?? 0);
+        if (Math.abs(dx) > 45) this.lbNav(dx < 0 ? 1 : -1);
+      },
+      galRef: this.galRef
+    };
+  }
+  trVals(w) {
+    const wide = w >= 960, hv = this.state.trCta;
+    return {
+      trCols: wide ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      trPad: wide ? '24px clamp(32px, 4vw, 72px) 24px 24px' : '12px 12px 40px',
+      trGap: wide ? 'clamp(40px, 5vw, 88px)' : '32px',
+      trImgRatio: wide ? 'auto' : '4 / 3',
+      trImgMinH: wide ? 'clamp(560px, 38vw, 720px)' : '0px',
+      trTextPad: wide ? 'clamp(40px, 4vw, 64px) 0' : '0 8px',
+      trSunL: wide ? '52%' : '60%',
+      trItems: [
+        ['assets/icono-g45.svg', 'Oportunidades de crecimiento', 'Desarrolla tu talento y crece con nosotros.'],
+        ['assets/icono-g46.svg', 'Buen ambiente de trabajo', 'Sé parte de un equipo cercano, dinámico y comprometido.'],
+        ['assets/icono-g47.svg', 'Oportunidades cerca de casa', 'Contamos con tiendas en distintas ciudades del Norte Chico para que puedas encontrar una oportunidad laboral cerca de ti.']
+      ].map(([icon, t, d], k) => ({ icon, t, d, sep: k < 2 ? '1.5px dashed #D3D1CE' : '0' })),
+      trCtaIn: () => this.setState({ trCta: true }),
+      trCtaOut: () => this.setState({ trCta: false }),
+      trCtaPad: hv ? '6px 22px 6px 56px' : '6px 56px 6px 22px',
+      trCtaBg: hv ? '#FFFFFF' : '#E1251B',
+      trCtaColor: hv ? '#E1251B' : '#FFFFFF',
+      trArrowLeft: hv ? '9px' : 'calc(100% - 43px)',
+      trArrowBg: hv ? '#E1251B' : '#FFFFFF',
+      trArrowColor: hv ? '#FFFFFF' : '#E1251B'
+    };
+  }
+  ftStarList = (() => {
+    let seed = 7;
+    const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const blocked = (x, y) =>
+      y > 82 || x < 2 || x > 98 ||
+      (x > 39.5 && x < 60.5 && y > 3) ||
+      (x > 18.5 && x < 43 && y > 52) ||
+      (x > 59 && x < 81.5 && y > 56) ||
+      (x > 58.5 && x < 64.5 && y > 30 && y < 48) ||
+      (x > 77 && x < 83 && y > 75);
+    const out = [];
+    let guard = 0;
+    while (out.length < 38 && guard++ < 2000) {
+      const x = rnd() * 100, y = rnd() * 78;
+      if (blocked(x, y)) continue;
+      if (out.some(s => Math.abs(s.px - x) < 3.2 && Math.abs(s.py - y) < 7)) continue;
+      const big = rnd() < 0.22;
+      const size = big ? 9 + rnd() * 5 : 2 + rnd() * 2.5;
+      out.push({
+        px: x, py: y,
+        x: x.toFixed(2) + '%', y: y.toFixed(2) + '%',
+        size: size.toFixed(1) + 'px', m: (-size / 2).toFixed(1) + 'px 0 0 ' + (-size / 2).toFixed(1) + 'px',
+        dur: (3 + rnd() * 4).toFixed(2) + 's', delay: (-rnd() * 7).toFixed(2) + 's',
+        sparkle: big, dot: !big
+      });
+    }
+    return out;
+  })();
+  ftVals(w) {
+    const xl = w >= 1100, md = w >= 640;
+    const side = xl ? '12px' : '20px';
+    return {
+      year: new Date().getFullYear(),
+      ftSidePad: side,
+      ftStarRef: this.ftStarRef,
+      ftStars: w < 768 ? this.ftStarList.filter((s, k) => k % 2 === 0).map(s => ({ ...s, size: (parseFloat(s.size) * 0.55).toFixed(1) + 'px', m: (-parseFloat(s.size) * 0.275).toFixed(1) + 'px 0 0 ' + (-parseFloat(s.size) * 0.275).toFixed(1) + 'px' })) : this.ftStarList,
+      ftPad: xl ? 'clamp(64px, 6vw, 88px) 12px 0' : '56px 20px 0',
+      ftCols: xl ? 'minmax(0,1.3fr) repeat(3, minmax(0,1fr)) minmax(0,1.05fr)' : md ? 'repeat(2, minmax(0,1fr))' : 'minmax(0,1fr)',
+      ftGap: xl ? '40px clamp(32px, 3vw, 56px)' : '40px 32px',
+      ftBrandSpan: xl ? 'auto' : '1 / -1',
+      ftArtMargin: xl ? '24px 0 0' : '40px -20px 0',
+      ftGroups: [
+        ['ft-nav', 'Navegación', [['Inicio', '#inicio'], ['Conócenos', 'Conocenos.dc.html'], ['Novedades', 'Novedades.dc.html'], ['Aliados', 'Aliados.dc.html'], ['Trabaja con nosotros', 'Trabaja.dc.html'], ['Ubicaciones', 'Ubicaciones.dc.html']]],
+        ['ft-cliente', 'Servicio al cliente', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
+        ['ft-legal', 'Legal', [['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
+      ].map(([id, title, links, sub]) => ({ id, title, links: links.map(([label, href]) => ({ label, href })), hasSub: !!sub, sub: sub ? { id: sub[0], title: sub[1], links: sub[2].map(([label, href]) => ({ label, href })) } : { links: [] } }))
+    };
+  }
+  encFormRef = el => {
+    if (!el || this.encIO || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    this.encIO = new IntersectionObserver(es => {
+      if (!es.some(e => e.isIntersecting)) return;
+      this.encIO.disconnect();
+      const kf = [{ transform: 'scale(1)' }, { transform: 'scale(1.012)', offset: .45 }, { transform: 'scale(1)' }];
+      [this.encProvEl, this.encDistEl].forEach((s, k) => {
+        const box = s && s.parentElement; if (!box) return;
+        box.animate(kf, { duration: 700, delay: 650 + k * 260, easing: 'cubic-bezier(.3,.7,.3,1)' });
+      });
+    }, { threshold: 0.6 });
+    this.encIO.observe(el);
+  };
+  encProvRef = el => { this.encProvEl = el; };
+  encDistRef = el => { this.encDistEl = el; };
+  geo = {
+    'Huaura': ['Huacho', 'Hualmay', 'Santa María', 'Carquín', 'Végueta', 'Sayán'],
+    'Barranca': ['Barranca', 'Paramonga', 'Pativilca', 'Supe', 'Supe Puerto'],
+    'Huaral': ['Huaral', 'Chancay', 'Aucallama'],
+    'Oyón': ['Oyón'],
+    'Cajatambo': ['Cajatambo']
+  };
+  encVals(w) {
+    const wide = w >= 900, s = this.state, ig = 'https://www.instagram.com/plazaautoservicios/';
+    const post = (k, label) => ({ k, label, href: ig,
+      enter: () => this.setState({ igHover: k }),
+      hoverO: s.igHover === k ? 1 : 0,
+      hoverTf: s.igHover === k ? 'translateY(0)' : 'translateY(8px)', aria: 'Publicación de Instagram ' + k + ' (se abre en una pestaña nueva)', tone: ['#5A5856', '#4E4C4A', '#625F5C', '#555351'][(k - 1) % 4] });
+    return {
+      encWide: wide,
+      encAlign: wide ? 'left' : 'center',
+      encGavTop: wide ? 'clamp(20px, 2.5vw, 40px)' : '14px',
+      encGavRight: wide ? 'clamp(24px, 4vw, 72px)' : '12px',
+      encGavW: wide ? 'clamp(220px, 20vw, 340px)' : '150px',
+      encRowDir: wide ? 'row' : 'column',
+      encPad: wide ? 'clamp(88px, 7.5vw, 136px) clamp(48px, 5vw, 96px)' : '56px 20px 60px',
+      encCols: wide ? 'minmax(0,1fr) 1px minmax(0,1.4fr)' : 'minmax(0,1fr)',
+      encGap: wide ? 'clamp(48px, 5vw, 96px)' : '28px',
+      encProvs: Object.keys(this.geo),
+      encProv: s.encProv, encDist: s.encDist, encMsg: s.encMsg,
+      encProvInvalid: s.encErrP ? 'true' : undefined,
+      encDistInvalid: s.encErrD ? 'true' : undefined,
+      encProvBorder: s.encErrP ? '#FFD34D' : 'rgba(255,255,255,.4)',
+      encDistBorder: s.encErrD ? '#FFD34D' : 'rgba(255,255,255,.4)',
+      encProvDesc: s.encErrP ? 'enc-err-prov' : undefined,
+      encDistDesc: s.encErrD ? 'enc-err-dist' : undefined,
+      encErrProv: !!s.encErrP, encErrDist: !!s.encErrD,
+      encErrProvMsg: 'Selecciona tu provincia.',
+      encErrDistMsg: s.encProv ? 'Selecciona tu distrito en ' + s.encProv + '.' : 'Selecciona tu distrito.',
+      encFormRef: this.encFormRef,
+      encProvRef: this.encProvRef, encDistRef: this.encDistRef,
+      encDistPh: s.encProv ? 'Selecciona tu distrito…' : 'Todos los distritos',
+      encDists: (s.encProv ? this.geo[s.encProv] : Object.values(this.geo).flat()).map(d => ({ v: d, l: d })),
+      encOnProv: e => {
+        const v = e.target.value;
+        this.setState(st => ({ encProv: v, encDist: '', encErrP: false, encErrD: st.encTried && !!v, encMsg: '' }));
+      },
+      encOnDist: e => {
+        const d = e.target.value;
+        const p = d && !this.state.encProv ? Object.keys(this.geo).find(k => this.geo[k].includes(d)) : this.state.encProv;
+        this.setState(st => ({ encDist: d, encProv: p || '', encErrP: st.encTried && !p, encErrD: st.encTried && !d, encMsg: '' }));
+      },
+      encSubmit: e => {
+        e.preventDefault();
+        const { encProv: p, encDist: d } = this.state;
+        if (!p || !d) {
+          const msg = !p && !d ? 'Selecciona tu provincia y tu distrito para buscar.' : !p ? 'Falta seleccionar tu provincia.' : 'Falta seleccionar tu distrito.';
+          this.setState({ encTried: true, encErrP: !p, encErrD: !d, encMsg: msg });
+          const el = !p ? this.encProvEl : this.encDistEl;
+          el && el.focus();
+          return;
+        }
+        this.setState({ encTried: false, encErrP: false, encErrD: false, encMsg: 'Buscando tiendas en ' + d + ', ' + p + '…' });
+      },
+      igPad: wide ? 'clamp(72px, 6vw, 104px) clamp(48px, 5vw, 96px)' : '72px 20px 76px',
+      igCols: wide ? 'minmax(0,1.15fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      igAreas: wide ? '"mosaico texto" "mosaico perfil"' : '"texto" "mosaico" "perfil"',
+      igGap: wide ? '28px clamp(48px, 5vw, 96px)' : '32px',
+      igHref: ig,
+      igLeave: () => this.setState({ igHover: null }),
+      igSunL: wide ? '38%' : '55%',
+      igMosaic: [{ off: '0px', posts: [post(1), post(3)] }, { off: wide ? 'clamp(56px, 5vw, 88px)' : '36px', posts: [post(2), post(4)] }],
+      igThumbs: [1, 2, 3, 4].map(k => post(k))
+    };
+  }
+  renderVals() {
+    const w = (typeof document !== 'undefined' && (document.documentElement.clientWidth || window.innerWidth)) || this.state.w || 390;
+    const { i, menuOpen, paused, hover, focusIn } = this.state;
+    const isDesktop = w >= 1180, showArrows = w >= 1280, wide = w >= 768;
+    const autoplay = this.props.autoplay ?? true;
+    const running = autoplay && !paused;
+    const ov = this.props.overlay ?? 0.6;
+    const n = this.slides.length;
+
+    return {
+      isDesktop, isMobile: !isDesktop, showArrows,
+      menuOpen, menuClosed: !menuOpen, menuVisible: !isDesktop,
+      menuClip: menuOpen ? 'inset(0 0 0 0 round 16px)' : 'inset(0 0 100% 0 round 16px)',
+      menuVis: menuOpen ? 'visible' : 'hidden',
+      menuTrans: menuOpen ? 'clip-path .45s cubic-bezier(.16,1,.3,1), visibility 0s' : 'clip-path .3s cubic-bezier(.55,0,.75,.2), visibility 0s .3s',
+      menuLabel: menuOpen ? 'Cerrar menú' : 'Abrir menú',
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      navLinks: this.links.map(([label, href], k) => ({
+        label, href, current: k === 0 ? 'page' : undefined, dotD: k === 0 ? 'block' : 'none',
+        color: k === 0 || (this.state.pill.show && this.state.pill.k === k) ? '#E1251B' : '#1C1A19',
+        bg: k === 0 ? '#FDECEA' : 'transparent',
+        enter: e => this.navEnter(e, k),
+        click: k === 0 ? this.goTop : undefined,
+        clickMobile: k === 0 ? e => { this.setState({ menuOpen: false }); this.goTop(e); } : () => this.setState({ menuOpen: false })
+      })),
+      navLeave: () => this.setState(s => ({ pill: { ...s.pill, show: false, k: -1 } })),
+      pillW: this.state.pill.w + 'px',
+      pillT: `translate(${this.state.pill.x}px, -50%)`,
+      pillO: this.state.pill.show ? 1 : 0,
+      pillTrans: this.state.pill.instant ? 'opacity .2s' : 'transform .4s cubic-bezier(.3,.7,.2,1), width .4s cubic-bezier(.3,.7,.2,1), opacity .25s',
+
+      cur: this.slides[i],
+      goTop: this.goTop,
+      logoIn: () => this.setState({ logoHover: true }),
+      logoOut: () => this.setState({ logoHover: false }),
+      logoClipO: this.state.logoHover ? 'polygon(0 0, 129px 0, 183px 100%, 0 100%)' : 'polygon(0 0, 123px 0, 176px 100%, 0 100%)',
+      logoClipR: this.state.logoHover ? 'polygon(0 0, 118px 0, 171px 100%, 0 100%)' : 'polygon(0 0, 113px 0, 165px 100%, 0 100%)',
+      texts: this.slides.map((s, k) => ({
+        ...s, hidden: k === i ? undefined : true,
+        o: k === i ? 1 : 0,
+        tf: k === i ? 'translateY(0)' : 'translateY(18px)',
+        vis: k === i ? 'visible' : 'hidden',
+        trans: k === i ? 'opacity .6s ease .35s, transform .7s cubic-bezier(.2,.7,.2,1) .35s, visibility 0s' : 'opacity .3s ease, transform .3s ease, visibility 0s .3s'
+      })),
+      ctaIn: () => this.setState({ ctaHover: true }),
+      ctaOut: () => this.setState({ ctaHover: false }),
+      ctaPad: this.state.ctaHover ? '6px 22px 6px 56px' : '6px 56px 6px 22px',
+      ctaBg: this.state.ctaHover ? '#FFFFFF' : '#E1251B',
+      ctaColor: this.state.ctaHover ? '#E1251B' : '#FFFFFF',
+      ctaArrowLeft: this.state.ctaHover ? '9px' : 'calc(100% - 43px)',
+      ctaArrowBg: this.state.ctaHover ? '#E1251B' : '#FFFFFF',
+      ctaArrowColor: this.state.ctaHover ? '#FFFFFF' : '#E1251B',
+      statsRef: this.statsRef,
+      bdO: menuOpen && !isDesktop ? 1 : 0,
+      bdVis: menuOpen && !isDesktop ? 'visible' : 'hidden',
+      statsWide: wide, statsMobile: !wide,
+      statsRot: this.stats.map(([pre, num, suf, label], k) => {
+        const si = this.state.statI, dir = this.state.statDir;
+        const on = k === si, prev = k === this.state.statPrev && !on;
+        return {
+          value: pre + Math.round(num * (this.state.countP ?? 0)) + suf, label,
+          o: on ? 1 : 0,
+          tf: on ? 'translateX(0)' : prev ? (dir > 0 ? 'translateX(-70%)' : 'translateX(70%)') : (dir > 0 ? 'translateX(70%)' : 'translateX(-70%)'),
+          trans: on || prev ? 'opacity .5s ease, transform .7s cubic-bezier(.65,0,.25,1)' : 'none'
+        };
+      }),
+      statTouchStart: e => { this.stx = e.touches[0].clientX; },
+      statTouchEnd: e => {
+        const dx = e.changedTouches[0].clientX - (this.stx ?? 0);
+        if (Math.abs(dx) > 35) { this.statGo(dx < 0 ? 1 : -1); this.startStatTimer(); }
+      },
+      statsDots: this.stats.map((_, k) => ({ h: k === this.state.statI ? '18px' : '6px', bg: k === this.state.statI ? '#FFFFFF' : 'rgba(255,255,255,.45)' })),
+      ...this.favVals(w),
+      ...this.encVals(w),
+      ...this.galVals(w),
+      ...this.lbVals(),
+      ...this.trVals(w),
+      ...this.ftVals(w),
+      ...this.popVals(w),
+      ciLoops: [0, 1],
+      ciNames: ['Huacho', 'Barranca', 'Huaral', 'Supe', 'Hualmay', 'Paramonga', 'Chancay', 'Végueta', 'Santa María', 'Pativilca', 'Sayán', 'Carquín', 'Aucallama', 'Oyón', 'Cajatambo']
+        .map((n, k) => ({ n, wt: k % 2 ? 300 : 700, color: k % 2 ? '#E4E2DF' : '#FFFFFF' })),
+
+      heroH: '100svh',
+      contentPad: wide ? '96px 12px 72px' : '96px 20px 72px',
+      contentJustify: 'flex-end',
+      contentInset: '0px',
+      iconLeft: wide ? '74%' : '50%',
+      iconTop: wide ? '52%' : '24%',
+      overlayBg: wide
+        ? `linear-gradient(90deg, rgba(22,12,6,${ov}) 0%, rgba(22,12,6,${ov * 0.7}) 45%, rgba(22,12,6,0.08) 80%)`
+        : `linear-gradient(0deg, rgba(22,12,6,${Math.min(0.92, ov + 0.2)}) 0%, rgba(22,12,6,${ov}) 45%, rgba(22,12,6,0.1) 75%)`,
+
+      slides: this.slides.map((s, k) => {
+        const SHOWN = 'polygon(0% 0%, 125% 0%, 100% 100%, -25% 100%)';
+        const FROM_L = 'polygon(0% 0%, 0% 0%, -25% 100%, -25% 100%)';
+        const FROM_R = 'polygon(125% 0%, 125% 0%, 100% 100%, 100% 100%)';
+        const active = k === i, prev = k === this.state.prev;
+        const zoom = 'transform 18s cubic-bezier(.25,.5,.35,1)';
+        return {
+          ...s, label: `${k + 1} de ${n}`, level: k === 0 ? 1 : 2,
+          tone: ['#8E8E8C', '#6F6F6D', '#A3A19E', '#7D7B78'][k % 4],
+          hidden: active ? undefined : true,
+          z: active ? 2 : prev ? 1 : 0,
+          clip: active || prev ? SHOWN : (this.state.dir > 0 ? FROM_L : FROM_R),
+          trans: active ? 'clip-path 1.1s cubic-bezier(.77,0,.18,1)' : 'none',
+          visibility: active || prev ? 'visible' : 'hidden',
+          scale: (active || prev) && this.state.zoomReady ? 'scale(1.15)' : 'scale(1)',
+          zoomTrans: active || prev ? zoom : 'none'
+        };
+      }),
+      dots: this.slides.map((_, k) => ({
+        go: () => this.goTo(k), label: `Ir a la diapositiva ${k + 1}`,
+        current: k === i ? 'true' : undefined,
+        w: k === i ? '64px' : '22px', bg: k === i ? '#FF9015' : 'rgba(255,255,255,.65)'
+      })),
+      live: running && !hover && !focusIn ? 'off' : 'polite',
+      prev: () => this.step(-1), next: () => this.step(1),
+      playing: running, paused: !running,
+      pauseLabel: running ? 'Pausar carrusel' : 'Reproducir carrusel',
+      togglePause: () => this.setState(s => ({ paused: autoplay ? !s.paused : false })),
+      onKeyDown: e => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); this.step(-1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); this.step(1); }
+      },
+      onTouchStart: e => { this.tx = e.touches[0].clientX; },
+      onTouchEnd: e => {
+        const dx = e.changedTouches[0].clientX - (this.tx ?? 0);
+        if (Math.abs(dx) > 45) this.step(dx < 0 ? 1 : -1);
+      },
+      onEnter: () => this.setState({ hover: true }),
+      onLeave: () => this.setState({ hover: false }),
+      onFocusIn: () => this.setState({ focusIn: true }),
+      onFocusOut: e => { if (!e.currentTarget.contains(e.relatedTarget)) this.setState({ focusIn: false }); },
+
+      statsCols: wide ? 'repeat(4, minmax(0,1fr))' : 'repeat(2, minmax(0,1fr))',
+      statsPad: wide ? '16px 0' : '8px 0',
+      statsOuter: wide ? '0 12px' : '0 20px',
+      stats: this.stats.map(([pre, num, suf, label], k) => ({
+        value: pre + Math.round(num * (this.state.countP ?? 0)) + suf, label,
+        divider: wide && k > 0,
+        pad: wide ? '20px 12px' : '18px 8px',
+        br: !wide && k % 2 === 0 ? '1px solid rgba(255,255,255,.3)' : '0',
+        bb: !wide && k < 2 ? '1px solid rgba(255,255,255,.3)' : '0'
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

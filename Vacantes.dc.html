@@ -10,6 +10,7 @@
 <helmet>
 <script src="assets/confetti.js"></script>
 <script src="assets/delivery.js"></script>
+<script src="assets/navbar.js"></script>
 <script src="assets/vacantes-return.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,7 +87,7 @@ a:hover{color:#B81B10}
             </li>
           </sc-for>
         </ul>
-        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:17px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:16px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
           Encontrar tienda
         </a>
@@ -207,7 +208,7 @@ a:hover{color:#B81B10}
                         <li style="display:flex; align-items:center; gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"></rect><path d="M3 10h18M16 14.5h2"></path></svg><span><span style="position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0">Sueldo: </span>{{ j.pay }}</span></li>
                         <li style="display:flex; align-items:center; gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg><span><span style="position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0">Ubicación: </span>{{ j.loc }}</span></li>
                       </ul>
-                      <a href="{{ j.href }}" onClick="{{ j.open }}" aria-haspopup="dialog" aria-label="{{ j.aria }}" style="flex:none; display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:0 18px; border:0; border-radius:12px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:14px; font-weight:500; text-decoration:none; cursor:pointer; transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">Postular</a>
+                      <a href="{{ j.href }}" onClick="{{ j.open }}" aria-haspopup="dialog" aria-label="{{ j.aria }}" style="flex:none; display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:0 18px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:15px; font-weight:500; text-decoration:none; cursor:pointer; transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">Postular</a>
                     </div>
                   </article>
                 </li>
@@ -217,7 +218,7 @@ a:hover{color:#B81B10}
               <nav aria-label="Paginación" style="margin-top:clamp(32px, 4vw, 48px); display:flex; justify-content:center">
                 <ul style="list-style:none; margin:0; padding:0; display:flex; align-items:center; gap:6px">
                   <li>
-                    <button type="button" onClick="{{ vcPrevPage }}" disabled="{{ vcPrevDis }}" aria-label="Página anterior" style="width:44px; height:44px; border:0; border-radius:50%; background:{{ vcPrevBg }}; color:{{ vcPrevColor }}; display:flex; align-items:center; justify-content:center; cursor:{{ vcPrevCursor }}" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+                    <button type="button" onClick="{{ vcPrevPage }}" disabled="{{ vcPrevDis }}" aria-label="Página anterior" style-hover="transform:scale(1.1)" style="width:48px; height:48px; border:0; border-radius:50%; background:{{ vcPrevBg }}; color:{{ vcPrevColor }}; display:flex; align-items:center; justify-content:center; cursor:{{ vcPrevCursor }}; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-focus="outline:3px solid #FF9015; outline-offset:3px">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
                     </button>
                   </li>
@@ -227,7 +228,7 @@ a:hover{color:#B81B10}
                     </li>
                   </sc-for>
                   <li>
-                    <button type="button" onClick="{{ vcNextPage }}" disabled="{{ vcNextDis }}" aria-label="Página siguiente" style="width:44px; height:44px; border:0; border-radius:50%; background:{{ vcNextBg }}; color:{{ vcNextColor }}; display:flex; align-items:center; justify-content:center; cursor:{{ vcNextCursor }}" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+                    <button type="button" onClick="{{ vcNextPage }}" disabled="{{ vcNextDis }}" aria-label="Página siguiente" style-hover="transform:scale(1.1)" style="width:48px; height:48px; border:0; border-radius:50%; background:{{ vcNextBg }}; color:{{ vcNextColor }}; display:flex; align-items:center; justify-content:center; cursor:{{ vcNextCursor }}; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-focus="outline:3px solid #FF9015; outline-offset:3px">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
                     </button>
                   </li>
@@ -240,7 +241,7 @@ a:hover{color:#B81B10}
               <p style="margin:0; font-size:18px; font-weight:600; color:#1C1A19">No encontramos vacantes</p>
               <p style="margin:0; max-width:420px; font-size:15px; line-height:1.55; font-weight:300; color:#3A3836; text-wrap:pretty">Prueba con otros filtros o déjanos tus datos y te avisaremos cuando haya una vacante para ti.</p>
               <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px">
-                <button type="button" onClick="{{ vcClear }}" style="display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 28px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:500; text-decoration:none; cursor:pointer; transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">Ver todas las vacantes</button>
+                <button type="button" onClick="{{ vcClear }}" style="display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 28px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:500; text-decoration:none; cursor:pointer; transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">Ver todas las vacantes</button>
                 <a href="Trabaja.dc.html#postula" style="display:inline-flex; align-items:center; min-height:48px; padding:0 22px; border:1.5px solid #E4E2DF; border-radius:16px; background:#FFFFFF; color:#E1251B; font-size:15px; font-weight:500; text-decoration:none" style-hover="border-color:#E1251B; color:#E1251B" style-focus="outline:3px solid #FF9015; outline-offset:3px">Déjanos tus datos</a>
               </div>
             </div>
@@ -325,7 +326,7 @@ a:hover{color:#B81B10}
         <h2 style="margin:0; font-size:18px; font-weight:600; color:#FFFFFF">Síguenos</h2>
         <ul style="list-style:none; margin:0; padding:0; display:flex; gap:16px">
           <li>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://web.facebook.com/somosplaza/?locale=es_LA" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z"></path></svg>
             </a>
           </li>
@@ -335,7 +336,7 @@ a:hover{color:#B81B10}
             </a>
           </li>
           <li>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://www.tiktok.com/@plazaautoservicios" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3h-3.1v12.2a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.4a5.9 5.9 0 1 0 5 5.8V9.1a7.6 7.6 0 0 0 4.1 1.3V7.3A4.4 4.4 0 0 1 16.6 3z"></path></svg>
             </a>
           </li>
@@ -364,7 +365,7 @@ a:hover{color:#B81B10}
     </div>
   </div>
   <div style="background:#141312">
-    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:16px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© Plaza Autoservicios {{ year }}. Todos los derechos reservados.</p>
+    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:10px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© {{ year }} Plaza Autoservicios · C.H. RETAIL S.A.C. · RUC 20606990058. Todos los derechos reservados.</p>
   </div>
 </footer>
 
@@ -439,7 +440,7 @@ a:hover{color:#B81B10}
           <span aria-hidden="true" style="width:64px; height:64px; border-radius:50%; background:#E1251B; color:#FFFFFF; display:flex; align-items:center; justify-content:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
           <h2 id="ap-titulo" style="margin:8px 0 0; font-size:22px; font-weight:600; color:#1C1A19">¡Postulación enviada!</h2>
           <p style="margin:0; max-width:400px; font-size:16px; line-height:1.6; font-weight:300; color:#3A3836; text-wrap:pretty">Recibimos tu postulación a <strong style="font-weight:600; color:#1C1A19">{{ apJobT }}</strong>. Nuestro equipo de RRHH se comunicará contigo en menos de 48 horas.</p>
-          <button type="button" onClick="{{ apClose }}" style="margin-top:12px; min-height:48px; padding:0 28px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:500; cursor:pointer" style-hover="background:#C21D11" style-focus="outline:3px solid #FF9015; outline-offset:3px">Entendido</button>
+          <button type="button" onClick="{{ apClose }}" style="margin-top:12px; min-height:52px; padding:0 28px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:500; cursor:pointer" style-hover="background:#C21D11" style-focus="outline:3px solid #FF9015; outline-offset:3px">Entendido</button>
         </div>
       </sc-if>
       <sc-if value="{{ apForm }}" hint-placeholder-val="{{ true }}">
@@ -480,7 +481,7 @@ a:hover{color:#B81B10}
             </div>
           </div>
           <div style="flex:none; padding:{{ apFootPad }}; border-top:{{ apFootBd }}; background:#FFFFFF; border-radius:0 0 20px 20px">
-            <button type="submit" style="width:100%; min-height:56px; display:inline-flex; align-items:center; justify-content:center; gap:14px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:500; cursor:pointer; box-shadow:{{ apGlow }}; transition:background .2s, box-shadow .6s ease" style-hover="background:#C21D11" style-focus="outline:3px solid #FF9015; outline-offset:3px">Postular<span aria-hidden="true" style="width:30px; height:30px; border-radius:50%; background:#FFFFFF; color:#E1251B; display:flex; align-items:center; justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></button>
+            <button type="submit" style="width:100%; min-height:52px; display:inline-flex; align-items:center; justify-content:center; gap:14px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:500; cursor:pointer; box-shadow:{{ apGlow }}; transition:background .2s, box-shadow .6s ease" style-hover="background:#C21D11" style-focus="outline:3px solid #FF9015; outline-offset:3px">Postular<span aria-hidden="true" style="width:30px; height:30px; border-radius:50%; background:#FFFFFF; color:#E1251B; display:flex; align-items:center; justify-content:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></button>
           </div>
         </form>
       </sc-if>
@@ -671,8 +672,9 @@ class Component extends DCLogic {
       window.scrollTo(0, cur);
       raf = requestAnimationFrame(step);
     };
-    this.smoothTo = y => { if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
+    this.smoothTo = y => { if (window.__lenis) { window.__lenis.scrollTo(y, { duration: 1.1 }); return; } if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
     this.onWheel = e => {
+      if (window.__lenis) return;
       if (e.ctrlKey || this.state.lbI !== null || this.state.menuOpen || this.state.popKind || this.state.apJob) return;
       for (let n = e.target; n && n !== document.body && n.nodeType === 1; n = n.parentElement) {
         const oy = getComputedStyle(n).overflowY;
@@ -871,7 +873,7 @@ class Component extends DCLogic {
     const focusTab = k => { goTab(k); const el = document.getElementById('mv-tab-' + k); el && el.focus(); };
     return {
       cnHeroImgRef: this.cnHeroImgRef, cnHeroTxtRef: this.cnHeroTxtRef, mvBoxRef: this.mvBoxRef,
-      cnHeroH: xl ? 'clamp(460px, 36vw, 640px)' : md ? '440px' : '400px',
+      cnHeroH: xl ? 'clamp(520px, 40vw, 720px)' : md ? '490px' : '450px',
       hiCols: xl ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       hiGap: xl ? 'clamp(56px, 7vw, 140px)' : '44px',
       hiImgOrder: xl ? 0 : 1, hiTxtOrder: xl ? 1 : 0,
@@ -1341,8 +1343,8 @@ class Component extends DCLogic {
       ftArtMargin: xl ? '24px 0 0' : '40px -20px 0',
       ftGroups: [
         ['ft-nav', 'Navegación', [['Inicio', 'Home.dc.html'], ['Conócenos', 'Conocenos.dc.html'], ['Novedades', 'Novedades.dc.html'], ['Aliados', 'Aliados.dc.html'], ['Trabaja con nosotros', 'Trabaja.dc.html'], ['Ubicaciones', 'Ubicaciones.dc.html']]],
-        ['ft-cliente', 'Servicio al cliente', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
-        ['ft-legal', 'Legal', [['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
+        ['ft-cliente', 'Servicio al cliente', [['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
+        ['ft-legal', 'Legal', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
       ].map(([id, title, links, sub]) => ({ id, title, links: links.map(([label, href]) => ({ label, href })), hasSub: !!sub, sub: sub ? { id: sub[0], title: sub[1], links: sub[2].map(([label, href]) => ({ label, href })) } : { links: [] } }))
     };
   }

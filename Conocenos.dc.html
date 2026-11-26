@@ -10,6 +10,7 @@
 <helmet>
 <script src="assets/confetti.js"></script>
 <script src="assets/delivery.js"></script>
+<script src="assets/navbar.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +86,7 @@ a:hover{color:#B81B10}
             </li>
           </sc-for>
         </ul>
-        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:17px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:16px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
           Encontrar tienda
         </a>
@@ -105,17 +106,8 @@ a:hover{color:#B81B10}
     </div>
     <div aria-hidden="true" style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(22,12,6,.42) 0%, rgba(22,12,6,.5) 55%, rgba(22,12,6,.62) 100%)"></div>
     <div ref="{{ cnHeroTxtRef }}" style="position:relative; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:96px 20px 32px; text-align:center; color:#FFFFFF; will-change:transform">
-      <nav aria-label="Ruta de navegación">
-        <ol style="list-style:none; margin:0; padding:0; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:400">
-          <li style="display:flex; align-items:center; gap:6px">
-            <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.84667 14.4971L1.24008 22.9664C1.04034 23.3275 1.45831 23.7144 1.80305 23.4873L23.8218 8.97514C23.9438 8.8945 23.9986 8.77391 24.0001 8.65332L5.84667 14.4971Z" fill="#FF9015"></path><path d="M14.3535 0.363877C14.3225 -0.0289616 13.7987 -0.138453 13.6115 0.208517L9.95557 7.00663H14.8825L14.3535 0.363877Z" fill="#FF9015"></path><path d="M15.6323 15.8662L10.8452 19.0215L15.5332 23.4419C15.7965 23.6949 16.233 23.4877 16.2042 23.1237L15.6323 15.8662Z" fill="#FF9015"></path><path d="M23.6032 8.25146H0.395655C0.0346437 8.25146 -0.136985 8.69609 0.130075 8.93875L5.77457 14.2461L23.9146 8.40461C23.8466 8.31435 23.7401 8.25146 23.6032 8.25146Z" fill="#FF9015"></path></svg>
-            <a href="Home.dc.html" style="display:inline-flex; align-items:center; min-height:36px; color:#FFFFFF; text-decoration:none" style-hover="color:#FFFFFF; text-decoration:underline">Inicio</a>
-          </li>
-          <li aria-hidden="true" style="opacity:.8">›</li>
-          <li aria-current="page" style="font-weight:500">Conócenos</li>
-        </ol>
-      </nav>
       <h1 id="cn-hero-titulo" style="margin:0; font-size:clamp(28px, 3.8vw, 50px); font-weight:800; line-height:1.12; letter-spacing:-0.015em; text-transform:uppercase">Somos Plaza</h1>
+      <p style="margin:0; max-width:820px; font-size:clamp(16px, 1.25vw, 18px); line-height:1.6; font-weight:300; text-wrap:pretty">Nacimos en Huacho en 2007 y seguimos creciendo junto a las familias del Norte Chico, siempre cerca de ti.</p>
     </div>
   </section>
 
@@ -146,8 +138,8 @@ a:hover{color:#B81B10}
       <div data-reveal="120" style="position:relative; order:{{ hiTxtOrder }}">
         <img src="assets/deco-fav-izq.svg" alt="" aria-hidden="true" data-gav="1" style="position:absolute; right:0; top:{{ hiGavTop }}; will-change:translate; width:clamp(110px, 11vw, 190px); height:auto; pointer-events:none"></img>
         <h2 id="hi-titulo" style="margin:0; text-align:left; text-transform:uppercase; line-height:1.04">
-          <span style="display:block; font-size:clamp(28px, 3.6vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">Plaza Autoservicios</span>
-          <span style="display:block; font-size:clamp(36px, 4.8vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">De Huacho para el Norte Chico</span>
+          <span style="display:block; font-size:clamp(28px, 2.5vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">Plaza Autoservicios</span>
+          <span style="display:block; font-size:clamp(36px, 3.33vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">De Huacho para el Norte Chico</span>
         </h2>
         <p style="margin:20px 0 0; max-width:560px; font-size:16px; line-height:1.65; font-weight:300; color:#3A3836; text-wrap:pretty">Fundada en el corazón del Norte Chico, Plaza Autoservicios nació con la convicción de que las familias merecen <strong style="font-weight:600; color:#1C1A19">productos frescos, de calidad y a precios justos</strong>. Crecimos de la mano de las comunidades que servimos.</p>
       </div>
@@ -203,8 +195,8 @@ a:hover{color:#B81B10}
       <div data-reveal="0" style="position:relative">
         <img src="assets/deco-fav-izq.svg" alt="" aria-hidden="true" data-gav="1" style="position:absolute; will-change:translate; right:{{ pqGavR }}; top:{{ pqGavTop }}; width:clamp(100px, 13vw, 220px); height:auto; pointer-events:none"></img>
         <h2 id="pq-titulo" style="margin:0; text-align:left; text-transform:uppercase; line-height:1.04">
-          <span style="display:block; font-size:clamp(28px, 3.6vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">¿Por qué miles de vecinos</span>
-          <span style="display:block; font-size:clamp(36px, 4.8vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">nos eligen cada día?</span>
+          <span style="display:block; font-size:clamp(28px, 2.5vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">¿Por qué miles de vecinos</span>
+          <span style="display:block; font-size:clamp(36px, 3.33vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">nos eligen cada día?</span>
         </h2>
         <p style="margin:14px 0 0; font-size:16px; line-height:1.6; font-weight:300; color:#3A3836">Los pilares que nos diferencian como formato de proximidad regional.</p>
       </div>
@@ -265,8 +257,8 @@ a:hover{color:#B81B10}
   <section data-screen-label="Responsabilidad social" aria-labelledby="rs-titulo" style="position:relative; overflow:hidden; background:#F7F7F6; padding:0 20px clamp(72px, 9vw, 140px)">
     <div data-reveal="0" style="display:flex; flex-direction:column; align-items:center; text-align:center">
       <h2 id="rs-titulo" style="margin:0; text-align:center; text-transform:uppercase; line-height:1.04">
-          <span style="display:block; font-size:clamp(28px, 3.6vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">Responsabilidad</span>
-          <span style="display:block; font-size:clamp(36px, 4.8vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">Social y comunitaria</span>
+          <span style="display:block; font-size:clamp(28px, 2.5vw, 42px); font-weight:300; color:#1C1A19; letter-spacing:-0.01em">Responsabilidad</span>
+          <span style="display:block; font-size:clamp(36px, 3.33vw, 56px); font-weight:800; color:#E1251B; letter-spacing:-0.015em">Social y comunitaria</span>
         </h2>
       <p style="margin:14px 0 0; font-size:16px; line-height:1.6; font-weight:300; color:#3A3836">Nuestro compromiso con las comunidades del Norte Chico.</p>
     </div>
@@ -363,7 +355,7 @@ a:hover{color:#B81B10}
         <h2 style="margin:0; font-size:18px; font-weight:600; color:#FFFFFF">Síguenos</h2>
         <ul style="list-style:none; margin:0; padding:0; display:flex; gap:16px">
           <li>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://web.facebook.com/somosplaza/?locale=es_LA" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z"></path></svg>
             </a>
           </li>
@@ -373,7 +365,7 @@ a:hover{color:#B81B10}
             </a>
           </li>
           <li>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://www.tiktok.com/@plazaautoservicios" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3h-3.1v12.2a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.4a5.9 5.9 0 1 0 5 5.8V9.1a7.6 7.6 0 0 0 4.1 1.3V7.3A4.4 4.4 0 0 1 16.6 3z"></path></svg>
             </a>
           </li>
@@ -402,7 +394,7 @@ a:hover{color:#B81B10}
     </div>
   </div>
   <div style="background:#141312">
-    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:16px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© Plaza Autoservicios {{ year }}. Todos los derechos reservados.</p>
+    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:10px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© {{ year }} Plaza Autoservicios · C.H. RETAIL S.A.C. · RUC 20606990058. Todos los derechos reservados.</p>
   </div>
 </footer>
 
@@ -565,8 +557,9 @@ class Component extends DCLogic {
       window.scrollTo(0, cur);
       raf = requestAnimationFrame(step);
     };
-    this.smoothTo = y => { if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
+    this.smoothTo = y => { if (window.__lenis) { window.__lenis.scrollTo(y, { duration: 1.1 }); return; } if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
     this.onWheel = e => {
+      if (window.__lenis) return;
       if (e.ctrlKey || this.state.lbI !== null || this.state.menuOpen || this.state.popKind) return;
       for (let n = e.target; n && n !== document.body && n.nodeType === 1; n = n.parentElement) {
         const oy = getComputedStyle(n).overflowY;
@@ -765,7 +758,7 @@ class Component extends DCLogic {
     const focusTab = k => { goTab(k); const el = document.getElementById('mv-tab-' + k); el && el.focus(); };
     return {
       cnHeroImgRef: this.cnHeroImgRef, cnHeroTxtRef: this.cnHeroTxtRef, mvBoxRef: this.mvBoxRef,
-      cnHeroH: xl ? 'clamp(460px, 36vw, 640px)' : md ? '440px' : '400px',
+      cnHeroH: xl ? 'clamp(520px, 40vw, 720px)' : md ? '490px' : '450px',
       hiCols: xl ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       hiGap: xl ? 'clamp(56px, 7vw, 140px)' : '44px',
       hiImgOrder: xl ? 0 : 1, hiTxtOrder: xl ? 1 : 0,
@@ -1228,8 +1221,8 @@ class Component extends DCLogic {
       ftArtMargin: xl ? '24px 0 0' : '40px -20px 0',
       ftGroups: [
         ['ft-nav', 'Navegación', [['Inicio', 'Home.dc.html'], ['Conócenos', 'Conocenos.dc.html'], ['Novedades', 'Novedades.dc.html'], ['Aliados', 'Aliados.dc.html'], ['Trabaja con nosotros', 'Trabaja.dc.html'], ['Ubicaciones', 'Ubicaciones.dc.html']]],
-        ['ft-cliente', 'Servicio al cliente', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
-        ['ft-legal', 'Legal', [['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
+        ['ft-cliente', 'Servicio al cliente', [['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
+        ['ft-legal', 'Legal', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
       ].map(([id, title, links, sub]) => ({ id, title, links: links.map(([label, href]) => ({ label, href })), hasSub: !!sub, sub: sub ? { id: sub[0], title: sub[1], links: sub[2].map(([label, href]) => ({ label, href })) } : { links: [] } }))
     };
   }

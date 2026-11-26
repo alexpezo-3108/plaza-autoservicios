@@ -10,6 +10,7 @@
 <helmet>
 <script src="assets/confetti.js"></script>
 <script src="assets/delivery.js"></script>
+<script src="assets/navbar.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +86,7 @@ a:hover{color:#B81B10}
             </li>
           </sc-for>
         </ul>
-        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:17px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:16px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
           Encontrar tienda
         </a>
@@ -103,24 +104,33 @@ a:hover{color:#B81B10}
         <p style="margin:14px 0 0; font-size:14px; font-weight:400; color:#6B6865">Actualizado el {{ lgUpdated }}</p>
       </header>
       <div style="margin-top:clamp(32px, 4vw, 56px); display:grid; grid-template-columns:{{ lgCols }}; gap:clamp(28px, 4vw, 72px); align-items:start">
-        <nav aria-label="Índice" data-reveal="0" style="position:{{ lgNavPos }}; top:110px; padding:20px; border-radius:16px; background:#FFFFFF">
+        <sc-if value="{{ lgMob }}" hint-placeholder-val="{{ false }}">
+          <div style="position:sticky; top:calc(80px - var(--nav-off, 0px)); z-index:20; transition:top .38s cubic-bezier(.3,.7,.2,1)">
+            <div style="position:relative">
+              <label for="lg-indice" style="position:absolute; top:9px; left:17px; font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#6B6865; pointer-events:none">Contenido</label>
+              <select id="lg-indice" value="{{ lgActId }}" onChange="{{ lgSelGo }}" style="width:100%; min-height:56px; padding:24px 44px 8px 16px; appearance:none; -webkit-appearance:none; border:1px solid #E4E2DF; border-radius:14px; background:#FFFFFF; box-shadow:0 8px 24px rgba(28,26,25,.08); font-family:inherit; font-size:15px; font-weight:400; color:#1C1A19; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; cursor:pointer" style-focus="outline:none; border-color:#1C1A19">
+                <sc-for list="{{ lgToc }}" as="t" hint-placeholder-count="5"><option value="{{ t.id }}" style="color:#1C1A19">{{ t.opt }}</option></sc-for>
+              </select>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C1A19" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position:absolute; right:16px; top:50%; transform:translateY(-50%); pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ lgDesk }}" hint-placeholder-val="{{ true }}">
+        <nav aria-label="Índice" data-reveal="0" style="position:{{ lgNavPos }}; top:110px; max-height:{{ lgNavMax }}; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:#DAD8D5 transparent; padding:20px; border-radius:16px; background:#FFFFFF">
           <p style="margin:0 0 10px; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#6B6865">Contenido</p>
           <ol style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px">
             <sc-for list="{{ lgToc }}" as="t" hint-placeholder-count="5">
-              <li><a href="{{ t.href }}" onClick="{{ t.go }}" aria-current="{{ t.cur }}" style="display:flex; align-items:flex-start; gap:10px; min-height:40px; padding:9px 12px; border-radius:10px; background:{{ t.bg }}; color:{{ t.color }}; font-size:14px; line-height:1.4; font-weight:{{ t.wt }}; text-decoration:none; transition:background .2s, color .2s" style-hover="background:#FDECEA; color:#E1251B" style-focus="outline:3px solid #FF9015; outline-offset:2px"><span style="flex:none; min-width:18px; font-variant-numeric:tabular-nums; opacity:.7">{{ t.n }}</span><span>{{ t.title }}</span></a></li>
+              <li><a href="{{ t.href }}" onClick="{{ t.go }}" aria-current="{{ t.cur }}" style="display:flex; align-items:flex-start; gap:10px; min-height:34px; padding:7px 12px; border-radius:10px; background:{{ t.bg }}; color:{{ t.color }}; font-size:13.5px; line-height:1.4; font-weight:{{ t.wt }}; text-decoration:none; transition:background .2s, color .2s" style-hover="background:#FDECEA; color:#E1251B" style-focus="outline:3px solid #FF9015; outline-offset:2px"><span style="flex:none; min-width:18px; font-variant-numeric:tabular-nums; opacity:.7">{{ t.n }}</span><span style="display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden">{{ t.title }}</span></a></li>
             </sc-for>
           </ol>
-          <div style="margin-top:16px; padding-top:16px; border-top:1px solid #EEEDEB; display:flex; flex-direction:column; gap:2px">
-            <sc-for list="{{ lgDocs }}" as="d" hint-placeholder-count="3">
-              <a href="{{ d.href }}" aria-current="{{ d.cur }}" style="display:flex; align-items:center; min-height:36px; padding:0 12px; border-radius:10px; font-size:13px; font-weight:{{ d.wt }}; color:{{ d.color }}; text-decoration:none" style-hover="color:#E1251B">{{ d.label }}</a>
-            </sc-for>
-          </div>
         </nav>
+        </sc-if>
         <div data-reveal="120" style="min-width:0; max-width:760px; padding:clamp(24px, 3vw, 44px); border-radius:20px; background:#FFFFFF; display:flex; flex-direction:column; gap:clamp(32px, 3.4vw, 44px)">
+          <sc-if value="{{ lgHasIntro }}" hint-placeholder-val="{{ false }}"><p style="margin:0; font-size:17px; line-height:1.75; font-weight:400; color:#1C1A19; text-wrap:pretty">{{ lgIntro }}</p></sc-if>
           <sc-for list="{{ lgSections }}" as="s" hint-placeholder-count="5">
             <section id="{{ s.id }}" data-lg-sec="1" style="scroll-margin-top:110px; display:flex; flex-direction:column; gap:12px">
               <h2 style="margin:0; display:flex; gap:12px; font-size:clamp(19px, 1.6vw, 22px); font-weight:600; line-height:1.3; color:#1C1A19"><span style="color:#E1251B; font-variant-numeric:tabular-nums">{{ s.n }}</span><span>{{ s.title }}</span></h2>
-              <sc-for list="{{ s.body }}" as="p" hint-placeholder-count="1"><p style="margin:0; font-size:16px; line-height:1.75; font-weight:300; color:#3A3836; text-wrap:pretty">{{ p }}</p></sc-for>
+              <sc-for list="{{ s.body }}" as="p" hint-placeholder-count="1"><sc-if value="{{ p.li }}" hint-placeholder-val="{{ false }}"><p style="margin:0; padding-left:clamp(16px, 2vw, 28px); font-size:16px; line-height:1.75; font-weight:300; color:#3A3836; text-wrap:pretty">{{ p.t }}</p></sc-if><sc-if value="{{ p.np }}" hint-placeholder-val="{{ true }}"><p style="margin:0; font-size:16px; line-height:1.75; font-weight:300; color:#3A3836; text-wrap:pretty">{{ p.t }}</p></sc-if></sc-for>
             </section>
           </sc-for>
           <p style="margin:0; padding-top:20px; border-top:1px solid #EEEDEB; font-size:14px; line-height:1.6; font-weight:300; color:#6B6865">¿Tienes dudas? Escríbenos a <a href="mailto:asistentecomercial@ch-retail.com.pe" style="color:#E1251B; font-weight:500; text-decoration:none" style-hover="text-decoration:underline">asistentecomercial@ch-retail.com.pe</a>.</p>
@@ -173,7 +183,7 @@ a:hover{color:#B81B10}
         <h2 style="margin:0; font-size:18px; font-weight:600; color:#FFFFFF">Síguenos</h2>
         <ul style="list-style:none; margin:0; padding:0; display:flex; gap:16px">
           <li>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://web.facebook.com/somosplaza/?locale=es_LA" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z"></path></svg>
             </a>
           </li>
@@ -183,7 +193,7 @@ a:hover{color:#B81B10}
             </a>
           </li>
           <li>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://www.tiktok.com/@plazaautoservicios" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3h-3.1v12.2a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.4a5.9 5.9 0 1 0 5 5.8V9.1a7.6 7.6 0 0 0 4.1 1.3V7.3A4.4 4.4 0 0 1 16.6 3z"></path></svg>
             </a>
           </li>
@@ -212,7 +222,7 @@ a:hover{color:#B81B10}
     </div>
   </div>
   <div style="background:#141312">
-    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:16px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© Plaza Autoservicios {{ year }}. Todos los derechos reservados.</p>
+    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:10px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© {{ year }} Plaza Autoservicios · C.H. RETAIL S.A.C. · RUC 20606990058. Todos los derechos reservados.</p>
   </div>
 </footer>
 
@@ -365,12 +375,17 @@ class Component extends DCLogic {
     window.addEventListener('mousemove', this.onFtMove, { passive: true });
   };
   lgDocsData = {
-    privacidad: { label: 'Políticas de privacidad', title: 'Políticas de privacidad', updated: '15 de octubre de 2026', s: [
-      ['Información que recopilamos', ['Recopilamos los datos que nos brindas al completar formularios: nombre, correo, teléfono y la información que decidas compartir.']],
-      ['Uso de la información', ['Usamos tus datos para responder tus solicitudes, procesar postulaciones y, si lo autorizas, enviarte promociones.']],
-      ['Protección de datos', ['Aplicamos medidas de seguridad para proteger tu información conforme a la Ley N.° 29733, Ley de Protección de Datos Personales.']],
-      ['Tus derechos', ['Puedes solicitar el acceso, rectificación o eliminación de tus datos escribiéndonos en cualquier momento.']],
-      ['Cambios en esta política', ['Podemos actualizar esta política. Publicaremos la versión vigente en esta página.']]] },
+    privacidad: { label: 'Políticas de privacidad', title: 'Política de privacidad para clientes', updated: '15 de octubre de 2026', intro: 'En cumplimiento de lo dispuesto por la Ley N° 29733, Ley de Protección de Datos Personales y su reglamento aprobado por Decreto Supremo N° 016-2024-JUS, C.H. Retail S.A.C pone en conocimiento de sus Clientes los siguientes aspectos relacionados con sus datos personales:', s: [
+      ['Identidad y domicilio del titular del banco de datos personales', ['El titular del presente banco de datos en el que se almacenarán los datos personales facilitados en la presente solicitud es C.H. Retail S.A.C (en adelante, “CH”) con RUC N° 20606990058, con domicilio en Parque Alto Nro. 542 Dpto. 406 (Torre 2) Lima - Lima - Santiago De Surco.', 'La existencia de este banco de datos personales ha sido declarada a la Autoridad Nacional de Protección de Datos Personales, mediante su inscripción en el Registro Nacional de Protección de Datos Personales con la denominación “Clientes” con el código de registro RNPDP-PJP N.° 23937.']],
+      ['Datos personales recopilados', ['Se recolectarán los siguientes datos personales de los usuarios: nombres, apellidos, correo electrónico, documento de identidad (DNI o CE), teléfono, fecha de nacimiento, domicilio y datos bancarios (de corresponder).', 'En caso sea una persona natural con negocio o persona jurídica, se podrá solicitar su razón social y RUC.']],
+      ['Finalidad y usos', ['Los datos personales serán tratados acorde a las siguientes finalidades necesarias:', '•(i) Contar con la información necesaria para prestar un adecuado servicio al cliente como: la emisión de boleta/ factura, gestionar consultas, reclamos y/o quejas a través de los canales habilitados para esta finalidad (Libro de reclamaciones, contact center, entre otros) y establecer contacto a fin de resolver los mismos en los canales presenciales y/o de comercio electrónico.', '•(ii) Conservar el histórico de compras a efectos históricos y estadísticos.', '•(iii) Gestionar procesar, atender y hacer seguimiento de satisfacción a solicitudes de compra/contrato de comercio físico a través encuestas en las plataformas de CH o de los canales de contacto brindados por el usuario, las cuales son tanto por canal digital y aplicación móvil.', '•(iv) Prevenir fraudes potenciales en contra del Cliente y de CH.', '•(v) Se podrá igualmente realizar, de manera anonimizada o disociada, análisis estadístico.', '•(vi) Se podrá realizar el tratamiento de los datos personales para elaboración de perfiles y decisiones automatizadas, cuyos resultados podrán tener un impacto en las acciones de la empresa tales como: mejora continua, la satisfacción y experiencia del cliente en el proceso de compra, bots de respuesta, reperfilamiento de clientes, siempre garantizando el cumplimiento de las normativas aplicables y la protección de sus derechos.', 'Según corresponda, el formulario de recopilación de datos contiene algunos campos de carácter obligatorio. En caso decida no proporcionarlos, no será posible gestionar la solicitud y/o contratos antes referidos o CH podría incurrir en el incumplimiento de obligaciones. Si decides ingresar los datos, declaras y certificas que ellos corresponden a ti y que son verdaderos, exactos, auténticos, completos, y correctos; y que eres mayor de edad.', 'Sus datos personales sólo serán utilizados con propósitos limitados, según lo expuesto precedentemente.']],
+      ['Plazo de conservación de los datos y medidas de seguridad', ['Los datos personales proporcionados se conservarán por un periodo indeterminado, mientras no solicite la revocación del consentimiento. CH tiene implementadas las medidas técnicas, organizativas y legales que garantizan la seguridad y confidencialidad de los datos personales.']],
+      ['Transferencias y destinatarios de datos personales', ['Para las finalidades señaladas en el punto 3, CH podrá valerse de encargados de tratamiento que se identifican en el enlace algunos de los cuales se encuentran situados fuera del Perú, por lo que se producirá una transferencia internacional (flujo transfronterizo) de datos personales. Estos encargados se encuentran obligados a brindar el servicio de acuerdo con nuestras directrices de protección de datos y/o con la normativa peruana aplicable.', 'Asimismo, queremos asegurarle que hemos implementado los procedimientos necesarios para garantizar que los encargados del tratamiento de los Datos personales, ubicados fuera de Perú, también cumplan con las normas de protección de datos personales peruanas y la legislación aplicable en el país donde se realiza el tratamiento. Además, nos comprometemos a informar oportunamente a la Autoridad de Protección de Datos Personales aquellos flujos transfronterizos conforme lo exige nuestra normativa vigente.']],
+      ['Ejercicio de los derechos de información, acceso, rectificación, cancelación y oposición de los datos', ['Como titular de sus datos personales, el usuario tiene el derecho de acceder a sus datos en posesión de CH, conocer las características de su tratamiento, a la portabilidad de estos, a rectificarlos en caso de ser inexactos o incompletos; solicitar sean suprimidos o cancelados al considerarlos innecesarios para las finalidades previamente expuestos o bien oponerse a su tratamiento para fines específicos. El usuario podrá en todo momento revocar el consentimiento otorgado expresamente, tanto como limitar el uso o divulgación de sus datos personales.', 'El usuario podrá dirigir su solicitud de ejercicio de los derechos en los términos que establece el Reglamento de la Ley N° 29733 a servicioalcliente@tiendasmass.pe o en nuestra sede administrativa con Dirección en Urb. Los Sauces A-4 Dpto. 2, Huaura, Lima, Perú, o en cualquiera de nuestros locales CH a nivel nacional.', 'En caso el usuario considere que su solicitud no ha sido atendida, puede presentar una reclamación ante la Autoridad Nacional de Protección de Datos Personales, dirigiéndose a la Mesa de Partes del Ministerio de Justicia y Derechos Humanos: Calle Scipión Llona N° 350, Miraflores, Lima, Perú o llenando el formulario publicado en el siguiente enlace https://www.minjus.gob.pe/wp-content/uploads/2018/12/FORMULARIO-DE-PROCEDIMIENTO-TRILATERAL-DE-TUTELA.pdf.']],
+      ['Resguardo de la información', ['CH ha adoptado las medidas de seguridad necesarias para garantizar la protección de los datos personales proporcionados por el Titular a fin de evitar su alteración, pérdida, acceso o procesamiento no autorizado por parte de terceros que puedan afectar la información de carácter personal.']],
+      ['Divulgación', ['CH puede revelar los datos personales cuando estos sean requeridos en virtud de disposiciones legales y/o por autoridades judiciales, administrativas u otras, en el debido ejercicio de sus funciones, a efectos de colaborar con las investigaciones o procedimientos llevados a cabo por dichas autoridades gubernamentales.']],
+      ['Cookies', ['En caso el Usuario utilice nuestra página web, le informamos que esta utiliza cookies necesarias y esenciales para la navegación y el libre movimiento, utilizar áreas seguras u opciones personalizadas. Asimismo, las cookies se utilizan para analizar la experiencia de los usuarios de Internet y poder brindarles mejores servicios y mostrar contenido personalizado. La página web cuenta con un banner de configuración de cookies que permite al cliente elegir el tipo de cookie que desea activar, y mediante el cual se le detalla cada cookie utilizada y su finalidad.', 'En el supuesto que en la página web se coloquen enlaces o hipervínculos que redireccionen a otros lugares de Internet, que son de propiedad de terceros que utilicen cookies, CH no se hace responsable del uso de cookies por parte de dichos terceros.']],
+      ['Modificaciones de la política de privacidad', ['CH se reserva expresamente el derecho a modificar, actualizar o completar esta Política de Privacidad en cualquier momento según su propio criterio, o motivado por un cambio legislativo o jurisprudencial que así lo amerite.', 'Cualquier modificación, actualización o ampliación producida en las condiciones de tratamiento entrará en vigencia y tendrá efectos frente a los terceros desde su publicación en la Página Web.']]] },
     devoluciones: { label: 'Políticas de devoluciones', title: 'Políticas de devoluciones', updated: '15 de octubre de 2026', s: [
       ['Plazo para devoluciones', ['Puedes solicitar un cambio o devolución dentro de los 7 días posteriores a tu compra.']],
       ['Condiciones', ['El producto debe estar sin uso, en su empaque original y acompañado de su comprobante de pago.']],
@@ -386,18 +401,19 @@ class Component extends DCLogic {
     const key = (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('doc')) || 'Legal.dc.html?doc=privacidad';
     const doc = this.lgDocsData[key] || this.lgDocsData.privacidad;
     const act = s.lgAct || 'lg-1';
-    const secs = doc.s.map(([title, body], k) => ({ id: 'lg-' + (k + 1), n: String(k + 1).padStart(2, '0'), title, body }));
+    const secs = doc.s.map(([title, body], k) => ({ id: 'lg-' + (k + 1), n: String(k + 1).padStart(2, '0'), title, body: body.map(t => t[0] === '•' ? { t: t.slice(1), li: true, np: false } : { t, li: false, np: true }) }));
     return {
-      lgTitle: doc.title, lgUpdated: doc.updated, lgSections: secs,
-      lgCols: xl ? 'minmax(220px, 300px) minmax(0, 1fr)' : 'minmax(0,1fr)', lgNavPos: xl ? 'sticky' : 'static',
-      lgToc: secs.map(x => { const on = x.id === act; return { ...x, href: '#' + x.id, cur: on ? 'true' : undefined, bg: on ? '#FDECEA' : 'transparent', color: on ? '#E1251B' : '#3A3836', wt: on ? 500 : 400,
-        go: e => { e.preventDefault(); const t = document.getElementById(x.id); if (!t) return; this.setState({ lgAct: x.id }); const y = t.getBoundingClientRect().top + window.scrollY - 100; this.smoothTo ? this.smoothTo(y) : window.scrollTo({ top: y, behavior: 'smooth' }); } }; }),
+      lgTitle: doc.title, lgUpdated: doc.updated, lgSections: secs, lgIntro: doc.intro || '', lgHasIntro: !!doc.intro,
+      lgCols: xl ? 'minmax(220px, 300px) minmax(0, 1fr)' : 'minmax(0,1fr)', lgNavPos: xl ? 'sticky' : 'static', lgMob: !xl, lgDesk: xl, lgActId: act, lgSelGo: e => this.lgJump(e.target.value, 150), lgNavMax: xl ? 'calc(100vh - 140px)' : 'none',
+      lgToc: secs.map(x => { const on = x.id === act; return { ...x, opt: x.n + ' · ' + x.title, href: '#' + x.id, cur: on ? 'true' : undefined, bg: on ? '#FDECEA' : 'transparent', color: on ? '#E1251B' : '#3A3836', wt: on ? 500 : 400,
+        go: e => { e.preventDefault(); this.lgJump(x.id, 100); } }; }),
       lgDocs: Object.entries(this.lgDocsData).map(([k, d]) => ({ label: d.label, href: 'Legal.dc.html?doc=' + k, cur: d === doc ? 'page' : undefined, color: d === doc ? '#1C1A19' : '#6B6865', wt: d === doc ? 600 : 400 }))
     };
   }
+  lgJump(id, off) { const t = document.getElementById(id); if (!t) return; this.setState({ lgAct: id }); const y = t.getBoundingClientRect().top + window.scrollY - off; this.smoothTo ? this.smoothTo(y) : window.scrollTo({ top: y, behavior: 'smooth' }); }
   lgSpy() {
     if (this._lgSpy) return;
-    this._lgSpy = () => { const secs = [...document.querySelectorAll('[data-lg-sec]')]; let cur = secs[0] && secs[0].id; secs.forEach(x => { if (x.getBoundingClientRect().top < 160) cur = x.id; }); if (cur && cur !== this.state.lgAct) this.setState({ lgAct: cur }); };
+    this._lgSpy = () => { const secs = [...document.querySelectorAll('[data-lg-sec]')]; let cur = secs[0] && secs[0].id; secs.forEach(x => { if (x.getBoundingClientRect().top < 170) cur = x.id; }); if (cur && cur !== this.state.lgAct) this.setState({ lgAct: cur }); };
     window.addEventListener('scroll', this._lgSpy, { passive: true });
   }
   initSmoothScroll() {
@@ -411,8 +427,9 @@ class Component extends DCLogic {
       window.scrollTo(0, cur);
       raf = requestAnimationFrame(step);
     };
-    this.smoothTo = y => { if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
+    this.smoothTo = y => { if (window.__lenis) { window.__lenis.scrollTo(y, { duration: 1.1 }); return; } if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
     this.onWheel = e => {
+      if (window.__lenis) return;
       if (e.ctrlKey || this.state.lbI !== null || this.state.menuOpen || this.state.popKind) return;
       for (let n = e.target; n && n !== document.body && n.nodeType === 1; n = n.parentElement) {
         const oy = getComputedStyle(n).overflowY;
@@ -611,7 +628,7 @@ class Component extends DCLogic {
     const focusTab = k => { goTab(k); const el = document.getElementById('mv-tab-' + k); el && el.focus(); };
     return {
       cnHeroImgRef: this.cnHeroImgRef, cnHeroTxtRef: this.cnHeroTxtRef, mvBoxRef: this.mvBoxRef,
-      cnHeroH: xl ? 'clamp(460px, 36vw, 640px)' : md ? '440px' : '400px',
+      cnHeroH: xl ? 'clamp(520px, 40vw, 720px)' : md ? '490px' : '450px',
       hiCols: xl ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       hiGap: xl ? 'clamp(56px, 7vw, 140px)' : '44px',
       hiImgOrder: xl ? 0 : 1, hiTxtOrder: xl ? 1 : 0,
@@ -1075,8 +1092,8 @@ class Component extends DCLogic {
       ftArtMargin: xl ? '24px 0 0' : '40px -20px 0',
       ftGroups: [
         ['ft-nav', 'Navegación', [['Inicio', 'Home.dc.html'], ['Conócenos', 'Conocenos.dc.html'], ['Novedades', 'Novedades.dc.html'], ['Aliados', 'Aliados.dc.html'], ['Trabaja con nosotros', 'Trabaja.dc.html'], ['Ubicaciones', 'Ubicaciones.dc.html']]],
-        ['ft-cliente', 'Servicio al cliente', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
-        ['ft-legal', 'Legal', [['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
+        ['ft-cliente', 'Servicio al cliente', [['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
+        ['ft-legal', 'Legal', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
       ].map(([id, title, links, sub]) => ({ id, title, links: links.map(([label, href]) => ({ label, href })), hasSub: !!sub, sub: sub ? { id: sub[0], title: sub[1], links: sub[2].map(([label, href]) => ({ label, href })) } : { links: [] } }))
     };
   }

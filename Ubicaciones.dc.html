@@ -10,6 +10,7 @@
 <helmet>
 <script src="assets/confetti.js"></script>
 <script src="assets/delivery.js"></script>
+<script src="assets/navbar.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,7 +87,7 @@ a:hover{color:#B81B10}
             </li>
           </sc-for>
         </ul>
-        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:17px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:16px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
           Encontrar tienda
         </a>
@@ -104,13 +105,6 @@ a:hover{color:#B81B10}
     <div aria-hidden="true" style="position:absolute; inset:0; background:{{ ubHeroShade }}"></div>
     <div ref="{{ cnHeroTxtRef }}" style="position:relative; flex:1; min-width:0; display:flex; justify-content:center; padding:{{ ubHeroPad }}; color:#FFFFFF">
       <div style="width:100%; min-width:0; max-width:clamp(1120px, 84vw, 1640px); display:flex; flex-direction:column; justify-content:{{ ubHeroJustify }}; align-items:flex-start; gap:18px">
-        <nav aria-label="Ruta de navegación">
-        <ol style="list-style:none; margin:0; padding:0; display:flex; align-items:center; gap:8px; font-size:15px; font-weight:400">
-          <li style="display:flex; align-items:center; gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.84667 14.4971L1.24008 22.9664C1.04034 23.3275 1.45831 23.7144 1.80305 23.4873L23.8218 8.97514C23.9438 8.8945 23.9986 8.77391 24.0001 8.65332L5.84667 14.4971Z" fill="#FF9015"></path><path d="M14.3535 0.363877C14.3225 -0.0289616 13.7987 -0.138453 13.6115 0.208517L9.95557 7.00663H14.8825L14.3535 0.363877Z" fill="#FF9015"></path><path d="M15.6323 15.8662L10.8452 19.0215L15.5332 23.4419C15.7965 23.6949 16.233 23.4877 16.2042 23.1237L15.6323 15.8662Z" fill="#FF9015"></path><path d="M23.6032 8.25146H0.395655C0.0346437 8.25146 -0.136985 8.69609 0.130075 8.93875L5.77457 14.2461L23.9146 8.40461C23.8466 8.31435 23.7401 8.25146 23.6032 8.25146Z" fill="#FF9015"></path></svg><a href="Home.dc.html" style="display:inline-flex; align-items:center; min-height:36px; color:#FFFFFF; text-decoration:none" style-hover="color:#FFFFFF; text-decoration:underline">Inicio</a></li>
-          <li aria-hidden="true" style="opacity:.8">›</li>
-          <li aria-current="page" style="font-weight:500">Ubicaciones</li>
-        </ol>
-      </nav>
         <h1 id="ub-hero-titulo" style="margin:0; max-width:620px; font-size:clamp(36px, 3.8vw, 50px); font-weight:800; line-height:1.12; letter-spacing:-0.015em; text-transform:uppercase; text-wrap:balance">Ubícanos</h1>
         <p style="margin:0; max-width:460px; font-size:clamp(16px, 1.4vw, 19px); line-height:1.5; font-weight:300; text-wrap:pretty">Más de 25 tiendas en el Norte Chico. Encuentra la Plaza más cerca de ti.</p>
         <p ref="{{ ubLocRef }}" aria-label="Algunas de nuestras ubicaciones: Huacho, Huaral, Barranca, Huaura, Supe, Huarmey, Oyón, Casma" style="margin:10px 0 0; max-width:{{ ubChipsW }}; box-sizing:border-box; display:flex; flex-wrap:nowrap; align-items:center; white-space:nowrap; overflow:hidden; padding:9px 14px; border-radius:12px; background:rgba(196,22,14,.72); border:1px solid rgba(255,255,255,.35); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); font-size:13px; line-height:1.4; font-weight:500; color:#FFFFFF"><span style="white-space:nowrap">Huacho<span aria-hidden="true" style="margin:0 .55em; opacity:.7">·</span></span><span style="white-space:nowrap">Huaral<span aria-hidden="true" style="margin:0 .55em; opacity:.7">·</span></span><span style="white-space:nowrap">Barranca<span aria-hidden="true" style="margin:0 .55em; opacity:.7">·</span></span><span style="white-space:nowrap">Huaura<span aria-hidden="true" style="margin:0 .55em; opacity:.7">·</span></span><span style="white-space:nowrap">Supe<span aria-hidden="true" style="margin:0 .55em; opacity:.7">·</span></span><span style="white-space:nowrap">Huarmey<span aria-hidden="true" style="margin:0 .55em; opacity:.7">·</span></span><span style="white-space:nowrap">Oyón<span aria-hidden="true" style="margin:0 .55em; opacity:.7">·</span></span><span style="white-space:nowrap">Casma</span></p>
@@ -119,52 +113,44 @@ a:hover{color:#B81B10}
     <a href="#tiendas" onClick="{{ ubHeroGo }}" aria-label="Baja para ubicar tu tienda" style="position:absolute; z-index:2; left:max(20px, calc((100% - clamp(1120px, 84vw, 1640px)) / 2)); bottom:clamp(16px, 2.2vw, 28px); display:flex; align-items:center; gap:10px; min-height:44px; color:#FFFFFF; text-decoration:none; padding:0 14px 0 10px; border-radius:999px; background:rgba(150,14,8,.55); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px); font-size:13px; font-weight:500; letter-spacing:.02em; text-shadow:0 1px 2px rgba(0,0,0,.25); min-height:36px" style-hover="background:rgba(150,14,8,.75)" style-focus="outline:3px solid #FF9015; outline-offset:4px">{{ ubScrollDot }}<span>Baja para ubicar</span></a>
   </section>
 
-  <section id="tiendas" data-screen-label="Ubicaciones" aria-labelledby="ub-titulo" style="position:relative; overflow:hidden; background:#F7F7F6; padding:clamp(28px, 3vw, 48px) 20px clamp(56px, 7vw, 112px)">
+  <section id="tiendas" data-screen-label="Ubicaciones" aria-labelledby="ub-titulo" style="position:relative; overflow:clip; background:#F7F7F6; padding:clamp(28px, 3vw, 48px) 20px clamp(56px, 7vw, 112px)">
     <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none">
-      <img src="assets/deco-sol.svg" alt="" style="position:absolute; top:clamp(80px, 9vw, 140px); right:clamp(-110px, -6vw, -60px); width:clamp(170px, 15vw, 260px); height:auto; filter:brightness(0); opacity:.4"></img>
+      <img src="assets/deco-sol.svg" alt="" style="position:absolute; top:clamp(80px, 9vw, 140px); right:clamp(-110px, -6vw, -60px); width:clamp(170px, 15vw, 260px); height:auto; filter:brightness(0); opacity:.5"></img>
       <img src="assets/deco-fav-izq.svg" alt="" style="position:absolute; top:clamp(150px, 16vw, 260px); left:clamp(-30px, 1vw, 24px); width:clamp(90px, 8vw, 140px); height:auto"></img>
-      <img src="assets/deco-ondas-oscuro.svg" alt="" style="position:absolute; left:-60px; bottom:-70px; width:clamp(220px, 20vw, 340px); height:auto; filter:brightness(0); opacity:.14"></img>
-      <img src="assets/deco-curva.svg" alt="" style="position:absolute; right:-20px; bottom:-10px; width:clamp(120px, 11vw, 180px); height:auto; transform:scaleY(-1); filter:brightness(0); opacity:.3"></img>
+      <img src="assets/deco-ondas-oscuro.svg" alt="" style="position:absolute; left:-60px; bottom:-70px; width:clamp(220px, 20vw, 340px); height:auto; filter:brightness(0); opacity:.2"></img>
+      <img src="assets/deco-curva.svg" alt="" style="position:absolute; right:-20px; bottom:-10px; width:clamp(120px, 11vw, 180px); height:auto; transform:scaleY(-1); filter:brightness(0); opacity:.42"></img>
     </div>
     <div style="position:relative; max-width:clamp(1120px, 84vw, 1640px); margin:0 auto">
       <h2 id="ub-titulo" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap">Nuestras tiendas</h2>
       <div data-reveal="0" style="position:relative">
-        <label for="ub-distrito" style="position:absolute; top:11px; left:17px; font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#6B6865; pointer-events:none">Selecciona tu distrito</label>
+        <label for="ub-distrito" style="position:absolute; top:11px; left:17px; font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:#6B6865; pointer-events:none">Selecciona tu provincia</label>
         <select id="ub-distrito" value="{{ ubD }}" onChange="{{ ubSetD }}" style="width:100%; min-height:62px; padding:26px 52px 10px 16px; appearance:none; -webkit-appearance:none; border:1px solid #E6E4E1; border-radius:12px; background:#FFFFFF; font-family:inherit; font-size:16px; color:#1C1A19; cursor:pointer" style-hover="border-color:#C9C6C2" style-focus="outline:3px solid #FF9015; outline-offset:2px">
           <sc-for list="{{ ubDistOpts }}" as="o" hint-placeholder-count="1"><option value="{{ o.v }}">{{ o.l }}</option></sc-for>
         </select>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C1A19" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position:absolute; right:20px; top:50%; transform:translateY(-50%); pointer-events:none"><path d="M6 9l6 6 6-6"></path></svg>
       </div>
       <div style="margin-top:clamp(20px, 2.6vw, 32px); display:grid; grid-template-columns:{{ ubCols }}; gap:{{ ubGap }}">
-        <div data-reveal="0" style="display:flex; flex-direction:column; gap:14px; min-height:0; height:{{ ubLeftH }}; order:{{ ubListOrder }}">
-          <button type="button" onClick="{{ ubLocate }}" style="flex:none; min-height:52px; padding:10px 18px; display:flex; align-items:center; justify-content:center; gap:10px; border:0; border-radius:12px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:15px; font-weight:500; cursor:pointer; box-shadow:0 10px 22px -14px rgba(225,37,27,.7); transition:background .2s" style-hover="background:#C21D11" style-focus="outline:3px solid #FF9015; outline-offset:3px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>{{ ubLocLabel }}</button>
+        <div style="display:flex; flex-direction:column; gap:14px; min-height:0; height:{{ ubLeftH }}; order:{{ ubListOrder }}">
+          <button type="button" onClick="{{ ubLocate }}" style="flex:none; min-height:52px; padding:10px 18px; display:flex; align-items:center; justify-content:center; gap:10px; border:0; border-radius:16px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:16px; font-weight:500; cursor:pointer; box-shadow:0 10px 22px -14px rgba(225,37,27,.7); transition:background .2s" style-hover="background:#C21D11" style-focus="outline:3px solid #FF9015; outline-offset:3px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><circle cx="12" cy="12" r="2.5"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>{{ ubLocLabel }}</button>
           <p role="status" aria-live="polite" style="margin:0; flex:none; font-size:14px; line-height:1.45; color:#3A3836; display:{{ ubMsgDisp }}">{{ ubMsg }}</p>
-          <ul aria-label="Tiendas" style="list-style:none; margin:-3px 0 -3px -3px; padding:3px 6px 3px 3px; scrollbar-width:thin; scrollbar-color:#DAD7D3 transparent; flex:1; min-height:0; max-height:{{ ubListMax }}; overflow-y:auto; overscroll-behavior:contain; display:flex; flex-direction:column; gap:12px">
+          <ul aria-label="Tiendas" style="list-style:none; margin:-3px 0 -3px -3px; padding:3px 6px 3px 3px; scrollbar-width:thin; scrollbar-color:#DAD7D3 transparent; flex:1; min-height:0; max-height:{{ ubListMax }}; overflow-y:{{ ubListOv }}; overscroll-behavior:contain; display:flex; flex-direction:column; gap:12px">
             <sc-for list="{{ ubList }}" as="s" hint-placeholder-count="3">
               <li>
-                <article onClick="{{ s.view }}" aria-current="{{ s.cur }}" style="position:relative; padding:clamp(20px, 1.8vw, 26px); border-radius:12px; background:#FFFFFF; border:1.5px solid #FFFFFF; box-shadow:{{ s.sh }}; transition:border-color .25s, box-shadow .25s; display:flex; flex-direction:column; gap:10px; cursor:pointer"><span aria-hidden="true" style="position:absolute; inset:-1.5px; border:1.5px solid #E1251B; border-radius:12px; pointer-events:none; clip-path:{{ s.clip }}; transition:clip-path .7s cubic-bezier(.65,0,.35,1)"></span>
+                <article data-ub-id="{{ s.id }}" onClick="{{ s.view }}" aria-current="{{ s.cur }}" style="position:relative; padding:clamp(20px, 1.8vw, 26px); border-radius:12px; background:#FFFFFF; border:1.5px solid #FFFFFF; box-shadow:{{ s.sh }}; transition:border-color .25s, box-shadow .25s; display:flex; flex-direction:column; gap:10px; cursor:pointer"><span aria-hidden="true" style="position:absolute; inset:-1.5px; border:1.5px solid #E1251B; border-radius:12px; pointer-events:none; clip-path:{{ s.clip }}; transition:clip-path .7s cubic-bezier(.65,0,.35,1)"></span>
                   <div style="display:flex; align-items:baseline; justify-content:space-between; gap:12px">
                     <h3 style="margin:0 0 4px; font-size:18px; font-weight:600; color:#1C1A19">{{ s.name }}</h3>
                     <span style="flex:none; font-size:13px; font-weight:500; color:#E1251B; display:{{ s.kmDisp }}">{{ s.km }}</span>
                   </div>
                   <button type="button" onClick="{{ s.copyAddrC }}" onMouseEnter="{{ s.caIn }}" onMouseLeave="{{ s.out }}" onFocus="{{ s.caIn }}" onBlur="{{ s.out }}" aria-label="Copiar dirección" title="Copiar dirección" style="margin:0; padding:0; display:inline-flex; align-self:flex-start; align-items:flex-start; gap:10px; max-width:100%; border:0; background:transparent; text-align:left; font-family:inherit; font-size:14px; line-height:1.45; font-weight:300; color:#3A3836; cursor:copy; transition:color .2s" style-hover="color:#141210" style-focus="outline:3px solid #FF9015; outline-offset:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A8682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none; margin-top:2px"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg><span style="min-width:0">{{ s.addr }}<span style="margin-left:6px; display:inline-flex; align-items:center; gap:4px; vertical-align:-2px; color:{{ s.caCol }}; opacity:{{ s.caOp }}; transition:opacity .2s; font-size:12px; font-weight:500; white-space:nowrap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ s.caIco }}"></path></svg><span>{{ s.caTxt }}</span></span></span></button>
-                  <button type="button" onClick="{{ s.copyTelC }}" onMouseEnter="{{ s.ctIn }}" onMouseLeave="{{ s.out }}" onFocus="{{ s.ctIn }}" onBlur="{{ s.out }}" aria-label="Copiar teléfono" title="Copiar teléfono" style="margin:0; padding:0; display:inline-flex; align-self:flex-start; align-items:flex-start; gap:10px; max-width:100%; border:0; background:transparent; text-align:left; font-family:inherit; font-size:14px; line-height:1.45; font-weight:300; color:#3A3836; cursor:copy; transition:color .2s" style-hover="color:#141210" style-focus="outline:3px solid #FF9015; outline-offset:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A8682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none; margin-top:2px"><rect x="7" y="2.5" width="10" height="19" rx="2"></rect><path d="M11 18h2"></path></svg><span style="min-width:0">{{ s.phone }}<span style="margin-left:6px; display:inline-flex; align-items:center; gap:4px; vertical-align:-2px; color:{{ s.ctCol }}; opacity:{{ s.ctOp }}; transition:opacity .2s; font-size:12px; font-weight:500; white-space:nowrap"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ s.ctIco }}"></path></svg><span>{{ s.ctTxt }}</span></span></span></button>
-                  <div style="margin-top:10px; display:flex; align-items:center; gap:8px"><a href="{{ s.dir }}" target="_blank" rel="noopener" onClick="{{ s.dirClick }}" aria-label="{{ s.dirLabel }}" style="min-height:40px; padding:0 18px; display:inline-flex; align-items:center; gap:8px; border:0; border-radius:12px; background:#E1251B; color:#FFFFFF; font-family:inherit; font-size:14px; font-weight:500; text-decoration:none; cursor:pointer; transition:background .2s" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z"></path></svg>Cómo llegar</a><button type="button" onClick="{{ s.locate }}" aria-label="{{ s.mapLabel }}" title="Ver en el mapa" style="flex:none; width:40px; height:40px; padding:0; display:inline-flex; align-items:center; justify-content:center; border:1.5px solid #E4E2DF; border-radius:12px; background:#FFFFFF; color:#5A5754; cursor:pointer; transition:border-color .2s, color .2s, background .2s" style-hover="border-color:#E1251B; color:#E1251B" style-focus="outline:3px solid #FF9015; outline-offset:3px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button></div>
+                  <div style="margin-top:10px; display:flex; flex-wrap:wrap; align-items:center; gap:8px"><button type="button" onClick="{{ s.locate }}" aria-pressed="{{ s.cur }}" aria-label="{{ s.mapLabel }}" style="min-height:44px; padding:0 18px; display:inline-flex; align-items:center; gap:8px; border:0; border-radius:16px; background:{{ s.vBg }}; color:{{ s.vCol }}; font-family:inherit; font-size:14px; font-weight:500; cursor:pointer; transition:background .2s, color .2s" style-hover="filter:brightness(.95)" style-focus="outline:3px solid #FF9015; outline-offset:3px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{ s.vIco }}"></path></svg>{{ s.vLbl }}</button><a href="{{ s.dir }}" target="_blank" rel="noopener" onClick="{{ s.dirClick }}" aria-label="{{ s.dirLabel }}" style="min-height:44px; padding:0 16px; display:inline-flex; align-items:center; gap:8px; border:1.5px solid #E4E2DF; border-radius:16px; background:#FFFFFF; color:#3A3836; font-family:inherit; font-size:14px; font-weight:500; text-decoration:none; transition:border-color .2s, color .2s" style-hover="border-color:#C9C6C2; color:#1C1A19" style-focus="outline:3px solid #FF9015; outline-offset:3px">Ver en Google Maps<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></a></div>
                 </article>
               </li>
             </sc-for>
           </ul>
         </div>
-        <div id="ub-mapa" data-reveal="0" style="position:relative; height:{{ ubMapH }}; border-radius:16px; overflow:hidden; background:#E6E4E1; order:{{ ubMapOrder }}; scroll-margin-top:90px">
+        <div id="ub-mapa" data-reveal="0" onMouseLeave="{{ ubMapRelock }}" style="position:{{ ubMapPos }}; top:{{ ubMapTop }}; min-height:{{ ubMapMin }}; align-self:start; transition:top .38s cubic-bezier(.3,.7,.2,1), height .38s cubic-bezier(.3,.7,.2,1); height:{{ ubMapH }}; border-radius:16px; overflow:hidden; background:#E6E4E1; order:{{ ubMapOrder }}; scroll-margin-top:90px">
+          <sc-if value="{{ ubMapLock }}" hint-placeholder-val="{{ true }}"><button type="button" onClick="{{ ubMapUnlock }}" aria-label="Activar el mapa para moverlo y hacer zoom" style="position:absolute; inset:0; z-index:2; width:100%; height:100%; padding:0 0 16px; border:0; background:transparent; display:flex; align-items:flex-end; justify-content:center; cursor:pointer" style-hover="background:rgba(28,26,25,.06)"><span style="padding:8px 14px; border-radius:999px; background:rgba(28,26,25,.78); color:#FFFFFF; font-size:13px; font-weight:500; pointer-events:none">Haz clic para mover el mapa</span></button></sc-if>
           <iframe title="{{ ubMapTitle }}" src="{{ ubMapSrc }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="position:absolute; inset:0; width:100%; height:100%; border:0"></iframe>
-          <div style="position:absolute; top:12px; left:12px; width:300px; max-width:calc(100% - 24px); padding:14px 16px; border-radius:10px; background:#FFFFFF; box-shadow:0 10px 30px -12px rgba(28,26,25,.4); display:flex; flex-direction:column; gap:3px">
-            <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px">
-              <p style="margin:0 0 3px; font-size:15px; font-weight:600; color:#1C1A19">{{ ubSelName }}</p>
-              <a href="{{ ubSelDir }}" target="_blank" rel="noopener" aria-label="{{ ubSelDirLabel }}" title="Cómo llegar" style="flex:none; width:28px; height:28px; margin:-5px -6px 0 0; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#6B6865" style-hover="background:#F2F0EE; color:#E1251B" style-focus="outline:3px solid #FF9015; outline-offset:1px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
-            </div>
-            <p style="margin:0; font-size:13px; line-height:1.45; font-weight:300; color:#3A3836">{{ ubSelAddr }}</p>
-            <p style="margin:0; font-size:13px; line-height:1.45; font-weight:300; color:#3A3836">{{ ubSelHours }}</p>
-          </div>
         </div>
       </div>
     </div>
@@ -245,7 +231,7 @@ a:hover{color:#B81B10}
         <h2 style="margin:0; font-size:18px; font-weight:600; color:#FFFFFF">Síguenos</h2>
         <ul style="list-style:none; margin:0; padding:0; display:flex; gap:16px">
           <li>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://web.facebook.com/somosplaza/?locale=es_LA" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z"></path></svg>
             </a>
           </li>
@@ -255,7 +241,7 @@ a:hover{color:#B81B10}
             </a>
           </li>
           <li>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://www.tiktok.com/@plazaautoservicios" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3h-3.1v12.2a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.4a5.9 5.9 0 1 0 5 5.8V9.1a7.6 7.6 0 0 0 4.1 1.3V7.3A4.4 4.4 0 0 1 16.6 3z"></path></svg>
             </a>
           </li>
@@ -284,7 +270,7 @@ a:hover{color:#B81B10}
     </div>
   </div>
   <div style="background:#141312">
-    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:16px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© Plaza Autoservicios {{ year }}. Todos los derechos reservados.</p>
+    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:10px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© {{ year }} Plaza Autoservicios · C.H. RETAIL S.A.C. · RUC 20606990058. Todos los derechos reservados.</p>
   </div>
 </footer>
 
@@ -468,8 +454,9 @@ class Component extends DCLogic {
       window.scrollTo(0, cur);
       raf = requestAnimationFrame(step);
     };
-    this.smoothTo = y => { if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
+    this.smoothTo = y => { if (window.__lenis) { window.__lenis.scrollTo(y, { duration: 1.1 }); return; } if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
     this.onWheel = e => {
+      if (window.__lenis) return;
       if (e.ctrlKey || this.state.lbI !== null || this.state.menuOpen || this.state.popKind) return;
       for (let n = e.target; n && n !== document.body && n.nodeType === 1; n = n.parentElement) {
         const oy = getComputedStyle(n).overflowY;
@@ -668,7 +655,7 @@ class Component extends DCLogic {
     const focusTab = k => { goTab(k); const el = document.getElementById('mv-tab-' + k); el && el.focus(); };
     return {
       cnHeroImgRef: this.cnHeroImgRef, cnHeroTxtRef: this.cnHeroTxtRef, mvBoxRef: this.mvBoxRef,
-      cnHeroH: xl ? 'clamp(460px, 36vw, 640px)' : md ? '440px' : '400px',
+      cnHeroH: xl ? 'clamp(520px, 40vw, 720px)' : md ? '490px' : '450px',
       hiCols: xl ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       hiGap: xl ? 'clamp(56px, 7vw, 140px)' : '44px',
       hiImgOrder: xl ? 0 : 1, hiTxtOrder: xl ? 1 : 0,
@@ -1136,8 +1123,8 @@ class Component extends DCLogic {
       ftArtMargin: xl ? '24px 0 0' : '40px -20px 0',
       ftGroups: [
         ['ft-nav', 'Navegación', [['Inicio', 'Home.dc.html'], ['Conócenos', 'Conocenos.dc.html'], ['Novedades', 'Novedades.dc.html'], ['Aliados', 'Aliados.dc.html'], ['Trabaja con nosotros', 'Trabaja.dc.html'], ['Ubicaciones', 'Ubicaciones.dc.html']]],
-        ['ft-cliente', 'Servicio al cliente', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
-        ['ft-legal', 'Legal', [['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
+        ['ft-cliente', 'Servicio al cliente', [['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
+        ['ft-legal', 'Legal', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
       ].map(([id, title, links, sub]) => ({ id, title, links: links.map(([label, href]) => ({ label, href })), hasSub: !!sub, sub: sub ? { id: sub[0], title: sub[1], links: sub[2].map(([label, href]) => ({ label, href })) } : { links: [] } }))
     };
   }
@@ -1744,7 +1731,7 @@ class Component extends DCLogic {
       ['contacto', 'Nombre de contacto', 'text', 'Nombre y apellido', { ac: 'name' }],
       ['correo', 'Correo electrónico', 'email', 'tucorreo@empresa.com', { ac: 'email', mode: 'email' }],
       ['telefono', 'Teléfono', 'tel', 'Ej. 987654321', { ac: 'tel', mode: 'numeric', max: 9 }],
-      ['categoria', 'Categoría de interés', 'select', '', {}],
+      ['categoria', 'Categoría de interés', 'select', 'Selecciona una categoría', {}],
       ['mensaje', 'Mensaje', 'area', 'Cuéntanos sobre tu propuesta…', { max: 1000 }]
     ];
     const f = s.pcF || {}, touched = s.pcTouched || {};
@@ -1784,7 +1771,7 @@ class Component extends DCLogic {
       { t: 'WhatsApp', v: '+51 987 589 037', href: 'https://wa.me/51987589037', target: '_blank', bg: '#1FA855', icon: "M17.0854 2.91005C16.1639 1.98415 15.0664 1.25002 13.8568 0.750414C12.6472 0.250812 11.3498 -0.00426316 10.0402 5.3895e-05C4.55276 5.3895e-05 0.0804022 4.45004 0.0804022 9.91003C0.0804022 11.66 0.542714 13.36 1.40704 14.86L0 20L5.27638 18.62C6.73367 19.41 8.37186 19.83 10.0402 19.83C15.5276 19.83 20 15.38 20 9.92003C20 7.27003 18.9648 4.78004 17.0854 2.91005ZM10.0402 18.15C8.55276 18.15 7.09548 17.75 5.81909 17L5.51759 16.82L2.38191 17.64L3.21608 14.6L3.01508 14.29C2.18849 12.9771 1.74967 11.4593 1.74874 9.91003C1.74874 5.37004 5.46734 1.67005 10.0301 1.67005C12.2412 1.67005 14.3216 2.53005 15.8794 4.09004C16.6509 4.8539 17.2622 5.76258 17.678 6.76336C18.0938 7.76415 18.3057 8.83712 18.3015 9.92003C18.3216 14.46 14.603 18.15 10.0402 18.15ZM14.5829 11.99C14.3317 11.87 13.1055 11.27 12.8844 11.18C12.6533 11.1 12.4925 11.06 12.3216 11.3C12.1508 11.55 11.6784 12.11 11.5377 12.27C11.397 12.44 11.2462 12.46 10.995 12.33C10.7437 12.21 9.9397 11.94 8.99497 11.1C8.25126 10.44 7.75879 9.63003 7.60804 9.38003C7.46734 9.13003 7.58794 9.00003 7.71859 8.87003C7.82914 8.76003 7.96985 8.58003 8.09045 8.44003C8.21105 8.30003 8.26131 8.19003 8.34171 8.03003C8.42211 7.86003 8.38191 7.72003 8.32161 7.60003C8.26131 7.48003 7.75879 6.26004 7.55779 5.76004C7.35678 5.28004 7.14573 5.34004 6.99497 5.33004H6.51256C6.34171 5.33004 6.0804 5.39004 5.84925 5.64004C5.62814 5.89004 4.98492 6.49004 4.98492 7.71003C4.98492 8.93003 5.8794 10.11 6 10.27C6.1206 10.44 7.75879 12.94 10.2513 14.01C10.8442 14.27 11.3065 14.42 11.6683 14.53C12.2613 14.72 12.804 14.69 13.2362 14.63C13.7186 14.56 14.7136 14.03 14.9146 13.45C15.1256 12.87 15.1256 12.38 15.0553 12.27C14.9849 12.16 14.8342 12.11 14.5829 11.99Z", fill: 'currentColor', sw: '0', ptf: 'scale(1.2)' }
     ];
     return {
-      alHeroH: xl ? 'clamp(500px, 38vw, 640px)' : '540px',
+      alHeroH: xl ? 'clamp(560px, 42vw, 720px)' : '600px',
       alHeroPad: xl ? '96px 20px ' + (Math.round((s.alStatsH || 148) / 2) + 24) + 'px' : '96px 20px ' + (Math.round((s.alStatsH || 298) / 2) + 20) + 'px',
       alGoForm: e => { e.preventDefault(); const t2 = document.getElementById('propuesta'); if (t2) { const y = t2.getBoundingClientRect().top + window.scrollY - 90; this.smoothTo ? this.smoothTo(y) : window.scrollTo({ top: y, behavior: 'smooth' }); setTimeout(() => { const i = document.getElementById('pc-empresa'); i && i.focus({ preventScroll: true }); }, 800); } },
       alStatsRef: this.alStatsRef,
@@ -2002,16 +1989,39 @@ class Component extends DCLogic {
   }
   qfBtnRef = el => { this.qfBtn = el; };
   ubStores = [
-    ['huaral-grau', 'Huaral – Av. Grau', 'Huaral', 'Av. Manuel A. Grau 450, Urb. Santa Rosa, Huaral', '987 451 230', -11.4952, -77.2071],
-    ['huaral-derecha', 'Huaral – Mercado Central', 'Huaral', 'Jr. Derecha 210, Cercado de Huaral', '987 451 231', -11.4979, -77.2096],
-    ['huacho-centro', 'Huacho – Centro', 'Huacho', 'Jr. Simón Bolívar 230, Cercado de Huacho', '987 451 232', -11.1069, -77.6058],
-    ['huacho-echenique', 'Huacho – Av. Echenique', 'Huacho', 'Av. Echenique 615, Huacho', '987 451 233', -11.1112, -77.6079],
-    ['hualmay', 'Hualmay – Av. Túpac Amaru', 'Hualmay', 'Av. Túpac Amaru 1240, Hualmay', '987 451 234', -11.0963, -77.6129],
-    ['barranca-lima', 'Barranca – Av. Lima', 'Barranca', 'Av. Lima 890, Cuadra 8, Barranca', '987 451 235', -10.7522, -77.7608],
-    ['supe', 'Supe – Av. Francisco Vidal', 'Supe', 'Av. Francisco Vidal 320, Supe', '987 451 236', -10.7975, -77.7137],
-    ['paramonga', 'Paramonga – Av. Ferrocarril', 'Paramonga', 'Av. Ferrocarril 410, Paramonga', '987 451 237', -10.6747, -77.8190],
-    ['chancay', 'Chancay – Av. Roosevelt', 'Chancay', 'Av. Roosevelt 518, Chancay', '987 451 238', -11.5638, -77.2698],
-    ['sayan', 'Sayán – Jr. Comercio', 'Sayán', 'Jr. Comercio 118, Sayán', '987 451 239', -11.1342, -77.1902]
+    ['huacho-28-de-julio', '28 de Julio', 'Huacho', 'Av. 28 de Julio 578, Huacho', '', -11.1072, -77.6052],
+    ['huacho-san-pedro', 'San Pedro', 'Huacho', 'Urb. San Pedro Mz D Lote 10, Huacho', '', -11.1150, -77.6000],
+    ['huacho-san-martin', 'San Martín', 'Huacho', 'Urb. Los Sauces A-4, Huacho', '', -11.1003, -77.5985],
+    ['huacho-panamericana', 'Panamericana', 'Huacho', 'Car. Panamericana Norte 1665, Km 149', '', -11.1250, -77.5950],
+    ['huacho-carquin', 'Carquín', 'Huacho', 'Cal. Túpac Amaru 207', '', -11.0920, -77.6270],
+    ['huacho-echenique', 'Echenique', 'Huacho', 'Av. Echenique 889', '', -11.1118, -77.6085],
+    ['huacho-cipreses', 'Cipreses', 'Huacho', 'Urb. Los Cipreses Mz O Lote 1', '', -11.1180, -77.6120],
+    ['huacho-san-bartolome', 'San Bartolomé', 'Huacho', 'Bar. San Lorenzo, Sub-Lote 6 Mz 21, San Bartolomé', '', -11.1030, -77.5900],
+    ['huacho-hualmay', 'Hualmay', 'Huacho', 'Av. Hualmay 385', '', -11.0960, -77.6130],
+    ['huacho-proximo', 'Próximo', 'Huacho', 'Av. Echenique N° 492', '', -11.1095, -77.6065],
+    ['huacho-cruz-blanca', 'Cruz Blanca', 'Huacho', 'Av. Mandamiento 1098, Hualmay', '', -11.0930, -77.6060],
+    ['huacho-manzanares', 'Manzanares', 'Huacho', 'Calle 14 de Noviembre Mz N1 Lt 5, San Juan de Manzanares', '', -11.0900, -77.5980],
+    ['huacho-guillermo-velasquez', 'Guillermo Velásquez', 'Huacho', 'Calle Guillermo Velásquez N° 164, Huacho', '', -11.1050, -77.6020],
+    ['huacho-estadio', 'Estadio', 'Huacho', 'Av. Domingo Mandamiento y Calle Santa Rosa N° 105', '', -11.0990, -77.6090],
+    ['huacho-grau', 'Grau', 'Huacho', 'Av. Moore N° 202', '', -11.1040, -77.6110],
+    ['barranca-barranca', 'Barranca', 'Barranca', 'Jr. Gálvez 221', '', -10.7510, -77.7610],
+    ['barranca-paramonga', 'Paramonga', 'Barranca', 'Av. Bolognesi 502', '', -10.6750, -77.8190],
+    ['barranca-puerto-supe', 'Puerto Supe', 'Barranca', 'Calle Tacna Lote B, Puerto Supe', '', -10.8000, -77.7430],
+    ['barranca-barranca-2', 'Barranca 2', 'Barranca', 'Prolongación Alfonso Ugarte N° 550', '', -10.7540, -77.7660],
+    ['barranca-barranca-3', 'Barranca 3', 'Barranca', 'Av. Manco Cápac Mz E Lt 16, Urb. César Augusto', '', -10.7460, -77.7550],
+    ['huaura-huaura', 'Huaura', 'Huaura', 'Cal. José Carlos Mariátegui 114', '', -11.0700, -77.5990],
+    ['huaura-humaya', 'Humaya', 'Huaura', 'Av. San Martín S/N, Centro Poblado Humaya', '', -11.1000, -77.4200],
+    ['huaura-huaura-2', 'Huaura 2', 'Huaura', 'A.H. Don José de San Martín Lt A-1, Mz H, Huaura', '', -11.0660, -77.5950],
+    ['sayan-oyon-sayan', 'Sayán', 'Sayán / Oyón', 'Cal. Grau 248', '', -11.1340, -77.1900],
+    ['sayan-oyon-santa-rosa', 'Santa Rosa', 'Sayán / Oyón', 'C.P. El Milagro, Ex Fundo Fausta Angélica, Mz B Lote 18', '', -11.1200, -77.3000],
+    ['sayan-oyon-churin', 'Churín', 'Sayán / Oyón', 'Av. Larco Herrera 267', '', -10.8120, -76.8730],
+    ['huaral-huaral', 'Huaral', 'Huaral', 'Av. Benjamín Visquerra N° 114', '', -11.4950, -77.2070],
+    ['huaral-huaral-2', 'Huaral 2', 'Huaral', 'Av. Cahuas 615, Huaral', '', -11.5000, -77.2120],
+    ['chancay-chancay', 'Chancay', 'Chancay', 'Av. Luis Felipe del Solar 122', '', -11.5640, -77.2700],
+    ['chancay-peralvillo', 'Peralvillo', 'Chancay', 'Av. San Martín Mz G-2 Lote 15', '', -11.5200, -77.2400],
+    ['ancash-huarmey', 'Huarmey', 'Ancash', 'Av. El Olivar Mz T Lote 50', '', -10.0680, -78.1520],
+    ['ancash-casma', 'Casma', 'Ancash', 'Urb. Zona Este 1, Av. Tarapacá Mz N3 Lote 11', '', -9.4740, -78.3050],
+    ['vegueta-vegueta', 'Végueta', 'Végueta', 'Pueblo Tradicional Mz 33 Lote 3, Végueta', '', -11.0230, -77.6430]
   ];
   ubKm(a, b) { const R = d => d * Math.PI / 180, dLa = R(b[0] - a[0]), dLo = R(b[1] - a[1]); const x = Math.sin(dLa / 2) ** 2 + Math.cos(R(a[0])) * Math.cos(R(b[0])) * Math.sin(dLo / 2) ** 2; return 12742 * Math.asin(Math.sqrt(x)); }
   ubFmt(k) { return k < 1 ? Math.round(k * 1000) + ' m' : k.toLocaleString('es-PE', { maximumFractionDigits: 1 }) + ' km'; }
@@ -2026,40 +2036,57 @@ class Component extends DCLogic {
   }
   ubVals(w) {
     const s = this.state, xl = w >= 1024, D = s.ubD || 'todos', pos = s.ubPos;
+    if (!this._ubSpy && typeof window !== 'undefined') {
+      let t = null;
+      this._ubSpy = () => {
+        clearTimeout(t);
+        t = setTimeout(() => {
+          if (window.innerWidth < 1024 || Date.now() - (this._ubManual || 0) < 1400) return;
+          const arts = [...document.querySelectorAll('[data-ub-id]')]; if (!arts.length) return;
+          const list = arts[0].closest('ul'), lr = list && list.getBoundingClientRect(), mid = window.innerHeight * 0.5;
+          if (!lr || lr.top > mid || lr.bottom < window.innerHeight * 0.3) return;
+          let best = null, bd = Infinity;
+          arts.forEach(a => { const r = a.getBoundingClientRect(); if (r.bottom < 0 || r.top > window.innerHeight) return; const d = Math.abs((r.top + r.bottom) / 2 - mid); if (d < bd) { bd = d; best = a; } });
+          const id = best && best.getAttribute('data-ub-id');
+          if (id && id !== this.state.ubSel) this.setState({ ubSel: id });
+        }, 260);
+      };
+      
+    }
     const go = (id, y0 = 90) => { const t = document.getElementById(id); if (t) { const y = t.getBoundingClientRect().top + window.scrollY - y0; this.smoothTo ? this.smoothTo(y) : window.scrollTo({ top: y, behavior: 'smooth' }); } };
     let list = this.ubStores.map(([id, name, d, addr, phone, lat, lng]) => ({ id, name, d, addr, phone, lat, lng, k: pos ? this.ubKm(pos, [lat, lng]) : null }));
     if (D !== 'todos') list = list.filter(x => x.d === D);
     if (pos) list.sort((m, n) => m.k - n.k);
     const sel = list.find(x => x.id === s.ubSel) || list[0];
-    const dists = [...new Set(this.ubStores.map(x => x[2]))].sort((m, n) => m.localeCompare(n, 'es'));
+    const dists = [...new Set(this.ubStores.map(x => x[2]))];
     return {
       ubGoList: e => { e.preventDefault(); go('tiendas', 70); },
-      ubDistOpts: [{ v: 'todos', l: 'Todos los distritos' }, ...dists.map(d => ({ v: d, l: d }))],
+      ubDistOpts: [{ v: 'todos', l: 'Todas las provincias' }, ...dists.map(d => ({ v: d, l: d }))],
       ubD: D,
       ubSetD: e => this.setState({ ubD: e.target.value, ubSel: null }),
       ubCols: xl ? 'minmax(0,1fr) minmax(0,1.9fr)' : 'minmax(0,1fr)',
       ubGap: xl ? '28px' : '20px',
-      ubLeftH: xl ? '640px' : 'auto',
-      ubListMax: xl ? 'none' : '540px',
-      ubMapH: xl ? '640px' : '380px',
+      ubLeftH: 'auto', ubMapPos: xl ? 'sticky' : 'relative', ubMapTop: xl ? 'calc(84px - var(--nav-off, 0px))' : 'auto', ubMapMin: xl ? '460px' : '0px',
+      ubListMax: xl ? 'none' : '540px', ubListOv: xl ? 'visible' : 'auto', ubMapLock: !s.ubMapOn, ubMapUnlock: () => this.setState({ ubMapOn: true }), ubMapRelock: () => this.setState({ ubMapOn: false }),
+      ubMapH: xl ? 'calc(100vh - 96px + var(--nav-off, 0px))' : '380px',
       ubListOrder: xl ? 0 : 2, ubMapOrder: xl ? 0 : 1,
       ubLocate: () => this.ubLocate(),
       ubLocLabel: s.ubLoc === 'busy' ? 'Buscando tu ubicación…' : 'Usar mi ubicación · Encontrar tienda más cercana',
       ubMsg: s.ubMsg || '', ubMsgDisp: s.ubMsg ? 'block' : 'none',
-      ubHeroH: xl ? 'clamp(520px, 40vw, 680px)' : '80vh',
+      ubHeroH: xl ? 'clamp(580px, 44vw, 760px)' : '80vh',
       ubHeroPad: xl ? '110px 20px 110px' : '96px 20px 80px',
       ubHeroPos: xl ? 'right center' : '78% bottom', ubImgTop: xl ? '0' : 'auto', ubImgLeft: '0', ubImgRight: 'auto', ubImgW: '100%', ubImgH: xl ? '100%' : '58%', ubImgMask: xl ? 'none' : 'linear-gradient(180deg, transparent 0%, #000 28%)', ubHeroJustify: xl ? 'center' : 'flex-start',
       ubHeroShade: xl ? 'linear-gradient(90deg, rgba(110,8,4,.42) 0%, rgba(110,8,4,.22) 30%, rgba(110,8,4,0) 60%)' : 'linear-gradient(90deg, rgba(110,8,4,.32) 0%, rgba(110,8,4,.12) 55%, rgba(110,8,4,0) 100%)',
       ubChipsW: '100%', ubLocRef: this.ubLocRef,
       ubScrollDot: this.ubDotEl,
       ubHeroGo: e => { e.preventDefault(); const t = document.getElementById('tiendas'); if (t) { const y = t.getBoundingClientRect().top + window.scrollY - 80; this.smoothTo ? this.smoothTo(y) : window.scrollTo({ top: y, behavior: 'smooth' }); } },
-      ubList: list.map(x => { const on = x.id === sel.id; return { name: x.name, addr: x.addr, phone: x.phone, on, cur: on ? 'true' : undefined, dir: 'https://www.google.com/maps/dir/?api=1&destination=' + x.lat + ',' + x.lng, dirLabel: 'Cómo llegar a Plaza ' + x.name + ' (abre Google Maps)', dirClick: e => e.stopPropagation(), bd: on ? '#E1251B' : '#FFFFFF', clip: on ? 'inset(0 0 0 0 round 12px)' : 'inset(0 100% 0 0 round 12px)', sh: on ? '0 16px 32px -22px rgba(225,37,27,.55)' : 'none', km: x.k != null ? 'a ' + this.ubFmt(x.k) : '', kmDisp: x.k != null ? 'block' : 'none', ...this.ubCopyVals(x), view: () => this.setState({ ubSel: x.id }), mapLabel: 'Ver Plaza ' + x.name + ' en el mapa', locate: e => { e.stopPropagation(); this.setState({ ubSel: x.id }); const m = document.getElementById('ub-mapa'); const r = m && m.getBoundingClientRect(); if (r && (r.top < 80 || r.bottom > window.innerHeight)) go('ub-mapa'); } }; }),
+      ubList: list.map(x => { const on = x.id === sel.id; return { id: x.id, name: x.name, addr: x.addr, phone: x.phone, on, cur: on ? 'true' : undefined, dir: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Plaza Autoservicios, ' + x.addr + ', ' + x.d + ', Perú'), dirLabel: 'Ver Plaza ' + x.name + ' en Google Maps (se abre en una pestaña nueva)', vLbl: on ? 'En el mapa' : 'Ver en el mapa', vBg: on ? '#FDECEA' : '#E1251B', vCol: on ? '#E1251B' : '#FFFFFF', vIco: on ? 'M20 6 9 17l-5-5' : 'M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z', dirClick: e => e.stopPropagation(), bd: on ? '#E1251B' : '#FFFFFF', clip: on ? 'inset(0 0 0 0 round 12px)' : 'inset(0 100% 0 0 round 12px)', sh: on ? '0 16px 32px -22px rgba(225,37,27,.55)' : 'none', km: x.k != null ? 'a ' + this.ubFmt(x.k) : '', kmDisp: x.k != null ? 'block' : 'none', ...this.ubCopyVals(x), view: () => { this._ubManual = Date.now(); this.setState({ ubSel: x.id }); }, mapLabel: 'Ver Plaza ' + x.name + ' en el mapa', locate: e => { e.stopPropagation(); this._ubManual = Date.now(); this.setState({ ubSel: x.id }); if (window.innerWidth < 1024) { const m = document.getElementById('ub-mapa'); const r = m && m.getBoundingClientRect(); if (r && (r.top < 80 || r.bottom > window.innerHeight)) go('ub-mapa'); } } }; }),
       ubSelName: 'Plaza ' + sel.name,
       ubSelAddr: sel.addr,
-      ubSelHours: 'Lun – Dom: 7:00 AM – 10:00 PM',
-      ubSelDir: 'https://www.google.com/maps/dir/?api=1&destination=' + sel.lat + ',' + sel.lng,
+      ubSelHours: 'Lun – Dom: 7:00 AM – 11:00 PM',
+      ubSelDir: 'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent('Plaza Autoservicios, ' + sel.addr + ', ' + sel.d + ', Perú'),
       ubSelDirLabel: 'Cómo llegar a Plaza ' + sel.name + ' (abre Google Maps)',
-      ubMapSrc: 'https://maps.google.com/maps?q=' + sel.lat + ',' + sel.lng + '&z=16&hl=es&output=embed',
+      ubMapSrc: (() => { const q = encodeURIComponent('Plaza Autoservicios, ' + sel.addr + ', ' + sel.d + ', Perú'); const key = typeof window !== 'undefined' && window.PLAZA_GMAPS_KEY; return key ? 'https://www.google.com/maps/embed/v1/place?key=' + key + '&q=' + q + '&zoom=17&language=es' : 'https://maps.google.com/maps?q=' + q + '&z=16&hl=es&iwloc=near&output=embed'; })(),
       ubMapTitle: 'Mapa de Plaza ' + sel.name
     };
   }
@@ -2106,7 +2133,7 @@ class Component extends DCLogic {
     const scrollTo = (id, y0 = 90) => { const t = document.getElementById(id); if (t) { const y = t.getBoundingClientRect().top + window.scrollY - y0; this.smoothTo ? this.smoothTo(y) : window.scrollTo({ top: y, behavior: 'smooth' }); } };
     const n = Object.keys(shown).length;
     return {
-      vcoHeroH: xl ? 'clamp(460px, 34vw, 560px)' : '480px',
+      vcoHeroH: xl ? 'clamp(520px, 38vw, 640px)' : '540px',
       vcoGoForm: e => { e.preventDefault(); scrollTo('cotizacion'); setTimeout(() => { const i = document.getElementById('qf-empresa'); i && i.focus({ preventScroll: true }); }, 800); },
       qoCols: xl ? 'repeat(4, minmax(0,1fr))' : md ? 'repeat(2, minmax(0,1fr))' : 'minmax(0,1fr)',
       qoItems: [
@@ -2119,7 +2146,7 @@ class Component extends DCLogic {
       scGap: xl ? 'clamp(40px, 5vw, 96px)' : '36px',
       scSidePos: xl ? 'sticky' : 'static',
       cdItems: [
-        { k: 'Teléfono directo', v: '+51 987 589 037', note: 'Lun–Vie 8 AM–6 PM', href: 'tel:+51987589037', target: '_self', bg: '#E1251B', icon: 'M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM11 18h2' },
+        { k: 'Teléfono directo', v: '+51 987 589 037', note: 'Lun–Vie 8 AM–7 PM', href: 'tel:+51987589037', target: '_self', bg: '#E1251B', icon: 'M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM11 18h2' },
         { k: 'Correo comercial', v: 'asistentecomercial@ch-retail.com.pe', note: 'Respuesta en 24 h', href: 'mailto:asistentecomercial@ch-retail.com.pe', target: '_self', bg: '#E1251B', icon: I.mail },
         { k: 'WhatsApp comercial', v: '+51 987 589 037', note: 'Respuesta en minutos', href: 'https://wa.me/51987589037', target: '_blank', bg: '#1FA855', icon: "M17.0854 2.91005C16.1639 1.98415 15.0664 1.25002 13.8568 0.750414C12.6472 0.250812 11.3498 -0.00426316 10.0402 5.3895e-05C4.55276 5.3895e-05 0.0804022 4.45004 0.0804022 9.91003C0.0804022 11.66 0.542714 13.36 1.40704 14.86L0 20L5.27638 18.62C6.73367 19.41 8.37186 19.83 10.0402 19.83C15.5276 19.83 20 15.38 20 9.92003C20 7.27003 18.9648 4.78004 17.0854 2.91005ZM10.0402 18.15C8.55276 18.15 7.09548 17.75 5.81909 17L5.51759 16.82L2.38191 17.64L3.21608 14.6L3.01508 14.29C2.18849 12.9771 1.74967 11.4593 1.74874 9.91003C1.74874 5.37004 5.46734 1.67005 10.0301 1.67005C12.2412 1.67005 14.3216 2.53005 15.8794 4.09004C16.6509 4.8539 17.2622 5.76258 17.678 6.76336C18.0938 7.76415 18.3057 8.83712 18.3015 9.92003C18.3216 14.46 14.603 18.15 10.0402 18.15ZM14.5829 11.99C14.3317 11.87 13.1055 11.27 12.8844 11.18C12.6533 11.1 12.4925 11.06 12.3216 11.3C12.1508 11.55 11.6784 12.11 11.5377 12.27C11.397 12.44 11.2462 12.46 10.995 12.33C10.7437 12.21 9.9397 11.94 8.99497 11.1C8.25126 10.44 7.75879 9.63003 7.60804 9.38003C7.46734 9.13003 7.58794 9.00003 7.71859 8.87003C7.82914 8.76003 7.96985 8.58003 8.09045 8.44003C8.21105 8.30003 8.26131 8.19003 8.34171 8.03003C8.42211 7.86003 8.38191 7.72003 8.32161 7.60003C8.26131 7.48003 7.75879 6.26004 7.55779 5.76004C7.35678 5.28004 7.14573 5.34004 6.99497 5.33004H6.51256C6.34171 5.33004 6.0804 5.39004 5.84925 5.64004C5.62814 5.89004 4.98492 6.49004 4.98492 7.71003C4.98492 8.93003 5.8794 10.11 6 10.27C6.1206 10.44 7.75879 12.94 10.2513 14.01C10.8442 14.27 11.3065 14.42 11.6683 14.53C12.2613 14.72 12.804 14.69 13.2362 14.63C13.7186 14.56 14.7136 14.03 14.9146 13.45C15.1256 12.87 15.1256 12.38 15.0553 12.27C14.9849 12.16 14.8342 12.11 14.5829 11.99Z", fill: 'currentColor', sw: '0', ptf: 'scale(1.2)' }
       ].map((c, k) => ({ ...c, bt: k === 2 ? '1px solid #E4E2DF' : '0', pt: k === 2 ? '18px' : '0' })),

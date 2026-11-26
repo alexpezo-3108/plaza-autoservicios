@@ -10,6 +10,7 @@
 <helmet>
 <script src="assets/confetti.js"></script>
 <script src="assets/delivery.js"></script>
+<script src="assets/navbar.js"></script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,7 +86,7 @@ a:hover{color:#B81B10}
             </li>
           </sc-for>
         </ul>
-        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:17px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
+        <a href="Ubicaciones.dc.html" onClick="{{ closeMenu }}" style="display:flex; align-items:center; justify-content:center; gap:8px; min-height:52px; border-radius:16px; background:#E1251B; color:#FFFFFF; font-size:16px; font-weight:500; text-decoration:none" style-hover="background:#C21D11; color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:2px">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
           Encontrar tienda
         </a>
@@ -97,19 +98,10 @@ a:hover{color:#B81B10}
 <main id="contenido">
   <article data-screen-label="Detalle de novedad" aria-labelledby="nd-titulo" style="position:relative; overflow:hidden; background:#F7F7F6; padding:calc(clamp(84px, 9vw, 120px) + 20px) 20px clamp(56px, 7vw, 96px)">
     <div aria-hidden="true" style="position:absolute; inset:0; pointer-events:none">
-      <img src="assets/deco-sol.svg" alt="" style="position:absolute; top:clamp(90px, 9vw, 140px); right:clamp(-110px, -6vw, -60px); width:clamp(160px, 14vw, 240px); height:auto; filter:brightness(0); opacity:.35"></img>
+      <img src="assets/deco-sol.svg" alt="" style="position:absolute; top:clamp(90px, 9vw, 140px); right:clamp(-110px, -6vw, -60px); width:clamp(160px, 14vw, 240px); height:auto; filter:brightness(0); opacity:.49"></img>
       <img src="assets/deco-fav-izq.svg" alt="" style="position:absolute; top:clamp(120px, 12vw, 200px); left:clamp(-30px, 1vw, 24px); width:clamp(80px, 7vw, 130px); height:auto"></img>
     </div>
     <div style="position:relative; max-width:860px; margin:0 auto">
-      <nav aria-label="Ruta de navegación" data-reveal="0">
-        <ol style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; align-items:center; gap:8px; font-size:14px; font-weight:400; color:#6B6865">
-          <li><a href="Home.dc.html" style="color:#6B6865; text-decoration:none" style-hover="color:#E1251B">Inicio</a></li>
-          <li aria-hidden="true">›</li>
-          <li><a href="Novedades.dc.html" style="color:#6B6865; text-decoration:none" style-hover="color:#E1251B">Novedades</a></li>
-          <li aria-hidden="true">›</li>
-          <li aria-current="page" style="color:#1C1A19">Nuevas tiendas</li>
-        </ol>
-      </nav>
       <header data-reveal="0" style="margin-top:clamp(20px, 2.4vw, 32px); display:flex; flex-direction:column; align-items:flex-start; gap:14px">
         <span style="display:inline-flex; align-items:center; min-height:28px; padding:0 12px; border-radius:6px; background:#FDECEA; color:#B81B10; font-size:13px; font-weight:500">Nuevas tiendas</span>
         <h1 id="nd-titulo" style="margin:0; font-size:clamp(28px, 3.8vw, 50px); font-weight:800; line-height:1.12; letter-spacing:-0.015em; text-transform:uppercase; color:#1C1A19; text-wrap:balance">Abrimos nuestra tienda número 30 en Barranca</h1>
@@ -188,7 +180,7 @@ a:hover{color:#B81B10}
         <h2 style="margin:0; font-size:18px; font-weight:600; color:#FFFFFF">Síguenos</h2>
         <ul style="list-style:none; margin:0; padding:0; display:flex; gap:16px">
           <li>
-            <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://web.facebook.com/somosplaza/?locale=es_LA" target="_blank" rel="noopener" aria-label="Facebook (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#1877F2; color:#FFFFFF; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#FFFFFF" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H7.9v3h2.6V21h3z"></path></svg>
             </a>
           </li>
@@ -198,7 +190,7 @@ a:hover{color:#B81B10}
             </a>
           </li>
           <li>
-            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
+            <a href="https://www.tiktok.com/@plazaautoservicios" target="_blank" rel="noopener" aria-label="TikTok (se abre en una pestaña nueva)" style="width:48px; height:48px; border-radius:50%; background:#FFFFFF; color:#111111; display:flex; align-items:center; justify-content:center; transition:transform .25s cubic-bezier(.3,.7,.2,1)" style-hover="transform:scale(1.1); color:#111111" style-focus="outline:3px solid #FF9015; outline-offset:3px">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3h-3.1v12.2a2.7 2.7 0 1 1-2.7-2.7c.3 0 .5 0 .8.1V9.4a5.9 5.9 0 1 0 5 5.8V9.1a7.6 7.6 0 0 0 4.1 1.3V7.3A4.4 4.4 0 0 1 16.6 3z"></path></svg>
             </a>
           </li>
@@ -227,7 +219,7 @@ a:hover{color:#B81B10}
     </div>
   </div>
   <div style="background:#141312">
-    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:16px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© Plaza Autoservicios {{ year }}. Todos los derechos reservados.</p>
+    <p style="max-width:clamp(1120px, 84vw, 1640px); margin:0 auto; padding:10px {{ ftSidePad }}; font-size:14px; font-weight:300; color:#D9D7D4">© {{ year }} Plaza Autoservicios · C.H. RETAIL S.A.C. · RUC 20606990058. Todos los derechos reservados.</p>
   </div>
 </footer>
 
@@ -390,8 +382,9 @@ class Component extends DCLogic {
       window.scrollTo(0, cur);
       raf = requestAnimationFrame(step);
     };
-    this.smoothTo = y => { if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
+    this.smoothTo = y => { if (window.__lenis) { window.__lenis.scrollTo(y, { duration: 1.1 }); return; } if (!raf) cur = window.scrollY; target = clamp(y); if (!raf) raf = requestAnimationFrame(step); };
     this.onWheel = e => {
+      if (window.__lenis) return;
       if (e.ctrlKey || this.state.lbI !== null || this.state.menuOpen || this.state.popKind) return;
       for (let n = e.target; n && n !== document.body && n.nodeType === 1; n = n.parentElement) {
         const oy = getComputedStyle(n).overflowY;
@@ -590,7 +583,7 @@ class Component extends DCLogic {
     const focusTab = k => { goTab(k); const el = document.getElementById('mv-tab-' + k); el && el.focus(); };
     return {
       cnHeroImgRef: this.cnHeroImgRef, cnHeroTxtRef: this.cnHeroTxtRef, mvBoxRef: this.mvBoxRef,
-      cnHeroH: xl ? 'clamp(460px, 36vw, 640px)' : md ? '440px' : '400px',
+      cnHeroH: xl ? 'clamp(520px, 40vw, 720px)' : md ? '490px' : '450px',
       hiCols: xl ? 'minmax(0,1fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       hiGap: xl ? 'clamp(56px, 7vw, 140px)' : '44px',
       hiImgOrder: xl ? 0 : 1, hiTxtOrder: xl ? 1 : 0,
@@ -1053,8 +1046,8 @@ class Component extends DCLogic {
       ftArtMargin: xl ? '24px 0 0' : '40px -20px 0',
       ftGroups: [
         ['ft-nav', 'Navegación', [['Inicio', 'Home.dc.html'], ['Conócenos', 'Conocenos.dc.html'], ['Novedades', 'Novedades.dc.html'], ['Aliados', 'Aliados.dc.html'], ['Trabaja con nosotros', 'Trabaja.dc.html'], ['Ubicaciones', 'Ubicaciones.dc.html']]],
-        ['ft-cliente', 'Servicio al cliente', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
-        ['ft-legal', 'Legal', [['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
+        ['ft-cliente', 'Servicio al cliente', [['Comprobante electrónico', 'Legal.dc.html?doc=comprobante']], ['ft-corp', 'Corporativo', [['Venta corporativa', 'VentaCorporativa.dc.html']]]],
+        ['ft-legal', 'Legal', [['Políticas de privacidad', 'Legal.dc.html?doc=privacidad'], ['Políticas de devoluciones', 'Legal.dc.html?doc=devoluciones']]]
       ].map(([id, title, links, sub]) => ({ id, title, links: links.map(([label, href]) => ({ label, href })), hasSub: !!sub, sub: sub ? { id: sub[0], title: sub[1], links: sub[2].map(([label, href]) => ({ label, href })) } : { links: [] } }))
     };
   }

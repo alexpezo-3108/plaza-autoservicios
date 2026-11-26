@@ -42,5 +42,16 @@
     watchFooter();
     new MutationObserver(hideWhenModal).observe(document.body, { attributes: true, attributeFilter: ['style'] });
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
+  const heroReady = () => new Promise(res => {
+    let done = false; const go = () => { if (!done) { done = true; res(); } };
+    setTimeout(go, 8000);
+    const wait = () => {
+      const sec = document.querySelector('main section, section, header + *');
+      const imgs = sec ? [...sec.querySelectorAll('img')] : [];
+      if (!sec || (!imgs.length && document.readyState !== 'complete')) return setTimeout(wait, 150);
+      Promise.all(imgs.map(i => i.complete && i.naturalWidth ? Promise.resolve() : new Promise(r => { i.addEventListener('load', r, { once: true }); i.addEventListener('error', r, { once: true }); }))).then(() => setTimeout(go, 250));
+    };
+    if (document.readyState === 'complete') wait(); else window.addEventListener('load', wait, { once: true });
+  });
+  heroReady().then(mount);
 })();
